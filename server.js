@@ -18,25 +18,58 @@ app.use(cors());
 app.use(morgan('combined'));
 
 const db = {
-  users: [
-    {
+    users: [
+      {
       id: '1',
-      name: 'a',
-      email: 'a@a.com',
       password: 'a',
-      joined: new Date()
+      email: 'a@a.com',
+      name: '',
+      age: '',
+      joined: '',
+      expences: [
+        {
+          timespan: 'All Time',
+          tags: {
+            Food: 0,
+            Household: 0,
+          }
+        },
+        {
+          timespan: "This Month",
+          tags: {
+            Food: 0,
+            Household: 0,
+          }
+        },
+        {
+          timespan: "This Week",
+          tags: {
+            Food: 0,
+            Household: 0,
+          }
+        },
+        {
+          timespan: "Today",
+          tags: {
+            Food: 0,
+            Household: 0,
+          }
+        }
+      ],
+      totalExpences: {
+        AllTime: 0,
+        thisMonth: 0,
+        thisWeek: 0,
+        today: 0
+      },
+      customUserTags: {
+        // push to availableTags in componentDidMount
+      }
     },
-    {
-      id: '2',
-      name: 'John',
-      email: 'John@gmail.com',
-      password: 'John',
-      joined: new Date()
-    }
   ],
   login: [
     {
-      id: '999',
+      id: '1',
       hash: '',
       email: 'a@a.com'
     }
