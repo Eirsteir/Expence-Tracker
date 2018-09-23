@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cors = require('cors');
 const bcrypt = require('bcrypt-nodejs');
@@ -17,6 +18,11 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan('combined'));
 
+// Connect to mongodb
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(console.log);
+
 const db = {
     users: [
       {
@@ -30,29 +36,29 @@ const db = {
         {
           timespan: 'All Time',
           tags: {
-            Food: 0,
-            Household: 0,
+            Food: 200,
+            Household: 300,
           }
         },
         {
           timespan: "This Month",
           tags: {
-            Food: 0,
-            Household: 0,
+            Food: 200,
+            Household: 300,
           }
         },
         {
           timespan: "This Week",
           tags: {
-            Food: 0,
-            Household: 0,
+            Food: 200,
+            Household: 300,
           }
         },
         {
           timespan: "Today",
           tags: {
-            Food: 0,
-            Household: 0,
+            Food: 200,
+            Household: 300,
           }
         }
       ],
@@ -83,5 +89,5 @@ app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcry
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`app is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
