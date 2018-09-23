@@ -1,0 +1,31 @@
+// Users model
+const User = require('../models/User');
+var async = require('async');
+
+const handleAddExpence = (req, res, db) => {
+  const { _id, tag, amount } = req.body;
+
+   const newExpence = {
+    date: new Date,
+    tag: tag,
+    amount: amount
+  }
+
+  // Find user and update corresponding tag with the given value and return the modified user document
+  User.findOneAndUpdate(
+    { _id: _id },
+    { $push: { expences: newExpence }},
+    { new: true } // return modified user
+  )
+  .then(user => {
+    res.json(user)
+  })
+  .catch(err => {
+    res.status(400).json('unable to add expence')
+  })
+
+}
+
+module.exports = {
+  handleAddExpence
+}

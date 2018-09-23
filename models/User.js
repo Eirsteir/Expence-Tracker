@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
+// LOOK INTO DATATYPES - EXPENCES CAN'T BE CORRECT?
 // Create Schema
 const UserSchema = new Schema({
   email: {
@@ -22,47 +24,12 @@ const UserSchema = new Schema({
   },
   expences: {
     type: Array,
-    default: [
-      {
-        timespan: 'All Time',
-        tags: {
-          Food: 0,
-          Household: 0,
-        }
-      },
-      {
-        timespan: "This Month",
-        tags: {
-          Food: 0,
-          Household: 0,
-        }
-      },
-      {
-        timespan: "This Week",
-        tags: {
-          Food: 0,
-          Household: 0,
-        }
-      },
-      {
-        timespan: "Today",
-        tags: {
-          Food: 0,
-          Household: 0,
-        }
-      }
-    ]
   },
-  totalExpences: {
-    type: Map,
-    of: String,
-    default: {
-      allTime: '0',
-      thisMonth: '0',
-      thisWeek: '0',
-      today: '0'
-    }
-  },
+  // totalExpences: {
+  //   type: Map,
+  //   of: Number,
+  //   default: 0
+  // },
   customUserTags: {
     type: Array
   }
