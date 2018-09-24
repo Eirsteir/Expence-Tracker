@@ -8,6 +8,7 @@ const bcrypt = require('bcrypt-nodejs');
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
 const addExpence = require('./controllers/addExpence');
+const addCustomTag = require('./controllers/addCustomTag');
 
 // Setup environmental variables in development
 if (process.env.NODE_ENV !== 'production') {
@@ -29,7 +30,8 @@ const db = mongoose.connection;
 app.get('/', (req,res) => { res.status(200).json('Server is up and running')});
 app.post('/signin', (req, res) => { signin.handleSignin(req, res, bcrypt)});
 app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt)});
-app.post('/add-expence', (req, res) => { addExpence.handleAddExpence(req, res, db)});
+app.post('/add-expence', (req, res) => { addExpence.handleAddExpence(req, res)});
+app.post('/add-custom-tag', (req, res) => { addCustomTag.handleAddCustomTag(req, res)});
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {

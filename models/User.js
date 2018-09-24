@@ -30,7 +30,7 @@ const UserSchema = new Schema({
   //   of: Number,
   //   default: 0
   // },
-  customUserTags: {
+  tags: {
     type: Array
   }
 });

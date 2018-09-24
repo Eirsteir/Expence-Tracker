@@ -1,8 +1,7 @@
 // Users model
 const User = require('../models/User');
-var async = require('async');
 
-const handleAddExpence = (req, res, db) => {
+const handleAddExpence = (req, res) => {
   const { _id, tag, amount } = req.body;
 
    const newExpence = {

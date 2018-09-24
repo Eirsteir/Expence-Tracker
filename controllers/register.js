@@ -21,6 +21,10 @@ const registerUserInDB = (req, res, db, name, email, hash) => {
   const newUser = new User({
     name: name,
     email: email,
+    tags: [
+      'Food',
+      'Household'
+    ]
   });
 
   const newLogin = new Login({
