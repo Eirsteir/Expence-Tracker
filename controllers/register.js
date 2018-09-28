@@ -3,14 +3,15 @@ const User = require('../models/User');
 // Login model
 const Login = require('../models/Login');
 
-const isEmailInUse = (email) => {
+const isEmailAvailable = (email) => {
   User.find({ email: email })
   .then(user => {
     if (user || user[0] || user[0].email === email) {
-      return true
+      console.log('email not available');
+      return false // change this before prod
     } else {
-      console.log(user);
-      return false
+      console.log('email available');
+      return true
     }
   })
   .catch(console.log)
@@ -31,6 +32,8 @@ const registerUserInDB = (req, res, db, name, email, hash) => {
     email: email,
     hash: hash
   });
+
+  console.log('registerUserInDB called');
 
   let session = null;
 
@@ -67,9 +70,9 @@ const handleRegister = (req, res, db, bcrypt) => {
 
   var hash = bcrypt.hashSync(password);
 
-  return isEmailInUse(email) ?
-    res.status(400).json('email already in use')
-    : registerUserInDB(req, res, db, name, email, hash);
+  return isEmailAvailable() ?
+    registerUserInDB(req, res, db, name, email, hash)
+    : res.status(400).json('Wrong credentials');
 
 }
 

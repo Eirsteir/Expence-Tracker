@@ -27,6 +27,7 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
 
 const db = mongoose.connection;
 
+// requireAuth middleware
 app.get('/', (req,res) => { res.status(200).json('Server is up and running')});
 app.post('/signin', (req, res) => { signin.handleSignin(req, res, bcrypt)});
 app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt)});

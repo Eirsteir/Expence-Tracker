@@ -3,9 +3,12 @@ const User = require('../models/User');
 
 const handleAddExpence = (req, res) => {
   const { _id, tag, amount } = req.body;
+  if ( !_id || !tag || !amount ) {
+    return res.status(400).json('Wrong form submission');
+  }
 
-   const newExpence = {
-    date: new Date,
+  const newExpence = {
+    timestamp: new Date(),
     tag: tag,
     amount: amount
   }
