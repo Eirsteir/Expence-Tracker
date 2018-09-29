@@ -2,7 +2,7 @@ const redisClient = require('./signin').redisClient;
 
 const handleSignout = (req, res) => {
   const { authorization } = req.headers;
-  return authorization ? deleteAuthTokenId(req, res, authorization) : res.json('Successfully signed out');
+  return authorization === 'null' ? res.json('Successfully signed out') : deleteAuthTokenId(req, res, authorization);
 }
 
 const deleteAuthTokenId = (req, res, token) => {

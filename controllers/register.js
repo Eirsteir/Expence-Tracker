@@ -3,19 +3,6 @@ const User = require('../models/User');
 // Login model
 const Login = require('../models/Login');
 
-const isEmailAvailable = (email) => {
-  User.find({ email: email })
-  .then(user => {
-    if (user || user[0] || user[0].email === email) {
-      console.log('email not available');
-      return false // change this before prod
-    } else {
-      console.log('email available');
-      return true
-    }
-  })
-  .catch(console.log)
-}
 
 const registerUserInDB = (req, res, db, name, email, hash) => {
 
@@ -33,7 +20,6 @@ const registerUserInDB = (req, res, db, name, email, hash) => {
     hash: hash
   });
 
-  console.log('registerUserInDB called');
 
   let session = null;
 
@@ -64,15 +50,23 @@ const registerUserInDB = (req, res, db, name, email, hash) => {
 const handleRegister = (req, res, db, bcrypt) => {
   const { email, name, password } = req.body;
 
-  if (!email || !name || !password) {
+  if (!email || !name || !password || password.length < 8) {
     return res.status(400).json('incorrect form submission')
-  } // else if (password.lenght < 8)
+  }
 
   var hash = bcrypt.hashSync(password);
 
-  return isEmailAvailable() ?
-    registerUserInDB(req, res, db, name, email, hash)
-    : res.status(400).json('Wrong credentials');
+  User.find({ email: email })
+  .then(user => {
+    if (user.length !== 0 || user[0]) {
+      console.log('email not available');
+      return res.status(400).json('unable to register');
+    } else {
+      console.log('email available');
+      return registerUserInDB(req, res, db, name, email, hash)
+    }
+  })
+  .catch(console.log)
 }
 
 module.exports = {

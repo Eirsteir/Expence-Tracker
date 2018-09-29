@@ -69,7 +69,7 @@ const signinAuthentification = (req, res, db, bcrypt) => {
     return data._id && data.email ? createSessions(data) : Promise.reject(data)
   })
   .then(session => res.json(session))
-  .catch(err => res.status(400).json('something went wrong'))
+  .catch(err => res.status(400).json('Wrong email or password'))
 }
 
 module.exports = {
