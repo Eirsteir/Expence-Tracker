@@ -7,11 +7,10 @@ const jwt = require('jsonwebtoken');
 const redis = require('redis');
 
 // setup redis
+// const redisClient = redis.createClient('6379', '127.0.0.1');
 const redisClient = redis.createClient(process.env.REDIS_URI);
-
-redisClient.on("error", function (err) {
-    console.log("Error " + err);
-});
+redisClient.on('connect', () => console.log('Connected to RedisDB'))
+redisClient.on('error', err => console.log);
 
 const handleSignin = (req, res, db, bcrypt) => {
   const { email, password } = req.body;
@@ -70,9 +69,10 @@ const signinAuthentification = (req, res, db, bcrypt) => {
     return data._id && data.email ? createSessions(data) : Promise.reject(data)
   })
   .then(session => res.json(session))
-  .catch(err => res.status(400).json(err))
+  .catch(err => res.status(400).json('something went wrong'))
 }
 
 module.exports = {
-  signinAuthentification
+  signinAuthentification,
+  redisClient
 }

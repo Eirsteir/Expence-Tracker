@@ -3,10 +3,9 @@ const User = require('../models/User');
 
 const handleProfileGet = (req, res) => {
   const { id } = req.params;
-  console.log(id);
+
   return User.find({ _id: id })
     .then(user => {
-      console.log(user);
       if (user.length) {
         res.json(user[0])
       } else {

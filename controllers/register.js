@@ -73,7 +73,6 @@ const handleRegister = (req, res, db, bcrypt) => {
   return isEmailAvailable() ?
     registerUserInDB(req, res, db, name, email, hash)
     : res.status(400).json('Wrong credentials');
-
 }
 
 module.exports = {
