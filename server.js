@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt-nodejs');
 
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
+const profile = require('./controllers/profile');
 const addExpence = require('./controllers/addExpence');
 const addCustomTag = require('./controllers/addCustomTag');
 
@@ -29,8 +30,9 @@ const db = mongoose.connection;
 
 // requireAuth middleware
 app.get('/', (req,res) => { res.status(200).json('Server is up and running')});
-app.post('/signin', (req, res) => { signin.handleSignin(req, res, bcrypt)});
+app.post('/signin', (req, res) => { signin.signinAuthentification(req, res, db, bcrypt)});
 app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt)});
+app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, res) })
 app.post('/add-expence', (req, res) => { addExpence.handleAddExpence(req, res)});
 app.post('/add-custom-tag', (req, res) => { addCustomTag.handleAddCustomTag(req, res)});
 
