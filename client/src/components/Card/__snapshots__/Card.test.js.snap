@@ -1,0 +1,358 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Expect to render Card component 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Card
+    classes={
+        Object {
+            "control": Object {
+              "padding": "1em",
+            },
+            "emptyList": Object {
+              "alignItems": "center",
+              "display": "flex",
+              "justifyContent": "center",
+              "paddingTop": "2em",
+            },
+            "paper": Object {
+              "minHeight": "55vh",
+              "width": "17em",
+            },
+            "root": Object {
+              "flexGrow": 1,
+            },
+          }
+    }
+    processedExpences={
+        Array [
+            Object {
+              "amount": 400,
+              "tag": "Food",
+              "timestamp": 1970-01-01T00:00:00.000Z,
+            },
+          ]
+    }
+    timespan={undefined}
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <WithStyles(Typography)
+          className={
+                    Object {
+                              "padding": "1em",
+                            }
+          }
+          component="h3"
+          style={
+                    Object {
+                              "backgroundColor": "#2196f3",
+                              "color": "#fff",
+                              "display": "flex",
+                              "justifyContent": "center",
+                            }
+          }
+          variant="headline"
+>
+          All Time
+</WithStyles(Typography)>,
+        Array [
+          <WithStyles(Typography)
+            className={
+                        Object {
+                                    "padding": "1em",
+                                  }
+            }
+            component="p"
+            variant="body1"
+>
+             Food: 400
+</WithStyles(Typography)>,
+        ],
+        <Doughnut
+          data={
+                    Object {
+                              "datasets": Array [
+                                Object {
+                                  "backgroundColor": Array [
+                                    "#FF6384",
+                                    "#36A2EB",
+                                    "#FFCE56",
+                                  ],
+                                  "data": Array [
+                                    400,
+                                  ],
+                                  "hoverBackgroundColor": Array [
+                                    "#FF6384",
+                                    "#36A2EB",
+                                    "#FFCE56",
+                                  ],
+                                },
+                              ],
+                              "labels": Array [
+                                "Food",
+                              ],
+                            }
+          }
+/>,
+      ],
+      "className": Object {
+        "minHeight": "55vh",
+        "width": "17em",
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "All Time",
+          "className": Object {
+            "padding": "1em",
+          },
+          "component": "h3",
+          "style": Object {
+            "backgroundColor": "#2196f3",
+            "color": "#fff",
+            "display": "flex",
+            "justifyContent": "center",
+          },
+          "variant": "headline",
+        },
+        "ref": null,
+        "rendered": "All Time",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": "0",
+        "nodeType": "class",
+        "props": Object {
+          "children": " Food: 400",
+          "className": Object {
+            "padding": "1em",
+          },
+          "component": "p",
+          "variant": "body1",
+        },
+        "ref": null,
+        "rendered": " Food: 400",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "data": Object {
+            "datasets": Array [
+              Object {
+                "backgroundColor": Array [
+                  "#FF6384",
+                  "#36A2EB",
+                  "#FFCE56",
+                ],
+                "data": Array [
+                  400,
+                ],
+                "hoverBackgroundColor": Array [
+                  "#FF6384",
+                  "#36A2EB",
+                  "#FFCE56",
+                ],
+              },
+            ],
+            "labels": Array [
+              "Food",
+            ],
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <WithStyles(Typography)
+            className={
+                        Object {
+                                    "padding": "1em",
+                                  }
+            }
+            component="h3"
+            style={
+                        Object {
+                                    "backgroundColor": "#2196f3",
+                                    "color": "#fff",
+                                    "display": "flex",
+                                    "justifyContent": "center",
+                                  }
+            }
+            variant="headline"
+>
+            All Time
+</WithStyles(Typography)>,
+          Array [
+            <WithStyles(Typography)
+              className={
+                            Object {
+                                          "padding": "1em",
+                                        }
+              }
+              component="p"
+              variant="body1"
+>
+               Food: 400
+</WithStyles(Typography)>,
+          ],
+          <Doughnut
+            data={
+                        Object {
+                                    "datasets": Array [
+                                      Object {
+                                        "backgroundColor": Array [
+                                          "#FF6384",
+                                          "#36A2EB",
+                                          "#FFCE56",
+                                        ],
+                                        "data": Array [
+                                          400,
+                                        ],
+                                        "hoverBackgroundColor": Array [
+                                          "#FF6384",
+                                          "#36A2EB",
+                                          "#FFCE56",
+                                        ],
+                                      },
+                                    ],
+                                    "labels": Array [
+                                      "Food",
+                                    ],
+                                  }
+            }
+/>,
+        ],
+        "className": Object {
+          "minHeight": "55vh",
+          "width": "17em",
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "All Time",
+            "className": Object {
+              "padding": "1em",
+            },
+            "component": "h3",
+            "style": Object {
+              "backgroundColor": "#2196f3",
+              "color": "#fff",
+              "display": "flex",
+              "justifyContent": "center",
+            },
+            "variant": "headline",
+          },
+          "ref": null,
+          "rendered": "All Time",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "0",
+          "nodeType": "class",
+          "props": Object {
+            "children": " Food: 400",
+            "className": Object {
+              "padding": "1em",
+            },
+            "component": "p",
+            "variant": "body1",
+          },
+          "ref": null,
+          "rendered": " Food: 400",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "data": Object {
+              "datasets": Array [
+                Object {
+                  "backgroundColor": Array [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56",
+                  ],
+                  "data": Array [
+                    400,
+                  ],
+                  "hoverBackgroundColor": Array [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56",
+                  ],
+                },
+              ],
+              "labels": Array [
+                "Food",
+              ],
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

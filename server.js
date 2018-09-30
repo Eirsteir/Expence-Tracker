@@ -26,7 +26,7 @@ app.use(morgan('combined'));
 app.use(helmet())
 
 // Connect to mongodb
-mongoose.connect('mongodb://steirae:JSbGn2iELuQ2uNs@ds113003.mlab.com:13003/my_expences', { useNewUrlParser: true })
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch(console.log);
 
@@ -34,11 +34,9 @@ const db = mongoose.connection;
 
 const path = require('path')
 // Serve static files from the React frontend app
-app.use(express.static('/Expence-Tracker-Client/build'));
+app.use(express.static(path.join(__dirname, "client", "build")))
 // Anything that doesn't match the above, send back index.html
-app.get('*', (req, res) => {
-  res.sendFile('/Expence-Tracker-Client/build/index.html');
-});
+
 
 // requireAuth middleware
 app.get('/', (req,res) => { res.status(200).json('Server is up and running')});
@@ -48,6 +46,11 @@ app.post('/signout', (req, res) => { signout.handleSignout(req, res) });
 app.get('/profile/:id', auth.requireAuth, (req, res) => { profile.handleProfileGet(req, res) })
 app.post('/add-expence', auth.requireAuth, (req, res) => { addExpence.handleAddExpence(req, res)});
 app.post('/add-custom-tag', auth.requireAuth, (req, res) => { addCustomTag.handleAddCustomTag(req, res)});
+
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {

@@ -1,0 +1,28 @@
+{
+  "name": "Expence Tracker",
+ "short_name": "Track Expences",
+ "lang": "en-US",
+ "theme_color": "#1769aa",
+  "short_name": "MyExpences",
+  "name": "My Expence Tracker",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "96x96 64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "favicon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#009688"
+}
