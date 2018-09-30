@@ -74,7 +74,7 @@ class Signin extends React.Component {
 
   handleSignin = () => {
     this.toggleLoading()
-    fetch(`${process.env.REACT_APP_API_URL}/signin`, {
+    fetch(`/signin`, {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -90,7 +90,7 @@ class Signin extends React.Component {
         }
         if (data.userId && data.success === 'true') {
           this.saveAuthTokenInSession(data.token);
-          fetch(`${process.env.REACT_APP_API_URL}/profile/${data.userId}`, {
+          fetch(`/profile/${data.userId}`, {
             method: 'get',
             headers: {
               'Content-Type': 'application/json',

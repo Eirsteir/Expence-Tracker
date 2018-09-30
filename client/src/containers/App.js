@@ -66,7 +66,7 @@ class App extends Component {
     const token = window.sessionStorage.getItem('token');
     if (token) {
       this.toggleLoading();
-      fetch(`${process.env.REACT_APP_API_URL}/signin`, {
+      fetch(`/signin`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ class App extends Component {
       .then(response => response.json())
       .then(data => {
         if (data && data.id) {
-          fetch(`${process.env.REACT_APP_API_URL}/profile/${data.id}`, {
+          fetch(`/profile/${data.id}`, {
             method: 'get',
             headers: {
               'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ class App extends Component {
   onSignout = () => {
     const token = window.sessionStorage.getItem('token');
 
-    fetch(`${process.env.REACT_APP_API_URL}/signout`, {
+    fetch(`/signout`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -150,7 +150,7 @@ class App extends Component {
     if (newTag.length === 0) {
       return false;
     }
-    fetch(`${process.env.REACT_APP_API_URL}/add-custom-tag`, {
+    fetch(`/add-custom-tag`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -175,7 +175,7 @@ class App extends Component {
     if (this.state.currentTag === '') {
       return false
     }
-    fetch(`${process.env.REACT_APP_API_URL}/add-expence`, {
+    fetch(`/add-expence`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',

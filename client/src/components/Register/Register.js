@@ -73,7 +73,7 @@ class Register extends React.Component {
 
   handleRegister = () => {
     this.toggleLoading();
-    fetch(`${process.env.REACT_APP_API_URL}/register`, {
+    fetch(`/register`, {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
