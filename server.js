@@ -32,6 +32,14 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
 
 const db = mongoose.connection;
 
+const path = require('path')
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, 'client/build')))
+// Anything that doesn't match the above, send back index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/build/index.html'))
+})
+
 // requireAuth middleware
 app.get('/', (req,res) => { res.status(200).json('Server is up and running')});
 app.post('/signin', (req, res) => { signin.signinAuthentification(req, res, db, bcrypt)});
