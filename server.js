@@ -34,11 +34,11 @@ const db = mongoose.connection;
 
 const path = require('path')
 // Serve static files from the React frontend app
-app.use(express.static(path.join(__dirname, 'Expence-Tracker-Client/build')))
+app.use(express.static('Expence-Tracker-Client/build'));
 // Anything that doesn't match the above, send back index.html
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/Expence-Tracker-Client/build/index.html'))
-})
+  res.sendFile('/Expence-Tracker-Client/build/index.html');
+});
 
 // requireAuth middleware
 app.get('/', (req,res) => { res.status(200).json('Server is up and running')});
