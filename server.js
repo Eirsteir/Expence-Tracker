@@ -26,7 +26,7 @@ app.use(morgan('combined'));
 app.use(helmet())
 
 // Connect to mongodb
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
+mongoose.connect('mongodb://steirae:JSbGn2iELuQ2uNs@ds113003.mlab.com:13003/my_expences', { useNewUrlParser: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch(console.log);
 
