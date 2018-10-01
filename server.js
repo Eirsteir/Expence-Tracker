@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cors = require('cors');
 const bcrypt = require('bcrypt-nodejs');
-const helmet = require('helmet')
+const helmet = require('helmet');
+const compression = require('compression');
 
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
@@ -23,7 +24,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan('combined'));
-app.use(helmet())
+app.use(helmet());
+app.use(compression())
 
 // Connect to mongodb
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
