@@ -7,8 +7,12 @@ const jwt = require('jsonwebtoken');
 const redis = require('redis');
 
 // setup redis
-// const redisClient = redis.createClient('6379', '127.0.0.1');
-const redisClient = redis.createClient(process.env.REDIS_URI);
+const redisClient = redis.createClient({
+  port: process.env.REDIS_PORT,
+  host: process.env.REDIS_URL,
+  password: process.env.REDIS_PASSWORD
+});
+
 redisClient.on('connect', () => console.log('Connected to RedisDB'))
 redisClient.on('error', err => console.log);
 

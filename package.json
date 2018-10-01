@@ -1,10 +1,11 @@
 {
-  "name": "track-expences-api",
+  "name": "track-expences",
   "version": "1.0.0",
-  "description": "",
+  "description": "A webapp to track your expences.",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
+    "dev": "concurrently \"cd client && npm start\" \"npm run server\" -c \"bgGreen.bold,bgYellow.bold, white\"",
     "heroku-postbuild": "cd client && npm install && npm run build",
     "server": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
