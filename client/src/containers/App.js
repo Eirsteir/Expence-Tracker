@@ -9,6 +9,9 @@ import Signin from '../components/Signin/Signin';
 import Register from '../components/Register/Register';
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 import Background from '../components/Background/Background';
+import Hero from '../components/Hero/Hero';
+
+import './App.css';
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
@@ -252,10 +255,12 @@ class App extends Component {
             handleNewTagInputChange={this.handleNewTagInputChange}
           />
           : ( route === 'register'
-              ? <div style={{height: '90vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+              ? <div id="user-form">
+                  <Hero />
                   <Register onRouteChange={this.onRouteChange} loadUser={this.loadUser} />
                 </div>
-              :  <div style={{height: '90vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+              :  <div id="user-form">
+                  <Hero />
                   <Signin onRouteChange={this.onRouteChange} loadUser={this.loadUser}/>
                 </div>
             )
