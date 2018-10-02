@@ -8,6 +8,7 @@ import Expences from '../components/Expences/Expences';
 import Signin from '../components/Signin/Signin';
 import Register from '../components/Register/Register';
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import Background from '../components/Background/Background';
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
@@ -232,6 +233,12 @@ class App extends Component {
           </div>
       }
         <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} onSignout={this.onSignout}/>
+
+
+        <button hidden className="btnAdd">
+          show prompt
+        </button>
+
         <ErrorBoundary>
         { route === 'home'
           ? <Expences
@@ -255,7 +262,7 @@ class App extends Component {
         }
         </ErrorBoundary>
         </MuiThemeProvider>
-        <div id="background" style={{backgroundImage: 'linear-gradient(89deg, rgb(23, 105, 170) 0%, #1769aa 15%, #009688 75%)', position: 'fixed', bottom: '0', left: '0', height: '50vh', width: '100vw', zIndex: '-1'}}></div>
+        <Background />
       </div>
     );
   }
@@ -276,6 +283,7 @@ export default App;
   // - Improve display for empty Cards aka no expences
   // - Add View individual expence/history
   // - (Security)
+  // - Add option to delete expence
 
 // API_PORT=3001
 // CLIENT_PORT=3000

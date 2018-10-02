@@ -6,6 +6,9 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const redis = require('redis');
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 // setup redis
 const redisClient = redis.createClient({
   port: process.env.REDIS_PORT,
