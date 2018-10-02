@@ -5,6 +5,8 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 
 const styles = theme => ({
   root: {
@@ -26,6 +28,15 @@ const styles = theme => ({
   // -webkit-border-image: -webkit-linear-gradient(top, #3acfd5 0%, #3a4ed5 100%);
     borderImage: 'linear-gradient(89deg, rgb(23, 105, 170) 0%, #1769aa 15%, #009688 75%)',
     borderImageSlice: 1
+  },
+  iconVisible: {
+    position: 'absolute',
+    right: '0',
+    cursor: 'pointer'
+    // textAlign: 'right'
+  },
+  iconHidden: {
+
   }
 });
 
@@ -57,6 +68,8 @@ class MonthlyExpencesExpantionPanel extends React.Component {
                 return (
                   <Typography key={i} className={classes.item} style={{widht: '100%', display: 'block'}}>
                     {date.toLocaleString()} | <strong>{expences[0][i].tag}: </strong> {expences[0][i].amount}
+                    <DeleteOutlinedIcon className={this.state.expanded ? classes.iconVisible : classes.iconHidden} />
+                    <EditOutlinedIcon className={this.state.expanded ? classes.iconVisible : classes.iconHidden} style={{right: '3%'}}/>
                   </Typography>
                 )
               })
