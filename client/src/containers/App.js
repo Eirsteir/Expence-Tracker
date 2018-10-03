@@ -194,9 +194,9 @@ export default App;
   // - Clean up and refactor code
   // - Improve date sorting by week, month and day
   // - Improve display for empty Cards aka no expences
-  // - Add View individual expence/history
   // - (Security)
   // - Add option to delete expence
+  // - Consider making app SSR
 
 // API_PORT=3001
 // CLIENT_PORT=3000

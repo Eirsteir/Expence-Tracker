@@ -1,6 +1,8 @@
 // Users model
 const User = require('../models/User');
 
+const ObjectID = require('mongodb').ObjectID;
+
 const handleAddExpence = (req, res) => {
   const { _id, tag, amount } = req.body;
   if ( !_id || !tag || !amount ) {
@@ -10,7 +12,8 @@ const handleAddExpence = (req, res) => {
   const newExpence = {
     timestamp: new Date(),
     tag: tag,
-    amount: amount
+    amount: amount,
+    _id: new ObjectID()
   }
 
   // Find user and update corresponding tag with the given value and return the modified user document

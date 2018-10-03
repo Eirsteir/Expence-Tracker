@@ -12,7 +12,7 @@ class ErrorBoundary extends Component {
 
   render () {
     if (this.state.hasError) {
-      return <h1 style={{marginTop: '4em', fontWeight: 300}}>We're sorry. Something went wrong.</h1>
+      return <h1 style={{marginTop: '11em', fontWeight: 300}}>We're sorry. Something went wrong.</h1>
     }
     return this.props.children
   }

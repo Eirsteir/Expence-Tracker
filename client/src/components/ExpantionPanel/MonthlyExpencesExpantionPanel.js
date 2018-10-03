@@ -8,6 +8,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 
+import EditAmountForm from '../Form/EditAmountForm';
+
 const styles = theme => ({
   root: {
     width: '100%',
@@ -37,7 +39,6 @@ const styles = theme => ({
     position: 'absolute',
     right: '0',
     cursor: 'pointer'
-    // textAlign: 'right'
   },
   iconHidden: {
 
@@ -47,6 +48,8 @@ const styles = theme => ({
 class MonthlyExpencesExpantionPanel extends React.Component {
   state = {
     expanded: null,
+    amount: '',
+    _id: 'm' // change
   };
 
   handleChange = panel => (event, expanded) => {
@@ -59,8 +62,9 @@ class MonthlyExpencesExpantionPanel extends React.Component {
     console.log('delete');
   }
 
-  onEditClick = () => {
+  onEditClick = _id => {
     console.log('edit');
+    return this.setState({ _id })
   }
 
   render() {
@@ -78,11 +82,11 @@ class MonthlyExpencesExpantionPanel extends React.Component {
               expences[0].map((exp, i) => {
                 const date = new Date(expences[0][i].timestamp);
                 return (
-                  <Typography key={i} className={classes.item} style={{widht: '100%', display: 'block'}}>
-                    {date.toLocaleString()} | <strong>{expences[0][i].tag}: </strong> {expences[0][i].amount}
+                  <div key={i} className={classes.item} style={{widht: '100%', display: 'block'}}>
+                    {date.toLocaleString()} | <strong>{expences[0][i].tag}: </strong> {this.state._id === expences[0][i]._id ? <EditAmountForm amount={expences[0][i].amount} /> : `${expences[0][i].amount}` }
                     <DeleteOutlinedIcon onClick ={this.onDeleteClick} className={this.state.expanded ? classes.iconVisible : classes.iconHidden} />
-                    <EditOutlinedIcon onClick={this.onEditClick} className={this.state.expanded ? classes.iconVisible : classes.iconHidden} style={{right: '3%'}}/>
-                  </Typography>
+                    <EditOutlinedIcon onClick={() => this.onEditClick(expences[0][i]._id)} className={this.state.expanded ? classes.iconVisible : classes.iconHidden} style={{right: '3%'}}/>
+                  </div>
                 )
               })
             }
