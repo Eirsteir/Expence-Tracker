@@ -9,8 +9,7 @@ import CloseIcon from '@material-ui/icons/Close';
 const styles = theme => ({
   close: {
     padding: theme.spacing.unit / 2,
-  },
-  currentTag: ''
+  }
 });
 
 class SuccessSnackBar extends React.Component {
@@ -19,7 +18,7 @@ class SuccessSnackBar extends React.Component {
   };
 
   handleClick = () => {
-    return this.props.onButtonClickAddExpence() === false ? false : this.setState({ open: true })
+    return this.props.onButtonClick() === false ? false : this.setState({ open: true })
   };
 
   handleClose = (event, reason) => {
@@ -29,32 +28,6 @@ class SuccessSnackBar extends React.Component {
 
     return this.setState({ open: false });
   };
-
-  // onButtonClickAddExpence = () => {
-  //   if (this.state.currentTag === '') {
-  //     return false
-  //   }
-  //   fetch(`/add-expence`, {
-  //     method: 'post',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Authorization': window.sessionStorage.getItem('token')
-  //     },
-  //     body: JSON.stringify({
-  //       _id: this.state.user._id,
-  //       tag: this.state.currentTag,
-  //       amount: this.state.currentAmount
-  //     })
-  //   })
-  //     .then(response => response.json())
-  //     .then(user => {
-  //       if (user && user.email) {
-  //         this.clearInputFields(['input-amount']);
-  //         return this.loadUser(user);
-  //       }
-  //     })
-  //     .catch(err => console.log)
-  // }
 
   render() {
     const { classes } = this.props;

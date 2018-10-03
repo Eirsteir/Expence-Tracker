@@ -164,11 +164,11 @@ class App extends Component {
           />
           : ( route === 'register'
               ? <div id="landing-page-container">
-                  <Hero />
+                  <Hero onRouteChange={this.onRouteChange} />
                   <Register onRouteChange={this.onRouteChange} loadUser={this.loadUser} />
                 </div>
               :  <div id="landing-page-container">
-                  <Hero />
+                  <Hero onRouteChange={this.onRouteChange} />
                   <Signin onRouteChange={this.onRouteChange} loadUser={this.loadUser}/>
                 </div>
             )

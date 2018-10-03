@@ -58,7 +58,6 @@ class AddExpenceForm extends React.Component {
 
   componentDidMount() {
     const { tags } = this.props.user;
-    console.log(tags);
     return this.setState({ availableTags: tags });
   }
 
@@ -75,7 +74,8 @@ class AddExpenceForm extends React.Component {
     return this.setState({ currentTag: event.target.value })
   };
 
-  onButtonClickAddExpence = () => {
+  // Add expence
+  onButtonClick = () => {
     if (this.state.currentTag === '') {
       return false
     }
@@ -94,32 +94,11 @@ class AddExpenceForm extends React.Component {
       .then(response => response.json())
       .then(user => {
         if (user && user.email) {
-          this.setState(initialState);
-          return this.props.loadUser(user);
-        }
-      })
-      .catch(err => console.log)
-  }
-
-  onButtonClickAddNewTag = newTag => {
-    if (newTag.length === 0) {
-      return false;
-    }
-    fetch(`/add-custom-tag`, {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': window.sessionStorage.getItem('token')
-      },
-      body: JSON.stringify({
-        _id: this.props.user._id,
-        tag: newTag,
-      })
-    })
-      .then(response => response.json())
-      .then(user => {
-        if (user) {
-          this.clearInputFields(['input-new-tag']);
+          this.setState({
+            currentAmount: '',
+            currentTag: '',
+            availableTags: user.tags
+          });
           return this.props.loadUser(user);
         }
       })
@@ -127,7 +106,7 @@ class AddExpenceForm extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, user } = this.props;
 
     return (
       <div className='center' style={{marginTop: '4em', marginBottom: '4em'}}>
@@ -171,12 +150,9 @@ class AddExpenceForm extends React.Component {
       onChange={this.handleInputChange}
       value={this.state.currentAmount}
       />
-      <SuccessSnackBar onButtonClickAddExpence={this.onButtonClickAddExpence}/>
+      <SuccessSnackBar onButtonClick={this.onButtonClick}/>
       </div>
-      <AddNewTagExpantionPanel
-      onButtonClickAddNewTag={this.onButtonClickAddNewTag}
-      classes={classes}
-      />
+      <AddNewTagExpantionPanel classes={classes} user={user}/>
       </Paper>
       </div>
     );

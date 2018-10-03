@@ -9,11 +9,11 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 class AddNewTagModal extends React.Component {
   state = {
     expanded: false,
-    addUserTag: '',
+    tag: '',
   };
 
   handleChange = event => {
-    this.setState({ addUserTag: event.target.value })
+    this.setState({ tag: event.target.value })
   }
 
   handleExpandChange = panel => (event, expanded) => {
@@ -22,8 +22,35 @@ class AddNewTagModal extends React.Component {
     });
   };
 
+  // add tag
+  onButtonClick = () => {
+    const { tag } = this.state;
+    if (tag.length === 0) {
+      return false;
+    }
+    fetch(`/add-custom-tag`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': window.sessionStorage.getItem('token')
+      },
+      body: JSON.stringify({
+        _id: this.props.user._id,
+        tag: tag,
+      })
+    })
+      .then(response => response.json())
+      .then(user => {
+        if (user) {
+          this.setState({ tag: '' })
+          return this.props.loadUser(user);
+        }
+      })
+      .catch(err => console.log)
+  }
+
   render() {
-    const { classes, onButtonClickAddNewTag } = this.props;
+    const { classes } = this.props;
     const { expanded } = this.state;
 
     return (
@@ -45,6 +72,7 @@ class AddNewTagModal extends React.Component {
               className={classes.textField && classes.formControl}
               margin="normal"
               onChange={this.handleChange}
+              value={this.state.tag}
               />
               <Button
               variant="text"
@@ -52,7 +80,7 @@ class AddNewTagModal extends React.Component {
               color="secondary"
               className={classes.button}
               style={{ fontSize: '1rem', marginTop: '1.5em'}}
-              onClick={() => onButtonClickAddNewTag(this.state.addUserTag)}
+              onClick={this.onButtonClick}
               >
               Add
               </Button>

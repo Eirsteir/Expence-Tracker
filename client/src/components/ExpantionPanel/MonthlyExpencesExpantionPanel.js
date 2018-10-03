@@ -23,11 +23,15 @@ const styles = theme => ({
   },
   item: {
     padding: '1em',
-    borderBottom: '5px solid transparent',
+    // borderBottom: '5px solid transparent',
   // -moz-border-image: -moz-linear-gradient(top, #3acfd5 0%, #3a4ed5 100%);
   // -webkit-border-image: -webkit-linear-gradient(top, #3acfd5 0%, #3a4ed5 100%);
-    borderImage: 'linear-gradient(89deg, rgb(23, 105, 170) 0%, #1769aa 15%, #009688 75%)',
-    borderImageSlice: 1
+    // borderImage: 'linear-gradient(89deg, rgb(23, 105, 170) 0%, #1769aa 15%, #009688 75%)',
+    // borderImageSlice: 1
+    backgroundImage: 'linear-gradient(89deg, rgb(23, 105, 170) 0%, #1769aa 15%, #009688 75%)',
+    color: '#fff',
+    fontWeight: 300,
+    borderBottom: '1px solid rgba(255, 255, 255, 0.6)'
   },
   iconVisible: {
     position: 'absolute',
@@ -51,6 +55,14 @@ class MonthlyExpencesExpantionPanel extends React.Component {
     });
   };
 
+  onDeleteClick = () => {
+    console.log('delete');
+  }
+
+  onEditClick = () => {
+    console.log('edit');
+  }
+
   render() {
     const { classes, month, expences } = this.props;
     const { expanded } = this.state;
@@ -58,7 +70,7 @@ class MonthlyExpencesExpantionPanel extends React.Component {
     return (
       <div className={classes.root}>
           <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')}>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <ExpansionPanelSummary elevation="2" expandIcon={<ExpandMoreIcon />} >
               <Typography className={classes.heading}>{month}</Typography>
               <Typography className={classes.secondaryHeading}>Total: {expences[1].total}</Typography>
             </ExpansionPanelSummary>
@@ -68,8 +80,8 @@ class MonthlyExpencesExpantionPanel extends React.Component {
                 return (
                   <Typography key={i} className={classes.item} style={{widht: '100%', display: 'block'}}>
                     {date.toLocaleString()} | <strong>{expences[0][i].tag}: </strong> {expences[0][i].amount}
-                    <DeleteOutlinedIcon className={this.state.expanded ? classes.iconVisible : classes.iconHidden} />
-                    <EditOutlinedIcon className={this.state.expanded ? classes.iconVisible : classes.iconHidden} style={{right: '3%'}}/>
+                    <DeleteOutlinedIcon onClick ={this.onDeleteClick} className={this.state.expanded ? classes.iconVisible : classes.iconHidden} />
+                    <EditOutlinedIcon onClick={this.onEditClick} className={this.state.expanded ? classes.iconVisible : classes.iconHidden} style={{right: '3%'}}/>
                   </Typography>
                 )
               })
