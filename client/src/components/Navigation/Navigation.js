@@ -40,7 +40,7 @@ const Navigation = ({ classes, isSignedIn, onRouteChange, onSignout }) => {
   } else {
     return (
       <div className={classes.root}>
-        <AppBar position="static" style={{backgroundImage: 'linear-gradient(89deg, rgb(23, 105, 170) 0%, #1769aa 15%, #009688 75%)'}}>
+        <AppBar position="static" style={{boxShadow: 'none', backgroundImage: 'linear-gradient(89deg, rgb(23, 105, 170) 0%, #1769aa 15%, #009688 75%)'}}>
           <Toolbar>
             <Typography variant="title" color="inherit" className={classes.grow}>
               MyExpences

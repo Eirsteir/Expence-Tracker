@@ -1,15 +1,16 @@
 #header {
-  margin-top: -.4em
+  margin-top: -.4em;
+  color: #fff;
+  font-weight: 300;
 }
 
 #main-subheader {
-  color: #fff;
   margin-top: .5em
 }
 #register-now-btn {
   margin-bottom: 1em;
   margin-top: 2em;
-  background-color: #2196f3;
+  background-color: #f44336;
 }
 
 /* Smartphones (portrait) ----------- */
@@ -109,14 +110,31 @@
   }
 
   #main-subheader {
-    color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+  }
+
+  #header-container {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
   }
 
   #buttonDiv {
     display: flex;
     justify-content: center;
+    /* padding-bottom: 4em */
   }
 }
+
+
+
+
+
+
+
+
+
 
 /* iPhone XS Max, XR ----------- */
 @media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
@@ -174,7 +192,11 @@
 @media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
   #register-now-btn {
     margin-bottom: 1em;
+  }
 
+  #header-container {
+    display: flex;
+    justify-content: center;
   }
 
   #main-subheader {

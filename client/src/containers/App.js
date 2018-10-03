@@ -237,11 +237,6 @@ class App extends Component {
       }
         <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} onSignout={this.onSignout}/>
 
-
-        <button hidden className="btnAdd">
-          show prompt
-        </button>
-
         <ErrorBoundary>
         { route === 'home'
           ? <Expences
@@ -255,11 +250,11 @@ class App extends Component {
             handleNewTagInputChange={this.handleNewTagInputChange}
           />
           : ( route === 'register'
-              ? <div id="user-form">
+              ? <div id="landing-page-container">
                   <Hero />
                   <Register onRouteChange={this.onRouteChange} loadUser={this.loadUser} />
                 </div>
-              :  <div id="user-form">
+              :  <div id="landing-page-container">
                   <Hero />
                   <Signin onRouteChange={this.onRouteChange} loadUser={this.loadUser}/>
                 </div>

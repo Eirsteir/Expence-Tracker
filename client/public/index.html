@@ -18,10 +18,7 @@
       You need to enable JavaScript to run this app.
     </noscript>
     <div id="root"></div>
-    <button hidden id="btnAdd">
-      show prompt
-    </button>
-    <script>
+    <!-- <script>
       let deferredPrompt;
       let btnAdd = document.getElementById('btnAdd');
       window.addEventListener('beforeinstallprompt', (e) => {
@@ -49,10 +46,10 @@
             deferredPrompt = null;
           });
       });
-      
+
       window.addEventListener('appinstalled', (evt) => {
         app.logEvent('a2hs', 'installed');
       });
-    </script>
+    </script> -->
   </body>
 </html>
