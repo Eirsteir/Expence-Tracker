@@ -1,40 +1,40 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import IconButton from '@material-ui/core/IconButton';
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import FormControl from "@material-ui/core/FormControl";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import IconButton from "@material-ui/core/IconButton";
 
 const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: 200,
-    margin: '1em'
+    margin: "1em"
   },
   paper: {
-    width: '17em',
+    width: "17em"
   },
   form: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    padding: '2em'
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    padding: "2em"
   },
   button: {
-    marginTop: '2em'
+    marginTop: "2em"
   },
   control: {
-    padding: '.5em'
+    padding: ".5em"
   }
 });
 
@@ -42,41 +42,41 @@ class Signin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      signInEmail: '',
-      signInPassword: '',
+      signInEmail: "",
+      signInPassword: "",
       isLoading: false,
       showPassword: false,
-      errorMessage: ''
-    }
+      errorMessage: ""
+    };
   }
 
   toggleLoading = () => {
     this.setState((prevState, props) => ({
       isLoading: !prevState.isLoading
     }));
-  }
+  };
 
   handleClickShowPassword = () => {
     this.setState(state => ({ showPassword: !state.showPassword }));
   };
 
-  onEmailChange = (event) => {
-    this.setState({signInEmail: event.target.value})
-  }
+  onEmailChange = event => {
+    this.setState({ signInEmail: event.target.value });
+  };
 
-  onPasswordChange = (event) => {
-    this.setState({signInPassword: event.target.value})
-  }
+  onPasswordChange = event => {
+    this.setState({ signInPassword: event.target.value });
+  };
 
-  saveAuthTokenInSession = (token) => {
-    window.sessionStorage.setItem('token', token)
-  }
+  saveAuthTokenInSession = token => {
+    window.sessionStorage.setItem("token", token);
+  };
 
   handleSignin = () => {
-    this.toggleLoading()
+    this.toggleLoading();
     fetch(`/signin`, {
-      method: 'post',
-      headers: {'Content-Type': 'application/json'},
+      method: "post",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: this.state.signInEmail,
         password: this.state.signInPassword
@@ -84,61 +84,74 @@ class Signin extends React.Component {
     })
       .then(response => response.json())
       .then(data => {
-        if (data === 'Wrong email or password') {
-          this.setState({ errorMessage: 'Wrong email or password'});
+        if (data === "Wrong email or password") {
+          this.setState({ errorMessage: "Wrong email or password" });
           return this.toggleLoading();
         }
-        if (data.userId && data.success === 'true') {
+        if (data.userId && data.success === "true") {
           this.saveAuthTokenInSession(data.token);
           fetch(`/profile/${data.userId}`, {
-            method: 'get',
+            method: "get",
             headers: {
-              'Content-Type': 'application/json',
-              'Authorization': data.token
+              "Content-Type": "application/json",
+              Authorization: data.token
             }
-        })
-        .then(response => response.json())
-        .then(user => {
-          if (user && user.email) {
-            this.toggleLoading()
-            this.props.loadUser(user);
-            this.props.onRouteChange('home');
-          }
-        })
-        .catch(err => {
-          this.toggleLoading()
-          console.log(err)
-        })
-      }
-    })
-      .catch( err => {
-        this.toggleLoading()
-        console.log(err)
+          })
+            .then(response => response.json())
+            .then(user => {
+              if (user && user.email) {
+                this.toggleLoading();
+                this.props.loadUser(user);
+                this.props.onRouteChange("home");
+              }
+            })
+            .catch(err => {
+              this.toggleLoading();
+              console.log(err);
+            });
+        }
       })
-
-  }
+      .catch(err => {
+        this.toggleLoading();
+        console.log(err);
+      });
+  };
 
   onKeyDown = event => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       event.preventDefault();
       this.handleSignin();
     }
-  }
+  };
 
   onSubmit = event => {
     event.preventDefault();
     event.stopPropagation();
     this.handleSignin();
-  }
+  };
 
   render() {
     const { classes } = this.props;
     return (
-      <Paper className={classes.paper} >
-        <Typography variant="headline" component="h3" className={classes.control} style={{display: 'flex', justifyContent: 'center', backgroundColor: '#1769aa', color: '#fff'}}>
+      <Paper className={classes.paper}>
+        <Typography
+          variant="headline"
+          component="h3"
+          className={classes.control}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            backgroundColor: "#1769aa",
+            color: "#fff"
+          }}
+        >
           Login
         </Typography>
-        <form onKeyDown={this.onkeyDown} onSubmit={this.onSubmit} className={classes.form}>
+        <form
+          onKeyDown={this.onkeyDown}
+          onSubmit={this.onSubmit}
+          className={classes.form}
+        >
           <TextField
             id="input-email"
             label="Email address"
@@ -151,7 +164,7 @@ class Signin extends React.Component {
             <InputLabel htmlFor="adornment-password">Password</InputLabel>
             <Input
               id="adornment-password"
-              type={this.state.showPassword ? 'text' : 'password'}
+              type={this.state.showPassword ? "text" : "password"}
               value={this.state.signInPassword}
               onChange={this.onPasswordChange}
               autoComplete="current-password"
@@ -161,16 +174,30 @@ class Signin extends React.Component {
                     aria-label="Toggle password visibility"
                     onClick={this.handleClickShowPassword}
                   >
-                    {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                    {this.state.showPassword ? (
+                      <VisibilityOff />
+                    ) : (
+                      <Visibility />
+                    )}
                   </IconButton>
                 </InputAdornment>
               }
             />
           </FormControl>
-          {
-            this.state.errorMessage ?   <Typography  component="p" style={{display: 'flex', justifyContent: 'center', color: 'red'}}>{this.state.errorMessage}</Typography>
-            : true
-          }
+          {this.state.errorMessage ? (
+            <Typography
+              component="p"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                color: "red"
+              }}
+            >
+              {this.state.errorMessage}
+            </Typography>
+          ) : (
+            true
+          )}
           <Button
             className={classes.button}
             onClick={this.onSubmitSignIn}
@@ -179,18 +206,20 @@ class Signin extends React.Component {
             type="submit"
             color="primary"
           >
-            {
-              this.state.isLoading ? <CircularProgress style={{color: '#fff'}} size={20}/> : 'Login'
-            }
+            {this.state.isLoading ? (
+              <CircularProgress style={{ color: "#fff" }} size={20} />
+            ) : (
+              "Login"
+            )}
           </Button>
-          </form>
+        </form>
       </Paper>
     );
   }
 }
 
 Signin.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(Signin);
