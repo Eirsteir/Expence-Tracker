@@ -8,7 +8,8 @@
     "dev": "concurrently \"cd client && npm start\" \"npm run server\" -c \"bgGreen.bold,bgYellow.bold, white\"",
     "heroku-postbuild": "cd client && npm install && npm run build",
     "server": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "precommit": "pretty-quick --staged"
   },
   "keywords": [
     "Track",
@@ -20,7 +21,8 @@
     "chalk": "^2.4.1",
     "concurrently": "^4.0.1",
     "dotenv": "^6.0.0",
-    "nodemon": "^1.18.4"
+    "nodemon": "^1.18.4",
+    "prettier": "1.14.3"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -29,9 +31,11 @@
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "helmet": "^3.13.0",
+    "husky": "^1.1.0",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.2.17",
     "morgan": "^1.9.1",
+    "pretty-quick": "^1.7.0",
     "redis": "^2.8.0"
   }
 }

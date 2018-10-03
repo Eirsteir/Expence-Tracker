@@ -1,19 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import React from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import { withStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
 
 const styles = theme => ({
   container: {
     // display: 'flex',
     // flexWrap: 'wrap',
-    display: 'inline'
+    display: "inline"
   },
   textField: {
-    marginLeft: theme.spacing.unit,
+    marginLeft: theme.spacing.unit
     // marginRight: theme.spacing.unit,
-
   },
   dense: {
     // marginTop: 16,
@@ -22,25 +21,25 @@ const styles = theme => ({
 class EditAmountForm extends React.Component {
   state = {
     amount: this.props.amount
-  }
+  };
 
   handleChange = event => {
     const amount = event.target.value;
     return this.setState({ amount });
-  }
+  };
 
   onKeyDown = event => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       event.preventDefault();
-      this.handleSignin();
+      this.handleSubmit();
     }
-  }
+  };
 
   onSubmit = event => {
     event.preventDefault();
     event.stopPropagation();
     this.handleSubmit();
-  }
+  };
 
   handleSubmit = () => {
     // fetch('/edit-expence', {
@@ -54,14 +53,19 @@ class EditAmountForm extends React.Component {
     //     amount: this.state.amount
     //   })
     // })
-    console.log('edit successful');
-  }
-
+    console.log("edit successful");
+  };
 
   render() {
     const { classes, amount } = this.props;
-      return (
-        <form className={classes.container} noValidate autoComplete="off" onKeyDown={this.onkeyDown} onSubmit={this.onSubmit}>
+    return (
+      <form
+        className={classes.container}
+        noValidate
+        autoComplete="off"
+        onKeyDown={this.onkeyDown}
+        onSubmit={this.onSubmit}
+      >
         <TextField
           id="outlined-dense"
           label={this.state.amount.toString()}
@@ -73,13 +77,13 @@ class EditAmountForm extends React.Component {
           value={this.state.amount}
           onChange={this.handleChange}
         />
-        </form>
-      );
+      </form>
+    );
   }
 }
 
 EditAmountForm.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(EditAmountForm);
