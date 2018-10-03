@@ -18,9 +18,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const initialState =  {
-  availableTags: [],
-  currentTag: '',
-  currentAmount: 0,
   route: 'signin',
   isSignedIn: false,
   user: {
@@ -126,81 +123,6 @@ class App extends Component {
     }));
   }
 
-  handleSelectChange = event => {
-    return this.setState({ currentTag: event.target.value })
-  };
-
-  handleInputChange = event => {
-    const amount = Number(event.target.value)
-    this.setState({ currentAmount: amount })
-  }
-
-
-  clearInputFields = (IDs) => {
-    // Fix this: not reseting Select
-    IDs.map(id => {
-      if (!document.getElementById(id) ) {
-        return false
-      }
-      return document.getElementById(id).value = '';
-    });
-  }
-
-  handleNewTagInputChange = event => {
-    return this.setState({ addNewTag: event.target.value })
-  }
-
-  onButtonClickAddNewTag = newTag => {
-    if (newTag.length === 0) {
-      return false;
-    }
-    fetch(`/add-custom-tag`, {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': window.sessionStorage.getItem('token')
-      },
-      body: JSON.stringify({
-        _id: this.state.user._id,
-        tag: newTag,
-      })
-    })
-      .then(response => response.json())
-      .then(user => {
-        if (user) {
-          this.clearInputFields(['input-new-tag']);
-          return this.loadUser(user);
-        }
-      })
-      .catch(err => console.log)
-  }
-
-  onButtonClickAddExpence = () => {
-    if (this.state.currentTag === '') {
-      return false
-    }
-    fetch(`/add-expence`, {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': window.sessionStorage.getItem('token')
-      },
-      body: JSON.stringify({
-        _id: this.state.user._id,
-        tag: this.state.currentTag,
-        amount: this.state.currentAmount
-      })
-    })
-      .then(response => response.json())
-      .then(user => {
-        if (user && user.email) {
-          this.clearInputFields(['input-amount']);
-          return this.loadUser(user);
-        }
-      })
-      .catch(err => console.log)
-  }
-
   onRouteChange = (route) => {
     if (route === 'signin') {
       return this.setState(initialState)
@@ -210,21 +132,18 @@ class App extends Component {
     this.setState({ route: route });
   }
 
-  // Acceps user object or user tags array
+  // Acceps user object or user tags array -- find out which function passes array
   loadUser = (user) => {
     // check if user object or just tags are recieved
     if (user._id) {
       this.setState({ user });
-      this.setState({ availableTags: user.tags})
-    } else {
-      this.setState({ availableTags: user })
     }
   }
 
 // Bundle expences, currentTag and availableTags in one object?
 // Move expences up a level?
   render() {
-    const { route, isSignedIn, user, currentTag, availableTags } = this.state;
+    const { route, isSignedIn, user } = this.state;
 
     return (
       <div className="App">
@@ -240,14 +159,8 @@ class App extends Component {
         <ErrorBoundary>
         { route === 'home'
           ? <Expences
-            handleSelectChange={this.handleSelectChange}
-            handleInputChange={this.handleInputChange}
-            expences={user.expences}
-            currentTag={currentTag}
-            availableTags={availableTags}
-            onButtonClickAddExpence={this.onButtonClickAddExpence}
-            onButtonClickAddNewTag={this.onButtonClickAddNewTag}
-            handleNewTagInputChange={this.handleNewTagInputChange}
+            loadUser={this.loadUser}
+            user={user}
           />
           : ( route === 'register'
               ? <div id="landing-page-container">

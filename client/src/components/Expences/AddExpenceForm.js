@@ -6,8 +6,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
 import Paper from '@material-ui/core/Paper';
 
 import AddNewTagExpantionPanel from '../ExpantionPanel/AddNewTagExpantionPanel';
@@ -30,10 +28,6 @@ const styles = theme => ({
     marginRight: theme.spacing.unit,
     width: 200,
   },
-  button: {
-    margin: theme.spacing.unit,
-    marginLeft: '1em',
-  },
   paper: {
     maxWidth: "30em",
     padding: "1em",
@@ -50,62 +44,144 @@ const MenuProps = {
   },
 };
 
-const AddExpenceForm = ({ classes, handleSelectChange, handleInputChange, currentTag, availableTags, onButtonClickAddExpence, handleNewTagInputChange, onButtonClickAddNewTag }) => {
-// this.state = currentTag: '', currentAmount: ''
-// onButtonClickAddExpence(this.state...)
-  return (
-    <div className='center' style={{marginTop: '4em', marginBottom: '4em'}}>
-    <Paper className={classes.paper} >
+const initialState = {
+  currentAmount: '',
+  currentTag: '',
+  availableTags: []
+}
+
+class AddExpenceForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = initialState;
+  }
+
+  componentDidMount() {
+    const { tags } = this.props.user;
+    console.log(tags);
+    return this.setState({ availableTags: tags });
+  }
+
+  handleInputChange = event => {
+    const amount = event.target.value
+    // \d === [0-9] - regex
+    var isnum = /^\d+$/.test(amount);
+    if (isnum || amount === '') {
+      this.setState({ currentAmount: Number(amount) })
+    }
+  }
+
+  handleSelectChange = event => {
+    return this.setState({ currentTag: event.target.value })
+  };
+
+  onButtonClickAddExpence = () => {
+    if (this.state.currentTag === '') {
+      return false
+    }
+    fetch(`/add-expence`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': window.sessionStorage.getItem('token')
+      },
+      body: JSON.stringify({
+        _id: this.props.user._id,
+        tag: this.state.currentTag,
+        amount: this.state.currentAmount
+      })
+    })
+      .then(response => response.json())
+      .then(user => {
+        if (user && user.email) {
+          this.setState(initialState);
+          return this.props.loadUser(user);
+        }
+      })
+      .catch(err => console.log)
+  }
+
+  onButtonClickAddNewTag = newTag => {
+    if (newTag.length === 0) {
+      return false;
+    }
+    fetch(`/add-custom-tag`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': window.sessionStorage.getItem('token')
+      },
+      body: JSON.stringify({
+        _id: this.props.user._id,
+        tag: newTag,
+      })
+    })
+      .then(response => response.json())
+      .then(user => {
+        if (user) {
+          this.clearInputFields(['input-new-tag']);
+          return this.props.loadUser(user);
+        }
+      })
+      .catch(err => console.log)
+  }
+
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <div className='center' style={{marginTop: '4em', marginBottom: '4em'}}>
+      <Paper className={classes.paper} >
       <div style={{ display: 'flex', justifyContent: 'center'}}>
-        <h1 style={{ fontWeight: '300'}}>Add New Expence</h1>
-        <Button variant="fab" color="secondary" aria-label="Add" className={classes.button}>
-          <AddIcon />
-        </Button>
+      <h1 style={{ fontWeight: '300'}}>Add New Expence</h1>
       </div>
       <div className={classes.root}>
 
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="select-tag">Tag</InputLabel>
-          <Select
-            value={currentTag}
-            onChange={handleSelectChange}
-            inputProps={{
-              name: 'tag',
-              id: 'select-tag',
-            }}
-            MenuProps={MenuProps}
+      <FormControl className={classes.formControl}>
+      <InputLabel htmlFor="select-tag">Tag</InputLabel>
+      <Select
+      value={this.state.currentTag}
+      onChange={this.handleSelectChange}
+      inputProps={{
+        name: 'tag',
+        id: 'select-tag',
+      }}
+      MenuProps={MenuProps}
+      >
+      <MenuItem value="None">None</MenuItem>
+      {
+        this.state.availableTags.map(tag => (
+          <MenuItem
+          key={tag}
+          value={tag}
           >
-            <MenuItem value="None">None</MenuItem>
-            {
-              availableTags.map(tag => (
-                <MenuItem
-                key={tag}
-                value={tag}
-                >
-                  {tag}
-                </MenuItem>
-              ))
-            }
-          </Select>
-        </FormControl>
+          {tag}
+          </MenuItem>
+        ))
+      }
+      </Select>
+      </FormControl>
 
-        <TextField
-          id="input-amount"
-          label="Amount"
-          placeholder="Amount"
-          className={classes.textField && classes.formControl}
-          margin="normal"
-          onChange={handleInputChange}
-        />
-          <SuccessSnackBar onButtonClickAddExpence={onButtonClickAddExpence}/>
+      <TextField
+      id="input-amount"
+      label="Amount"
+      placeholder="Amount"
+      className={classes.textField && classes.formControl}
+      margin="normal"
+      onChange={this.handleInputChange}
+      value={this.state.currentAmount}
+      />
+      <SuccessSnackBar onButtonClickAddExpence={this.onButtonClickAddExpence}/>
       </div>
       <AddNewTagExpantionPanel
-      onButtonClickAddNewTag={onButtonClickAddNewTag}
+      onButtonClickAddNewTag={this.onButtonClickAddNewTag}
       classes={classes}
       />
       </Paper>
-    </div>
-  );
+      </div>
+    );
+
+  }
 }
 
 AddExpenceForm.propTypes = {

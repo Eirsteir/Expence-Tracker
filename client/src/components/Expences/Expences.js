@@ -38,7 +38,8 @@ const months = [
 
 
 
-const Expences = ({ expences, handleSelectChange, handleInputChange, currentTag, availableTags, onButtonClickAddExpence, onButtonClickAddNewTag, handleNewTagInputChange }) => {
+const Expences = ({ loadUser, user }) => {
+  const { expences } = user;
 
   expences.map((exp, i) => {
     const date = new Date(expences[i].timestamp)
@@ -53,7 +54,7 @@ const Expences = ({ expences, handleSelectChange, handleInputChange, currentTag,
       return false;
     } else {
       return expencesSortedByMonth[month][0].forEach((exp, i) => {
-        return expencesSortedByMonth[month][1].total = expencesSortedByMonth[month][1].total + exp.amount
+        return expencesSortedByMonth[month][1].total = Number(expencesSortedByMonth[month][1].total) + Number(exp.amount)
       }
     );
   }
@@ -65,12 +66,8 @@ const Expences = ({ expences, handleSelectChange, handleInputChange, currentTag,
       <CardList expences={expences}/>
       <AddExpenceForm
         expences={expences}
-        handleSelectChange={handleSelectChange}
-        handleInputChange={handleInputChange}
-        onButtonClickAddExpence={onButtonClickAddExpence}
-        currentTag={currentTag}
-        availableTags={availableTags}
-        onButtonClickAddNewTag={onButtonClickAddNewTag}
+        loadUser={loadUser}
+        user={user}
       />
     </div>
   );

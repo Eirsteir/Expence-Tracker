@@ -29,7 +29,7 @@ class Card extends React.Component {
     processedExpences.map((expence, i) => {
       const tag = processedExpences[i].tag;
       const amount = processedExpences[i].amount;
-      return tags[tag] = tags[tag] + amount;
+      return tags[tag] = Number(tags[tag]) + Number(amount);
     });
 
     // Add more colors from chartjs
