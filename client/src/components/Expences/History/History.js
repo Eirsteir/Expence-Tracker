@@ -47,6 +47,21 @@ const chartOptions = {
   }
 };
 
+const months = [
+  "January",
+  "Febuary",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
+
 class ExpenceHistory extends React.Component {
   constructor(props) {
     super(props);
@@ -83,12 +98,12 @@ class ExpenceHistory extends React.Component {
     borderGradient.addColorStop(1, "#009688");
 
     return {
-      labels: this.props.months.slice(0, now.getMonth() + 1),
+      labels: months.slice(0, now.getMonth() + 1),
       datasets: [
         {
           label: "Amount",
-          data: Object.keys(this.props.expencesSortedByMonth).map(
-            (month, i) => this.props.expencesSortedByMonth[month][1].total
+          data: Object.keys(this.props.expences).map(
+            (month, i) => this.props.expences[month][1].total
           ),
           fill: true,
           backgroundColor: gradient,
@@ -115,7 +130,7 @@ class ExpenceHistory extends React.Component {
 
   chartMonthlyData = canvas => {
     const now = new Date();
-    const { expencesSortedByMonth, months } = this.props;
+    const { expences } = this.props;
 
     const ctx = canvas.getContext("2d");
     const gradient = ctx.createLinearGradient(0, 10, 1000, 20);
@@ -126,7 +141,7 @@ class ExpenceHistory extends React.Component {
     borderGradient.addColorStop(0, "#1769aa");
     borderGradient.addColorStop(1, "#009688");
 
-    const expencesThisMonth = expencesSortedByMonth[months[now.getMonth()]][0];
+    const expencesThisMonth = expences[months[now.getMonth()]][0];
     var options = {
       weekday: "short",
       year: "numeric",
@@ -171,7 +186,7 @@ class ExpenceHistory extends React.Component {
   };
 
   render() {
-    const { expencesSortedByMonth, userId, loadUser } = this.props;
+    const { expences, userId, loadUser } = this.props;
 
     return (
       <Paper style={{ marginTop: "4em", marginBottom: "4em", padding: "2em" }}>
@@ -199,12 +214,12 @@ class ExpenceHistory extends React.Component {
           </div>
         </div>
         <div>
-          {Object.keys(expencesSortedByMonth).map((month, i) => {
+          {Object.keys(expences).map((month, i) => {
             return (
               <MonthlyExpencesExpantionPanel
                 key={i + 1}
                 month={month}
-                expences={expencesSortedByMonth[month]}
+                expences={expences[month]}
                 userId={userId}
                 loadUser={loadUser}
               />
