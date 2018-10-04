@@ -42,22 +42,28 @@ class EditAmountForm extends React.Component {
   };
 
   handleSubmit = () => {
-    // fetch('/edit-expence', {
-    //   method: 'post',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Authorization': window.sessionStorage.getItem('token')
-    //   },
-    //   body: JSON.stringify({
-    //     _id: _id,
-    //     amount: this.state.amount
-    //   })
-    // })
-    console.log("edit successful");
+    fetch("/edit-expence", {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: window.sessionStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        user_id: this.props.userId,
+        expence_id: this.props.expenceId,
+        amount: this.state.amount
+      })
+    })
+      .then(response => response.json())
+      .then(user => {
+        console.log(user);
+        return this.props.loadUser(user);
+      })
+      .catch(console.log);
   };
 
   render() {
-    const { classes, amount } = this.props;
+    const { classes } = this.props;
     return (
       <form
         className={classes.container}

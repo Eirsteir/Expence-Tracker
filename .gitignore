@@ -1,3 +1,10 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
