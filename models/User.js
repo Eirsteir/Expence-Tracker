@@ -1,8 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+var ObjectId = mongoose.Schema.Types.ObjectId;
 
-
-// LOOK INTO DATATYPES - EXPENCES CAN'T BE CORRECT?
 // Create Schema
 const UserSchema = new Schema({
   email: {
@@ -22,17 +21,17 @@ const UserSchema = new Schema({
     min: 0,
     max: 150
   },
-  expences: {
-    type: Array,
-  },
-  // totalExpences: {
-  //   type: Map,
-  //   of: Number,
-  //   default: 0
-  // },
+  expences: [
+    {
+      timestamp: Date,
+      tag: String,
+      amount: Number,
+      _id: ObjectId
+    }
+  ],
   tags: {
     type: Array
   }
 });
 
-module.exports = User = mongoose.model('user', UserSchema)
+module.exports = User = mongoose.model("user", UserSchema);

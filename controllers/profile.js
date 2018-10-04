@@ -1,19 +1,36 @@
 // Users model
-const User = require('../models/User');
+const User = require("../models/User");
+const axios = require("axios");
 
 const handleProfileGet = (req, res) => {
   const { id } = req.params;
 
-  return User.find({ _id: id })
+  User.find({ _id: id })
+    .lean() // turns into plain js array
     .then(user => {
       if (user.length) {
-        res.json(user[0])
+        axios
+          .post(
+            "https://364y5aap1g.execute-api.eu-west-2.amazonaws.com/dev/sort-data",
+            {
+              expences: user[0].expences
+            }
+          )
+          .then(response => {
+            if (response.data.input) {
+              user[0].expences = response.data.input;
+              res.json(user[0]);
+            } else {
+              res.status(400).json("unable to sort expences");
+            }
+          })
+          .catch(err => console.log(err));
       } else {
-        res.status(400).json('Not found')
+        res.status(400).json("Not found");
       }
     })
-   .catch(err => res.status(400).json('Error getting user'))
-}
+    .catch(err => res.status(400).json("Error getting user"));
+};
 
 // const handleProfileUpdate = (req, res, db) => {
 //   // beware security: never trust user input
@@ -33,6 +50,6 @@ const handleProfileGet = (req, res) => {
 // }
 
 module.exports = {
-  handleProfileGet,
+  handleProfileGet
   // handleProfileUpdate
-}
+};
