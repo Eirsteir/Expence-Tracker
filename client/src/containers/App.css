@@ -8,10 +8,14 @@
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width: 320px) {
   #landing-page-container {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+  }
+  #signin-container {
+    margin-top: 1rem;
   }
 }
 /* Smartphones (portrait) ----------- */
@@ -28,16 +32,20 @@
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width: 875px) {
   #landing-page-container {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
   }
+  #signin-container {
+    margin-top: 1rem;
+  }
 }
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width: 875px) and (orientation: landscape) {
   #landing-page-container {
-    height: 88vh;
+    height: 100%;
     display: flex;
     justify-content: space-around;
     flex-direction: row;
@@ -48,16 +56,20 @@
 /* iPhone 4 ----------- */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
   #landing-page-container {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
   }
+  #signin-container {
+    margin-top: 1rem;
+  }
 }
 /* iPhone 4 ----------- */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
   #landing-page-container {
-    height: 58vh;
+    height: 100%;
     display: flex;
     justify-content: space-around;
     flex-direction: row;
@@ -68,10 +80,14 @@
 /* iPhone 5 ----------- */
 @media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2) {
   #landing-page-container {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+  }
+  #signin-container {
+    margin-top: 1rem;
   }
 }
 /* iPhone 5 ----------- */
@@ -88,10 +104,14 @@
 /* iPhone 6, 7, 8 ----------- */
 @media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2) {
   #landing-page-container {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+  }
+  #signin-container {
+    margin-top: 1rem;
   }
 }
 /* iPhone 6, 7, 8 ----------- */
@@ -109,6 +129,7 @@
 
 @media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2) {
   #landing-page-container {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -151,10 +172,14 @@
 /* iPhone XS Max, XR ----------- */
 @media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3) {
   #landing-page-container {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+  }
+  #signin-container {
+    margin-top: 1rem;
   }
 }
 /* iPhone XS Max, XR ----------- */
@@ -171,10 +196,14 @@
 /* Samsung Galaxy S3 ----------- */
 @media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2) {
   #landing-page-container {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+  }
+  #signin-container {
+    margin-top: 1rem;
   }
 }
 /* Samsung Galaxy S3 ----------- */
@@ -191,10 +220,14 @@
 /* Samsung Galaxy S4 ----------- */
 @media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3) {
   #landing-page-container {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+  }
+  #signin-container {
+    margin-top: 1rem;
   }
 }
 /* Samsung Galaxy S4 ----------- */
@@ -211,10 +244,14 @@
 /* Samsung Galaxy S5 ----------- */
 @media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3) {
   #landing-page-container {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+  }
+  #signin-container {
+    margin-top: 1rem;
   }
 }
 /* Samsung Galaxy S5 ----------- */

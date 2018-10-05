@@ -170,10 +170,13 @@ class App extends Component {
             ) : (
               <div id="landing-page-container">
                 <Hero onRouteChange={this.onRouteChange} />
-                <Signin
-                  onRouteChange={this.onRouteChange}
-                  loadUser={this.loadUser}
-                />
+
+                <div id="signin-container">
+                  <Signin
+                    onRouteChange={this.onRouteChange}
+                    loadUser={this.loadUser}
+                  />
+                </div>
               </div>
             )}
           </ErrorBoundary>
