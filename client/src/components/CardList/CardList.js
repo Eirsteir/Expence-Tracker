@@ -25,6 +25,7 @@ const styles = theme => ({
 });
 
 // Featured some very akward calculations of date
+// This is terrifying and doesnt update properly - rework
 class ExpencesCardList extends React.Component {
   // make this state?
   constructor(props) {

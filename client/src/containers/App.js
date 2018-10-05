@@ -139,8 +139,6 @@ class App extends Component {
     }
   };
 
-  // Bundle expences, currentTag and availableTags in one object?
-  // Move expences up a level?
   render() {
     const { route, isSignedIn, user } = this.state;
 

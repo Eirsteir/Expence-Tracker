@@ -4,11 +4,9 @@ const axios = require("axios");
 
 const handleProfileGet = (req, res) => {
   const { id } = req.params;
-  console.log(id);
   User.find({ _id: id })
     .lean() // turns into plain js array
     .then(user => {
-      console.log("profile: ", user);
       if (user.length) {
         axios
           .post(
