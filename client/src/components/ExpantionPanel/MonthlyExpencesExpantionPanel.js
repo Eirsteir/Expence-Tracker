@@ -25,6 +25,12 @@ const styles = theme => ({
   },
   item: {
     padding: "1em",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "flex-start",
+    flexDirection: "row",
+    alignItems: "center",
+    widht: "100%",
     // borderBottom: '5px solid transparent',
     // -moz-border-image: -moz-linear-gradient(top, #3acfd5 0%, #3a4ed5 100%);
     // -webkit-border-image: -webkit-linear-gradient(top, #3acfd5 0%, #3a4ed5 100%);
@@ -39,16 +45,19 @@ const styles = theme => ({
   iconVisible: {
     position: "absolute",
     right: "0",
-    cursor: "pointer"
+    cursor: "pointer",
+    visibility: "visible"
   },
-  iconHidden: {}
+  iconHidden: {
+    visibility: "hidden"
+  }
 });
 
 class MonthlyExpencesExpantionPanel extends React.Component {
   state = {
     expanded: null,
     amount: "",
-    _id: "m" // change
+    _id: ""
   };
 
   handleChange = panel => (event, expanded) => {
@@ -64,6 +73,38 @@ class MonthlyExpencesExpantionPanel extends React.Component {
   onEditClick = _id => {
     console.log("edit");
     return this.setState({ _id });
+  };
+
+  // Add expence
+  onButtonClick = () => {
+    if (this.state.amount === "") {
+      return false;
+    }
+    fetch(`/edit-expence`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: window.sessionStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        _id: this.props.user._id,
+        tag: this.state.currentTag,
+        amount: this.state.currentAmount
+      })
+    })
+      .then(response => response.json())
+      .then(user => {
+        if (user && user.email) {
+          this.setState({
+            currentAmount: "",
+            currentTag: "",
+            availableTags: user.tags
+          });
+          console.log(user);
+          return this.props.loadUser(user);
+        }
+      })
+      .catch(err => console.log);
   };
 
   render() {
@@ -86,11 +127,7 @@ class MonthlyExpencesExpantionPanel extends React.Component {
             // This needs a clean up
             const date = new Date(expences[0][i].timestamp);
             return (
-              <div
-                key={i}
-                className={classes.item}
-                style={{ widht: "100%", display: "block" }}
-              >
+              <div key={i} className={classes.item}>
                 {date.toLocaleString()} |{" "}
                 <strong>{expences[0][i].tag}: </strong>{" "}
                 {this.state._id === expences[0][i]._id ? (

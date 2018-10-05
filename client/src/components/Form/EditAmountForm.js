@@ -4,15 +4,20 @@ import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
+import SuccessSnackBar from "../Snackbar/SuccessSnackBar";
+
 const styles = theme => ({
   container: {
-    // display: 'flex',
-    // flexWrap: 'wrap',
-    display: "inline"
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "flex-start",
+    flexDirection: "row",
+    alignItems: "center"
   },
   textField: {
-    marginLeft: theme.spacing.unit
-    // marginRight: theme.spacing.unit,
+    marginLeft: "1em",
+    marginRight: "1em",
+    boderColor: "#fff"
   },
   dense: {
     // marginTop: 16,
@@ -82,6 +87,11 @@ class EditAmountForm extends React.Component {
           autoFocus={true}
           value={this.state.amount}
           onChange={this.handleChange}
+        />
+        <SuccessSnackBar
+          onButtonClick={this.onButtonClick}
+          action="Confirm"
+          buttonStyles={{ backgroundColor: "#fff", paddingLeft: "1em" }}
         />
       </form>
     );

@@ -145,7 +145,11 @@ class AddExpenceForm extends React.Component {
               onChange={this.handleInputChange}
               value={this.state.currentAmount}
             />
-            <SuccessSnackBar onButtonClick={this.onButtonClick} />
+            <SuccessSnackBar
+              onButtonClick={this.onButtonClick}
+              action="Add"
+              buttonStyles={{ marginTop: "1.5em" }}
+            />
           </div>
           <AddNewTagExpantionPanel classes={classes} user={user} />
         </Paper>

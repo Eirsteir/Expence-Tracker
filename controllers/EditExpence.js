@@ -1,5 +1,6 @@
 // Users model
 const User = require("../models/User");
+const profile = require("./profile");
 
 const handleEditExpence = (req, res, db) => {
   console.time("putRequestExpence");
@@ -9,18 +10,14 @@ const handleEditExpence = (req, res, db) => {
   return User.findOneAndUpdate(
     { _id: user_id, "expences._id": expence_id },
     { $set: { "expences.$.amount": amount } },
-    { new: true }, // return modified user
-    (err, response) => {
-      if (err) {
-        console.log("Error: ", err);
-        return res.status(400).json(err);
-      } else {
-        console.log("success: ", response);
-        console.timeEnd("putRequestExpence");
-        return res.json(response);
-      }
-    }
-  );
+    { new: true } // return modified user
+  )
+    .then(user => {
+      const id = user._id;
+      req.params.id = id;
+      profile.handleProfileGet(req, res);
+    })
+    .catch(console.log);
 };
 module.exports = {
   handleEditExpence
