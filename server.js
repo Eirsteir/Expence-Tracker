@@ -12,7 +12,7 @@ const signin = require("./controllers/signin");
 const signout = require("./controllers/signout");
 const profile = require("./controllers/profile");
 const addExpence = require("./controllers/addExpence");
-const editExpence = require("./controllers/editExpence");
+const editExpence = require("./controllers/EditExpence");
 const addCustomTag = require("./controllers/addCustomTag");
 const auth = require("./controllers/authorization");
 
