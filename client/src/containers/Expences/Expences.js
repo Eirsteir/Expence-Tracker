@@ -1,10 +1,10 @@
 import React from "react";
-import History from "./History/History";
 import Paper from "@material-ui/core/Paper";
 
-import AddExpenceForm from "../Form/AddExpenceForm";
-import CardList from "../CardList/CardList";
-import MonthlyExpencesExpantionPanel from "../ExpantionPanel/MonthlyExpencesExpantionPanel";
+import History from "../../components/History/History";
+import AddExpenceForm from "../../components/Form/AddExpenceForm";
+// import CardList from "../../components/CardList/CardList";
+import MonthlyExpencesExpantionPanel from "../../components/ExpantionPanel/MonthlyExpencesExpantionPanel";
 
 import "./Expences.css";
 

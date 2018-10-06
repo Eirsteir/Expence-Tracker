@@ -1,9 +1,9 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 
-import Switch from "../../Switch/Switch";
+import Switch from "../Switch/Switch";
 
-import "../Expences.css";
+import "./History.css";
 
 const chartOptions = {
   maintainAspectRatio: false,

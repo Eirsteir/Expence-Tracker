@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 
 import Card from "../Card/Card";
-import "../Expences/Expences.css";
+import "./CardList.css";
 
 const styles = theme => ({
   root: {

@@ -111,7 +111,7 @@ class AddExpenceForm extends React.Component {
 
     return (
       <div className="center" style={{ marginTop: "4em", marginBottom: "4em" }}>
-        <Paper className={classes.paper}>
+        <div>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <h1 style={{ fontWeight: "300" }}>Add New Expence</h1>
           </div>
@@ -152,7 +152,7 @@ class AddExpenceForm extends React.Component {
             />
           </div>
           <AddNewTagExpantionPanel classes={classes} user={user} />
-        </Paper>
+        </div>
       </div>
     );
   }

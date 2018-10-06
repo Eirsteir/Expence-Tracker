@@ -3,13 +3,13 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import blue from "@material-ui/core/colors/blue";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-import Navigation from "../components/Navigation/Navigation";
-import Expences from "../components/Expences/Expences";
-import Signin from "../components/Signin/Signin";
-import Register from "../components/Register/Register";
-import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
-import Background from "../components/Background/Background";
-import Hero from "../components/Hero/Hero";
+import Navigation from "../../components/Navigation/Navigation";
+import Expences from "../Expences/Expences";
+import Signin from "../../components/Signin/Signin";
+import Register from "../../components/Register/Register";
+import ErrorBoundary from "../../components/ErrorBoundary/ErrorBoundary";
+import Background from "../../components/Background/Background";
+import Hero from "../../components/Hero/Hero";
 
 import "./App.css";
 
