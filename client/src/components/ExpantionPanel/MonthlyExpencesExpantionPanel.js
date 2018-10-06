@@ -69,8 +69,25 @@ class MonthlyExpencesExpantionPanel extends React.Component {
     });
   };
 
-  onDeleteClick = () => {
-    console.log("delete");
+  onDeleteClick = _id => {
+    fetch("/delete-expence", {
+      method: "delete",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: window.sessionStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        expence_id: _id,
+        user_id: this.props.userId
+      })
+    })
+      .then(response => response.json())
+      .then(user => {
+        if (user && user.email) {
+          return this.props.loadUser(user);
+        }
+      })
+      .catch(console.log);
   };
 
   onClickOpenEdit = _id => {
@@ -78,38 +95,6 @@ class MonthlyExpencesExpantionPanel extends React.Component {
       edit: !prevState.edit,
       _id: _id
     }));
-  };
-
-  // Add expence
-  onButtonClick = () => {
-    if (this.state.amount === "") {
-      return false;
-    }
-    fetch(`/edit-expence`, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: window.sessionStorage.getItem("token")
-      },
-      body: JSON.stringify({
-        _id: this.props.user._id,
-        tag: this.state.currentTag,
-        amount: this.state.currentAmount
-      })
-    })
-      .then(response => response.json())
-      .then(user => {
-        if (user && user.email) {
-          this.setState({
-            currentAmount: "",
-            currentTag: "",
-            availableTags: user.tags
-          });
-          console.log(user);
-          return this.props.loadUser(user);
-        }
-      })
-      .catch(err => console.log);
   };
 
   dateOptions = {
@@ -167,7 +152,7 @@ class MonthlyExpencesExpantionPanel extends React.Component {
                   `${expences[0][i].amount}`
                 )}
                 <DeleteOutlinedIcon
-                  onClick={this.onDeleteClick}
+                  onClick={() => this.onDeleteClick(expences[0][i]._id)}
                   className={
                     this.state.expanded
                       ? classes.iconVisible
