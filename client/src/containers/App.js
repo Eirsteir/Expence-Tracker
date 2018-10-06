@@ -189,8 +189,9 @@ class App extends Component {
 
 export default App;
 
+// Delete CardList? Badly planned and is a mess
+
 // TODO:
-// - Add circleci
 // - Add twilio
 //   - get phonenumber from register --> db
 //   - Move requests to AWS Lambda
@@ -204,6 +205,8 @@ export default App;
 // - Add option to delete expence
 // - Consider making app SSR
 // - AWS: serverless, dynamoDB, Lambda, S3, hosting? redis?
+// - Make manifest.json link tag in index.html async/defer?
+// - Add profile view
 
 // API_PORT=3001
 // CLIENT_PORT=3000

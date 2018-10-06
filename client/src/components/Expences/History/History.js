@@ -1,8 +1,6 @@
 import React from "react";
-import Paper from "@material-ui/core/Paper";
 import { Line } from "react-chartjs-2";
 
-import MonthlyExpencesExpantionPanel from "../../ExpantionPanel/MonthlyExpencesExpantionPanel";
 import Switch from "../../Switch/Switch";
 
 import "../Expences.css";
@@ -109,7 +107,7 @@ class ExpenceHistory extends React.Component {
           backgroundColor: gradient,
           lineTension: 0.0000001,
           borderColor: borderGradient,
-          borderWidth: 5,
+          borderWidth: 3,
           borderCapStyle: "butt",
           borderDash: [],
           borderDashOffset: 0.0,
@@ -166,7 +164,7 @@ class ExpenceHistory extends React.Component {
           backgroundColor: gradient,
           lineTension: 0.0000001,
           borderColor: borderGradient,
-          borderWidth: 5,
+          borderWidth: 3,
           borderCapStyle: "butt",
           borderDash: [],
           borderDashOffset: 0.0,
@@ -186,10 +184,8 @@ class ExpenceHistory extends React.Component {
   };
 
   render() {
-    const { expences, userId, loadUser } = this.props;
-
     return (
-      <Paper style={{ marginTop: "4em", marginBottom: "4em", padding: "2em" }}>
+      <div>
         <div className="center" style={{ marginBottom: "4em" }}>
           <h1 style={{ fontWeight: "300" }}>History</h1>
           <Switch
@@ -213,20 +209,7 @@ class ExpenceHistory extends React.Component {
             />
           </div>
         </div>
-        <div>
-          {Object.keys(expences).map((month, i) => {
-            return (
-              <MonthlyExpencesExpantionPanel
-                key={i + 1}
-                month={month}
-                expences={expences[month]}
-                userId={userId}
-                loadUser={loadUser}
-              />
-            );
-          })}
-        </div>
-      </Paper>
+      </div>
     );
   }
 }
