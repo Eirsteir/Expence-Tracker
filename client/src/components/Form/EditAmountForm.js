@@ -89,7 +89,7 @@ class EditAmountForm extends React.Component {
           onChange={this.handleChange}
         />
         <SuccessSnackBar
-          onButtonClick={this.onButtonClick}
+          onButtonClick={this.handleSubmit}
           action="Confirm"
           buttonStyles={{ backgroundColor: "#fff", paddingLeft: "1em" }}
         />

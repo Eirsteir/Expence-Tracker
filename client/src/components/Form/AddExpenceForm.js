@@ -6,7 +6,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
-import Paper from "@material-ui/core/Paper";
 
 import AddNewTagExpantionPanel from "../ExpantionPanel/AddNewTagExpantionPanel";
 import SuccessSnackBar from "../Snackbar/SuccessSnackBar";

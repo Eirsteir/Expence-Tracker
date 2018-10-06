@@ -53,12 +53,15 @@ const styles = theme => ({
   }
 });
 
+const initialState = {
+  expanded: null,
+  amount: "",
+  _id: "",
+  edit: false
+};
+
 class MonthlyExpencesExpantionPanel extends React.Component {
-  state = {
-    expanded: null,
-    amount: "",
-    _id: ""
-  };
+  state = initialState;
 
   handleChange = panel => (event, expanded) => {
     this.setState({
@@ -70,9 +73,11 @@ class MonthlyExpencesExpantionPanel extends React.Component {
     console.log("delete");
   };
 
-  onEditClick = _id => {
-    console.log("edit");
-    return this.setState({ _id });
+  onClickOpenEdit = _id => {
+    return this.setState(prevState => ({
+      edit: !prevState.edit,
+      _id: _id
+    }));
   };
 
   // Add expence
@@ -107,6 +112,25 @@ class MonthlyExpencesExpantionPanel extends React.Component {
       .catch(err => console.log);
   };
 
+  dateOptions = {
+    year: "2-digit",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric"
+  };
+
+  // !!!
+  // [Violation] 'click' handler took 181ms
+  // [Violation] 'click' handler took 197ms
+  // [Violation] 'click' handler took 181ms
+  // Transition.js:354 [Violation] 'setTimeout' handler took 67ms
+  // [Violation] 'click' handler took 244ms
+  // [Violation] 'click' handler took 168ms
+  // [Violation] 'requestIdleCallback' handler took 183ms
+  // [Violation] 'click' handler took 150ms
+  // !!!
+
   render() {
     const { classes, month, expences, userId, loadUser } = this.props;
     const { expanded } = this.state;
@@ -128,9 +152,11 @@ class MonthlyExpencesExpantionPanel extends React.Component {
             const date = new Date(expences[0][i].timestamp);
             return (
               <div key={i} className={classes.item}>
-                {date.toLocaleString()} |{" "}
-                <strong>{expences[0][i].tag}: </strong>{" "}
-                {this.state._id === expences[0][i]._id ? (
+                {date.toLocaleString("en-us", this.dateOptions)} |{" "}
+                <strong style={{ marginLeft: 10 }}>
+                  {expences[0][i].tag}:{" "}
+                </strong>
+                {this.state._id === expences[0][i]._id && this.state.edit ? (
                   <EditAmountForm
                     expenceId={expences[0][i]._id}
                     amount={expences[0][i].amount}
@@ -149,13 +175,13 @@ class MonthlyExpencesExpantionPanel extends React.Component {
                   }
                 />
                 <EditOutlinedIcon
-                  onClick={() => this.onEditClick(expences[0][i]._id)}
+                  onClick={() => this.onClickOpenEdit(expences[0][i]._id)}
                   className={
                     this.state.expanded
                       ? classes.iconVisible
                       : classes.iconHidden
                   }
-                  style={{ right: "3%" }}
+                  style={{ right: "1em" }}
                 />
               </div>
             );
