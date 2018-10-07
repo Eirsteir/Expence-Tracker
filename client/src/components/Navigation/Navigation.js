@@ -116,7 +116,7 @@ class Navigation extends React.Component {
                 open={this.state.open}
                 onClose={this.toggleDrawer}
                 onOpen={this.toggleDrawer}
-                isablebackdroptransition={!iOS}
+                disableBackdropTransition={!iOS}
                 disableDiscovery={iOS}
               >
                 <div

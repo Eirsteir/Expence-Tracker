@@ -62,6 +62,7 @@ class Profile extends React.Component {
             variant="fab"
             aria-label="Add"
             onClick={this.scrollToAddExpenceForm}
+            style={{ backgroundColor: "#e91e63", color: "#fff" }}
           >
             <AddIcon />
           </Button>

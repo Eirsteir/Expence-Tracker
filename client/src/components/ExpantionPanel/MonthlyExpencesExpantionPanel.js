@@ -25,11 +25,11 @@ const styles = theme => ({
     color: theme.palette.text.secondary
   },
   item: {
-    padding: "1em",
+    padding: "1rem",
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "flex-start",
-    flexDirection: "row",
+    // flexDirection: "row",
     alignItems: "center",
     widht: "100%",
     // borderBottom: '5px solid transparent',
@@ -44,17 +44,7 @@ const styles = theme => ({
     borderBottom: "1px solid rgba(255, 255, 255, 0.6)"
   },
   button: {
-    marginLeft: 0,
     color: "#fff"
-  },
-  iconVisible: {
-    position: "absolute",
-    right: "0",
-    cursor: "pointer",
-    visibility: "visible"
-  },
-  iconHidden: {
-    visibility: "hidden"
   }
 });
 
@@ -142,7 +132,7 @@ class MonthlyExpencesExpantionPanel extends React.Component {
             const date = new Date(expences[0][i].timestamp);
             return (
               <div key={i} className={classes.item}>
-                {date.toLocaleString("en-us", this.dateOptions)} |{" "}
+                {date.toLocaleString("en-us", this.dateOptions)} |
                 <strong style={{ marginLeft: 10 }}>
                   {expences[0][i].tag}:{" "}
                 </strong>
@@ -154,13 +144,22 @@ class MonthlyExpencesExpantionPanel extends React.Component {
                     loadUser={loadUser}
                   />
                 ) : (
-                  `${expences[0][i].amount}`
+                  <p style={{ marginLeft: ".5rem" }}>
+                    {" "}
+                    {expences[0][i].amount}
+                  </p>
                 )}
-                <div style={{}}>
+                <div
+                  style={{
+                    width: "100%",
+                    textAlign: "right",
+                    marginTop: "-3rem",
+                    border: "1px solid"
+                  }}
+                >
                   <IconButton className={classes.button} aria-label="Edit">
                     <EditOutlinedIcon
                       onClick={() => this.onClickOpenEdit(expences[0][i]._id)}
-                      style={{ right: "1em" }}
                     />
                   </IconButton>
                   <IconButton className={classes.button} aria-label="Delete">
