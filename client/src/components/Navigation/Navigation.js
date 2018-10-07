@@ -63,7 +63,7 @@ class Navigation extends React.Component {
         <Divider />
 
         <List component="nav">
-          <ListItem button onClick={() => this.props.onRouteChange("profile")}>
+          <ListItem button>
             <ListItemIcon>
               <PersonIcon />
             </ListItemIcon>
@@ -117,7 +117,7 @@ class Navigation extends React.Component {
                 open={this.state.open}
                 onClose={this.toggleDrawer}
                 onOpen={this.toggleDrawer}
-                isableBackdropTransition={!iOS}
+                isablebackdroptransition={!iOS}
                 disableDiscovery={iOS}
               >
                 <div

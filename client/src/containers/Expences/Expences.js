@@ -2,6 +2,7 @@ import React from "react";
 import Paper from "@material-ui/core/Paper";
 
 import History from "../../components/History/History";
+import Profile from "../../components/Profile/Profile";
 import AddExpenceForm from "../../components/Form/AddExpenceForm";
 // import CardList from "../../components/CardList/CardList";
 import MonthlyExpencesExpantionPanel from "../../components/ExpantionPanel/MonthlyExpencesExpantionPanel";
@@ -14,8 +15,14 @@ class Expences extends React.Component {
 
     return (
       <div style={{ marginTop: "2em" }}>
-        <Paper
-          style={{ marginTop: "4em", marginBottom: "4em", padding: "2em" }}
+        <Profile user={user} />
+
+        <div
+          style={{
+            backgroundColor: "#fff",
+            marginBottom: "4em",
+            padding: "2em"
+          }}
         >
           <History expences={user.expences} />
           <div>
@@ -36,7 +43,7 @@ class Expences extends React.Component {
             loadUser={loadUser}
             user={user}
           />
-        </Paper>
+        </div>
 
         {/*<CardList expences={user.expences} />*/}
       </div>

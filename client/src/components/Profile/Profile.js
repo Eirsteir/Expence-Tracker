@@ -71,7 +71,6 @@ class Profile extends React.Component {
             <div>Total</div>
           </div>
         </div>
-        <div className="other-container">More content coming up!</div>
       </div>
     );
   }
