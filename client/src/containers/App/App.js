@@ -19,7 +19,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const initialState = {
-  route: "profile",
+  route: "signin",
   isSignedIn: false,
   user: {
     _id: "",
