@@ -22,6 +22,12 @@ class Profile extends React.Component {
     });
   }
 
+  scrollToAddExpenceForm = () => {
+    const el = document.getElementById("add-new-form");
+    el.scrollIntoView({ behavior: "smooth" });
+    // window.height
+  };
+
   render() {
     const { user } = this.props;
     const { expences, name } = user;
@@ -52,7 +58,11 @@ class Profile extends React.Component {
             color: "#fff"
           }}
         >
-          <Button variant="fab" aria-label="Add">
+          <Button
+            variant="fab"
+            aria-label="Add"
+            onClick={this.scrollToAddExpenceForm}
+          >
             <AddIcon />
           </Button>
         </div>

@@ -109,10 +109,14 @@ class AddExpenceForm extends React.Component {
     const { classes, user } = this.props;
 
     return (
-      <div className="center" style={{ marginTop: "4em", marginBottom: "4em" }}>
+      <div
+        className="center"
+        id="add-new-form"
+        style={{ marginTop: "4em", marginBottom: "4em" }}
+      >
         <div>
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <h1 style={{ fontWeight: "300" }}>Add New Expence</h1>
+            <h1 style={{ fontWeight: "300" }}>Add A New Expence</h1>
           </div>
           <div className={classes.root}>
             <FormControl className={classes.formControl}>

@@ -6,7 +6,7 @@ const Background = () => {
       id="background"
       style={{
         backgroundImage:
-          "linear-gradient(89deg, rgb(23, 105, 170) 0%, #1769aa 15%, #009688 75%)",
+          "linear-gradient(89deg, #9c27b0 0%, #f50057 50%, #ff9800 95%)",
         position: "fixed",
         top: "0",
         left: "0",
