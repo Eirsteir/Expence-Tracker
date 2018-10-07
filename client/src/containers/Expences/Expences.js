@@ -1,6 +1,4 @@
 import React from "react";
-import Paper from "@material-ui/core/Paper";
-
 import History from "../../components/History/History";
 import Profile from "../../components/Profile/Profile";
 import AddExpenceForm from "../../components/Form/AddExpenceForm";
