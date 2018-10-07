@@ -26,8 +26,7 @@ const styles = {
     fontWeight: 300
   },
   menuButton: {
-    marginLeft: -12,
-    marginRight: 20
+    marginRight: "-1rem"
   },
   list: {
     width: 250

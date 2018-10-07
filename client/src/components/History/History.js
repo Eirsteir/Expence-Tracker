@@ -160,7 +160,7 @@ class ExpenceHistory extends React.Component {
           />
           <div
             className="center"
-            style={{ position: "relative", height: "40vh", width: "80vw" }}
+            style={{ position: "relative", height: "60vh", width: "80vw" }}
           >
             <Line data={this.chartData} options={chartOptions} />
           </div>
