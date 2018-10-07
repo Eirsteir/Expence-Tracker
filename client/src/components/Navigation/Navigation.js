@@ -47,6 +47,7 @@ class Navigation extends React.Component {
 
   render() {
     const { classes, isSignedIn, onRouteChange, onSignout } = this.props;
+    const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
     const sideList = (
       <div className={classes.list}>
@@ -116,6 +117,8 @@ class Navigation extends React.Component {
                 open={this.state.open}
                 onClose={this.toggleDrawer}
                 onOpen={this.toggleDrawer}
+                isableBackdropTransition={!iOS}
+                disableDiscovery={iOS}
               >
                 <div
                   tabIndex={0}
