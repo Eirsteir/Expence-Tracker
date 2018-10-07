@@ -10,6 +10,7 @@ import Register from "../../components/Register/Register";
 import ErrorBoundary from "../../components/ErrorBoundary/ErrorBoundary";
 import Background from "../../components/Background/Background";
 import Hero from "../../components/Hero/Hero";
+import Profile from "../../components/Profile/Profile";
 
 import "./App.css";
 
@@ -18,7 +19,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const initialState = {
-  route: "signin",
+  route: "profile",
   isSignedIn: false,
   user: {
     _id: "",
@@ -27,12 +28,11 @@ const initialState = {
     age: "",
     joined: "",
     expences: [],
-    tags: [] // push to availableTags in componentDidMount
+    tags: []
   },
   isLoading: false
 };
 
-// Performance cost? why? do you really need this? bruh what about tenfolds of looping/mapping in expences?
 const theme = createMuiTheme({
   palette: {
     primary: blue,
@@ -167,6 +167,8 @@ class App extends Component {
                   loadUser={this.loadUser}
                 />
               </div>
+            ) : route === "profile" ? (
+              <Profile user={this.state.user} />
             ) : (
               <div id="landing-page-container">
                 <Hero onRouteChange={this.onRouteChange} />

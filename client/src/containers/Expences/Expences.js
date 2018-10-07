@@ -12,7 +12,6 @@ class Expences extends React.Component {
   render() {
     const { loadUser, user } = this.props;
 
-    // Add all expences (amounts) to a respective total (expencesSortedByMonth['month_name'][1].total)
     return (
       <div style={{ marginTop: "2em" }}>
         <Paper

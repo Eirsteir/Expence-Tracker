@@ -2,12 +2,12 @@
 const User = require("../models/User");
 const profile = require("./profile");
 
-const handleEditExpence = (req, res) => {
-  const { user_id, expence_id, amount } = req.body;
+const handleDeleteExpence = (req, res) => {
+  const { user_id, expence_id } = req.body;
 
   return User.findOneAndUpdate(
     { _id: user_id, "expences._id": expence_id },
-    { $set: { "expences.$.amount": amount } },
+    { $pull: { expences: { _id: [expence_id] } } },
     { new: true } // return modified user
   )
     .then(user => {
@@ -15,10 +15,11 @@ const handleEditExpence = (req, res) => {
       req.params.id = id;
       profile.handleProfileGet(req, res);
     })
-    .catch(console.log);
+    .catch(err => {
+      console.log(err);
+      res.status(400).json(err);
+    });
 };
 module.exports = {
-  handleEditExpence
+  handleDeleteExpence
 };
-
-// consider querying without user_id

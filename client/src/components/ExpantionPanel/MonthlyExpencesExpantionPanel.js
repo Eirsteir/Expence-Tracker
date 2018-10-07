@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
+import IconButton from "@material-ui/core/IconButton";
 
 import EditAmountForm from "../Form/EditAmountForm";
 
@@ -41,6 +42,10 @@ const styles = theme => ({
     color: "#fff",
     fontWeight: 300,
     borderBottom: "1px solid rgba(255, 255, 255, 0.6)"
+  },
+  button: {
+    marginLeft: 0,
+    color: "#fff"
   },
   iconVisible: {
     position: "absolute",
@@ -151,23 +156,19 @@ class MonthlyExpencesExpantionPanel extends React.Component {
                 ) : (
                   `${expences[0][i].amount}`
                 )}
-                <DeleteOutlinedIcon
-                  onClick={() => this.onDeleteClick(expences[0][i]._id)}
-                  className={
-                    this.state.expanded
-                      ? classes.iconVisible
-                      : classes.iconHidden
-                  }
-                />
-                <EditOutlinedIcon
-                  onClick={() => this.onClickOpenEdit(expences[0][i]._id)}
-                  className={
-                    this.state.expanded
-                      ? classes.iconVisible
-                      : classes.iconHidden
-                  }
-                  style={{ right: "1em" }}
-                />
+                <div style={{}}>
+                  <IconButton className={classes.button} aria-label="Edit">
+                    <EditOutlinedIcon
+                      onClick={() => this.onClickOpenEdit(expences[0][i]._id)}
+                      style={{ right: "1em" }}
+                    />
+                  </IconButton>
+                  <IconButton className={classes.button} aria-label="Delete">
+                    <DeleteOutlinedIcon
+                      onClick={() => this.onDeleteClick(expences[0][i]._id)}
+                    />
+                  </IconButton>
+                </div>
               </div>
             );
           })}

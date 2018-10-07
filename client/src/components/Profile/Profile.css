@@ -1,0 +1,57 @@
+.name-container {
+  margin-top: 1.5em;
+  background-image: linear-gradient(
+    115deg,
+    #1769aa 60%,
+    #009688 calc(60% + 1px)
+  );
+  height: 40vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 300;
+  font-size: 2rem;
+}
+
+.technical-container {
+  height: 20vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.number-of-expences,
+.sum-expences {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50vw;
+  height: 100%;
+  color: #fff;
+  font-weight: 300;
+}
+
+.number-of-expences {
+  background-color: #0990ad;
+}
+
+.sum-expences {
+  background-color: #00ccb9;
+}
+.number-of-expences > div:first-of-type,
+.sum-expences > div:first-of-type {
+  font-size: 2rem;
+}
+
+.other-container {
+  margin-top: 3em;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}

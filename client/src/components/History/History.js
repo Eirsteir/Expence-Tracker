@@ -3,7 +3,7 @@ import { Line } from "react-chartjs-2";
 
 import Switch from "../Switch/Switch";
 
-import "./History.css";
+import "../../containers/Expences/Expences.css";
 
 const chartOptions = {
   maintainAspectRatio: false,
@@ -83,50 +83,7 @@ class ExpenceHistory extends React.Component {
     }
   };
 
-  chartYearlyData = canvas => {
-    const now = new Date();
-    // linear-gradient(89deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%)
-    const ctx = canvas.getContext("2d");
-    const gradient = ctx.createLinearGradient(0, 10, 1000, 20);
-    gradient.addColorStop(0, "rgba(	23, 105, 170, 0.6)");
-    gradient.addColorStop(1, "rgba(	0, 150, 136, 0.6)");
-
-    const borderGradient = ctx.createLinearGradient(0, 10, 1000, 20);
-    borderGradient.addColorStop(0, "#1769aa");
-    borderGradient.addColorStop(1, "#009688");
-
-    return {
-      labels: months.slice(0, now.getMonth() + 1),
-      datasets: [
-        {
-          label: "Amount",
-          data: Object.keys(this.props.expences).map(
-            (month, i) => this.props.expences[month][1].total
-          ),
-          fill: true,
-          backgroundColor: gradient,
-          lineTension: 0.0000001,
-          borderColor: borderGradient,
-          borderWidth: 3,
-          borderCapStyle: "butt",
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: "miter",
-          pointBorderColor: "rgba(75,192,192,1)",
-          pointBackgroundColor: "#fff",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "rgba(75,192,192,1)",
-          pointHoverBorderColor: "rgba(220,220,220,1)",
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
-          pointHitRadius: 10
-        }
-      ]
-    };
-  };
-
-  chartMonthlyData = canvas => {
+  chartData = canvas => {
     const now = new Date();
     const { expences } = this.props;
 
@@ -147,19 +104,25 @@ class ExpenceHistory extends React.Component {
       day: "numeric"
     };
 
-    const labels = expencesThisMonth.map((month, i) => {
-      const date = new Date(expencesThisMonth[i].timestamp);
-      return date.toLocaleString("en-us", options);
-    });
+    const labels = this.state.checkedA
+      ? months.slice(0, now.getMonth() + 1)
+      : expencesThisMonth.map((month, i) => {
+          const date = new Date(expencesThisMonth[i].timestamp);
+          return date.toLocaleString("en-us", options);
+        });
+
+    const data = this.state.checkedA
+      ? Object.keys(this.props.expences).map(
+          (month, i) => this.props.expences[month][1].total
+        )
+      : expencesThisMonth.map((month, i) => expencesThisMonth[i].amount);
 
     return {
       labels: labels,
       datasets: [
         {
           label: "Amount",
-          data: expencesThisMonth.map(
-            (month, i) => expencesThisMonth[i].amount
-          ),
+          data: data,
           fill: true,
           backgroundColor: gradient,
           lineTension: 0.0000001,
@@ -199,14 +162,7 @@ class ExpenceHistory extends React.Component {
             className="center"
             style={{ position: "relative", height: "40vh", width: "80vw" }}
           >
-            <Line
-              data={
-                this.state.checkedA
-                  ? this.chartYearlyData
-                  : this.chartMonthlyData
-              }
-              options={chartOptions}
-            />
+            <Line data={this.chartData} options={chartOptions} />
           </div>
         </div>
       </div>
