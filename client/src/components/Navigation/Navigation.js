@@ -34,9 +34,12 @@ const styles = {
 };
 
 class Navigation extends React.Component {
-  state = {
-    open: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false
+    };
+  }
 
   toggleDrawer = () => {
     this.setState(prevState => ({
