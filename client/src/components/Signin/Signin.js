@@ -13,6 +13,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import IconButton from "@material-ui/core/IconButton";
+import { shallowEqual } from "shouldcomponentupdate-children";
 
 const styles = theme => ({
   textField: {
@@ -48,6 +49,10 @@ class Signin extends React.Component {
       showPassword: false,
       errorMessage: ""
     };
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowEqual(this.props, nextProps, this.state, nextState);
   }
 
   toggleLoading = () => {

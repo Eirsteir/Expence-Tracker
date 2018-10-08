@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
-import SuccessSnackBar from "../Snackbar/SuccessSnackBar";
+import SnackBar from "../Snackbar/SnackBar";
 
 const styles = theme => ({
   container: {
@@ -88,7 +88,7 @@ class EditAmountForm extends React.Component {
           value={this.state.amount}
           onChange={this.handleChange}
         />
-        <SuccessSnackBar
+        <SnackBar
           onButtonClick={this.handleSubmit}
           action="Confirm"
           buttonStyles={{ backgroundColor: "#fff", paddingLeft: "1em" }}

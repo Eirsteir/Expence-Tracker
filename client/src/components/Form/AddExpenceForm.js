@@ -8,7 +8,7 @@ import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 
 import AddNewTagExpantionPanel from "../ExpantionPanel/AddNewTagExpantionPanel";
-import SuccessSnackBar from "../Snackbar/SuccessSnackBar";
+import SnackBar from "../Snackbar/SnackBar";
 
 const styles = theme => ({
   root: {
@@ -148,7 +148,7 @@ class AddExpenceForm extends React.Component {
               onChange={this.handleInputChange}
               value={this.state.currentAmount}
             />
-            <SuccessSnackBar
+            <SnackBar
               onButtonClick={this.onButtonClick}
               action="Add"
               buttonStyles={{ marginTop: "1.5em" }}

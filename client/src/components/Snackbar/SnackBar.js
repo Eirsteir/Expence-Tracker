@@ -1,18 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 
-const styles = theme => ({
-  close: {
-    padding: theme.spacing.unit / 2
-  }
-});
-
-class SuccessSnackBar extends React.Component {
+class SnackBar extends React.Component {
   state = {
     open: false
   };
@@ -32,7 +24,7 @@ class SuccessSnackBar extends React.Component {
   };
 
   render() {
-    const { classes, action, buttonStyles } = this.props;
+    const { action, buttonStyles } = this.props;
     return (
       <div>
         <Button
@@ -67,7 +59,7 @@ class SuccessSnackBar extends React.Component {
               key="close"
               aria-label="Close"
               color="inherit"
-              className={classes.close}
+              style={{ padding: 4 }}
               onClick={this.handleClose}
             >
               <CloseIcon />
@@ -79,8 +71,4 @@ class SuccessSnackBar extends React.Component {
   }
 }
 
-SuccessSnackBar.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(styles)(SuccessSnackBar);
+export default SnackBar;

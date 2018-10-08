@@ -17,6 +17,8 @@ import HomeOutlinedIcon from "@material-ui/icons/Home";
 import SettingsIcon from "@material-ui/icons/Settings";
 import PersonIcon from "@material-ui/icons/Person";
 
+import { useShallowEqual } from "shouldcomponentupdate-children";
+
 const styles = {
   root: {
     flexGrow: 1
@@ -50,7 +52,6 @@ class Navigation extends React.Component {
   render() {
     const { classes, isSignedIn, onRouteChange, onSignout } = this.props;
     const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
-
     const sideList = (
       <div className={classes.list}>
         <List component="nav">
@@ -171,5 +172,7 @@ class Navigation extends React.Component {
 Navigation.propTypes = {
   classes: PropTypes.object.isRequired
 };
+
+Navigation = useShallowEqual(Navigation);
 
 export default withStyles(styles)(Navigation);

@@ -1,24 +1,29 @@
-import React from 'react';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import React from "react";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import { shallowEqual } from "shouldcomponentupdate-children";
 
 class AddNewTagModal extends React.Component {
   state = {
     expanded: false,
-    tag: '',
+    tag: ""
   };
 
-  handleChange = event => {
-    this.setState({ tag: event.target.value })
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowEqual(this.props, nextProps, this.state, nextState);
   }
+
+  handleChange = event => {
+    this.setState({ tag: event.target.value });
+  };
 
   handleExpandChange = panel => (event, expanded) => {
     this.setState({
-      expanded: expanded ? panel : false,
+      expanded: expanded ? panel : false
     });
   };
 
@@ -29,43 +34,53 @@ class AddNewTagModal extends React.Component {
       return false;
     }
     fetch(`/add-custom-tag`, {
-      method: 'post',
+      method: "post",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': window.sessionStorage.getItem('token')
+        "Content-Type": "application/json",
+        Authorization: window.sessionStorage.getItem("token")
       },
       body: JSON.stringify({
         _id: this.props.user._id,
-        tag: tag,
+        tag: tag
       })
     })
       .then(response => response.json())
       .then(user => {
         if (user) {
-          this.setState({ tag: '' })
+          this.setState({ tag: "" });
           return this.props.loadUser(user);
         }
       })
-      .catch(err => console.log)
-  }
+      .catch(err => console.log);
+  };
 
   render() {
     const { classes } = this.props;
     const { expanded } = this.state;
 
     return (
-          <div style={{ marginTop: '1em' }}>
-            <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleExpandChange('panel1')}>
-              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <FormHelperText
-                style={{cursor: 'pointer', color: '#009688'}}
-                onChange={this.handleExpandChange('panel1')}
-              >
-                Add New Tag
-              </FormHelperText>
-              </ExpansionPanelSummary>
-              <div style={{display: 'flex', justifyContent:'center', padding: '0 0 1em 0', marginTop: '0'}}>
-              <TextField
+      <div style={{ marginTop: "1em" }}>
+        <ExpansionPanel
+          expanded={expanded === "panel1"}
+          onChange={this.handleExpandChange("panel1")}
+        >
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <FormHelperText
+              style={{ cursor: "pointer", color: "#009688" }}
+              onChange={this.handleExpandChange("panel1")}
+            >
+              Add New Tag
+            </FormHelperText>
+          </ExpansionPanelSummary>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              padding: "0 0 1em 0",
+              marginTop: "0"
+            }}
+          >
+            <TextField
               id="input-new-tag"
               label="Tag"
               placeholder="Tag"
@@ -73,21 +88,20 @@ class AddNewTagModal extends React.Component {
               margin="normal"
               onChange={this.handleChange}
               value={this.state.tag}
-              />
-              <Button
+            />
+            <Button
               variant="text"
               size="small"
               color="secondary"
               className={classes.button}
-              style={{ fontSize: '1rem', marginTop: '1.5em'}}
+              style={{ fontSize: "1rem", marginTop: "1.5em" }}
               onClick={this.onButtonClick}
-              >
+            >
               Add
-              </Button>
-              </div>
-
-            </ExpansionPanel>
+            </Button>
           </div>
+        </ExpansionPanel>
+      </div>
     );
   }
 }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import blue from "@material-ui/core/colors/blue";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { useShallowEqual } from "shouldcomponentupdate-children";
 
 import Navigation from "../../components/Navigation/Navigation";
 import Expences from "../Expences/Expences";
