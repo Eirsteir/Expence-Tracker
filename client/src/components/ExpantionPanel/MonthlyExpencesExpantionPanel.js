@@ -110,6 +110,48 @@ class MonthlyExpencesExpantionPanel extends React.Component {
     const { classes, month, expences, userId, loadUser } = this.props;
     const { expanded } = this.state;
 
+    const expence = expences[0].map((exp, i) => {
+      // This needs a clean up
+      const date = new Date(expences[0][i].timestamp);
+      return (
+        <div key={i} className={classes.item}>
+          <div style={{ width: "80%" }}>
+            {date.toLocaleString("en-us", this.dateOptions)} |
+            <strong style={{ marginLeft: 10, marginRight: ".5rem" }}>
+              {expences[0][i].tag}:
+            </strong>
+            {this.state._id === expences[0][i]._id && this.state.edit ? (
+              <EditAmountForm
+                expenceId={expences[0][i]._id}
+                amount={expences[0][i].amount}
+                userId={userId}
+                loadUser={loadUser}
+              />
+            ) : (
+              `${expences[0][i].amount}`
+            )}
+          </div>
+          <div
+            style={{
+              width: "20%",
+              textAlign: "right"
+            }}
+          >
+            <IconButton className={classes.button} aria-label="Edit">
+              <EditOutlinedIcon
+                onClick={() => this.onClickOpenEdit(expences[0][i]._id)}
+              />
+            </IconButton>
+            <IconButton className={classes.button} aria-label="Delete">
+              <DeleteOutlinedIcon
+                onClick={() => this.onDeleteClick(expences[0][i]._id)}
+              />
+            </IconButton>
+          </div>
+        </div>
+      );
+    });
+
     return (
       <div className={classes.root}>
         <ExpansionPanel
@@ -122,47 +164,7 @@ class MonthlyExpencesExpantionPanel extends React.Component {
               Total: {expences[1].total}
             </Typography>
           </ExpansionPanelSummary>
-          {expences[0].map((exp, i) => {
-            // This needs a clean up
-            const date = new Date(expences[0][i].timestamp);
-            return (
-              <div key={i} className={classes.item}>
-                <div style={{ width: "80%" }}>
-                  {date.toLocaleString("en-us", this.dateOptions)} |
-                  <strong style={{ marginLeft: 10, marginRight: ".5rem" }}>
-                    {expences[0][i].tag}:
-                  </strong>
-                  {this.state._id === expences[0][i]._id && this.state.edit ? (
-                    <EditAmountForm
-                      expenceId={expences[0][i]._id}
-                      amount={expences[0][i].amount}
-                      userId={userId}
-                      loadUser={loadUser}
-                    />
-                  ) : (
-                    `${expences[0][i].amount}`
-                  )}
-                </div>
-                <div
-                  style={{
-                    width: "20%",
-                    textAlign: "right"
-                  }}
-                >
-                  <IconButton className={classes.button} aria-label="Edit">
-                    <EditOutlinedIcon
-                      onClick={() => this.onClickOpenEdit(expences[0][i]._id)}
-                    />
-                  </IconButton>
-                  <IconButton className={classes.button} aria-label="Delete">
-                    <DeleteOutlinedIcon
-                      onClick={() => this.onDeleteClick(expences[0][i]._id)}
-                    />
-                  </IconButton>
-                </div>
-              </div>
-            );
-          })}
+          {expence}
         </ExpansionPanel>
       </div>
     );

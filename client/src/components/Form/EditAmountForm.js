@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import { useShallowEqual } from "shouldcomponentupdate-children";
 
 import SnackBar from "../Snackbar/SnackBar";
+import "./Form.css";
 
 const styles = theme => ({
   container: {
@@ -12,17 +14,16 @@ const styles = theme => ({
     flexWrap: "wrap",
     justifyContent: "flex-start",
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
+    transition: ".2s ease"
   },
   textField: {
     marginLeft: "1em",
     marginRight: "1em",
     boderColor: "#fff"
-  },
-  dense: {
-    // marginTop: 16,
   }
 });
+
 class EditAmountForm extends React.Component {
   state = {
     amount: this.props.amount
@@ -101,5 +102,7 @@ class EditAmountForm extends React.Component {
 EditAmountForm.propTypes = {
   classes: PropTypes.object.isRequired
 };
+
+EditAmountForm = useShallowEqual(EditAmountForm);
 
 export default withStyles(styles)(EditAmountForm);
