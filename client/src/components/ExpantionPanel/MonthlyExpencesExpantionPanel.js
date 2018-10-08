@@ -29,7 +29,7 @@ const styles = theme => ({
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "flex-start",
-    // flexDirection: "row",
+    flexDirection: "row",
     alignItems: "center",
     widht: "100%",
     // borderBottom: '5px solid transparent',
@@ -132,28 +132,27 @@ class MonthlyExpencesExpantionPanel extends React.Component {
             const date = new Date(expences[0][i].timestamp);
             return (
               <div key={i} className={classes.item}>
-                {date.toLocaleString("en-us", this.dateOptions)} |
-                <strong style={{ marginLeft: 10 }}>
-                  {expences[0][i].tag}:{" "}
-                </strong>
-                {this.state._id === expences[0][i]._id && this.state.edit ? (
-                  <EditAmountForm
-                    expenceId={expences[0][i]._id}
-                    amount={expences[0][i].amount}
-                    userId={userId}
-                    loadUser={loadUser}
-                  />
-                ) : (
-                  <p style={{ marginLeft: ".5rem" }}>
-                    {" "}
-                    {expences[0][i].amount}
-                  </p>
-                )}
+                <div style={{ width: "80%" }}>
+                  {date.toLocaleString("en-us", this.dateOptions)} |
+                  <strong style={{ marginLeft: 10, marginRight: ".5rem" }}>
+                    {expences[0][i].tag}:
+                  </strong>
+                  {this.state._id === expences[0][i]._id && this.state.edit ? (
+                    <EditAmountForm
+                      expenceId={expences[0][i]._id}
+                      amount={expences[0][i].amount}
+                      userId={userId}
+                      loadUser={loadUser}
+                    />
+                  ) : (
+                    `${expences[0][i].amount}`
+                  )}
+                </div>
                 <div
                   style={{
-                    width: "100%",
-                    textAlign: "right",
-                    marginTop: "-3rem"
+                    width: "20%",
+                    textAlign: "right"
+                    // marginTop: "-3rem"
                   }}
                 >
                   <IconButton className={classes.button} aria-label="Edit">

@@ -62,7 +62,7 @@ class Navigation extends React.Component {
         <Divider />
 
         <List component="nav">
-          <ListItem button>
+          <ListItem button onClick={() => this.props.onRouteChange("profile")}>
             <ListItemIcon>
               <PersonIcon />
             </ListItemIcon>

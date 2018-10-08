@@ -10,6 +10,7 @@ import Register from "../../components/Register/Register";
 import ErrorBoundary from "../../components/ErrorBoundary/ErrorBoundary";
 import Background from "../../components/Background/Background";
 import Hero from "../../components/Hero/Hero";
+import ProfileInfo from "../../components/Profile/Info";
 
 import "./App.css";
 
@@ -172,7 +173,14 @@ class App extends Component {
                   onRouteChange={this.onRouteChange}
                   loadUser={this.loadUser}
                 />
+                <Background />
               </div>
+            ) : route === "profile" ? (
+              <ProfileInfo
+                name={user.name}
+                email={user.email}
+                dateJoined={user.joined}
+              />
             ) : (
               <div id="landing-page-container">
                 <Hero onRouteChange={this.onRouteChange} />
@@ -183,11 +191,11 @@ class App extends Component {
                     loadUser={this.loadUser}
                   />
                 </div>
+                <Background />
               </div>
             )}
           </ErrorBoundary>
         </MuiThemeProvider>
-        <Background />
       </div>
     );
   }
@@ -201,18 +209,13 @@ export default App;
 // - Add twilio
 //   - get phonenumber from register --> db
 //   - Move requests to AWS Lambda
-// - what about currencies? https://codesandbox.io/s/k3rkq27y07
-// - Fix Total amount: make it a sum and always last in Card
+// -  currencies? https://codesandbox.io/s/k3rkq27y07
 // - Redux
 // - Clean up and refactor code
-// - Improve date sorting by week, month and day
-// - Improve display for empty Cards aka no expences
 // - (Security)
-// - Add option to delete expence
 // - Consider making app SSR
 // - AWS: serverless, dynamoDB, Lambda, S3, hosting? redis?
-// - Make manifest.json link tag in index.html async/defer?
-// - Add profile view
+// - Add goals/budgets
 
 // API_PORT=3001
 // CLIENT_PORT=3000
