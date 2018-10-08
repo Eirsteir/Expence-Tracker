@@ -12,44 +12,59 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet" type="text/css">
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <title>Expence Tracker</title>
+    <style>
+    @keyframes bouncing-loader {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      to {
+        opacity: 0.1;
+        transform: translateY(-1rem);
+      }
+    }
+    #bouncing-loader {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+    }
+    #bouncing-loader > div {
+      width: 1rem;
+      height: 1rem;
+      margin: 3rem 0.2rem;
+      /* background: #8385aa; */
+      border-radius: 50%;
+      animation: bouncing-loader 0.6s infinite alternate;
+    }
+    #bouncing-loader > div:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    #bouncing-loader > div:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    #dot1 {
+      background: rgb(23, 105, 170);
+    }
+    #dot2 {
+      background: #0990ad;
+    }
+    #dot3 {
+      background: #009688;
+    }
+    </style>
   </head>
   <body>
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
-    <div id="root"></div>
-    <!-- <script>
-      let deferredPrompt;
-      let btnAdd = document.getElementById('btnAdd');
-      window.addEventListener('beforeinstallprompt', (e) => {
-        // Prevent Chrome 67 and earlier from automatically showing the prompt
-        e.preventDefault();
-        // Stash the event so it can be triggered later.
-        deferredPrompt = e;
-        // Update UI notify the user they can add to home screen
-        btnAdd.style.display = 'block';
-      });
-
-      btnAdd.addEventListener('click', (e) => {
-        // hide our user interface that shows our A2HS button
-        btnAdd.style.display = 'none';
-        // Show the prompt
-        deferredPrompt.prompt();
-        // Wait for the user to respond to the prompt
-        deferredPrompt.userChoice
-          .then((choiceResult) => {
-            if (choiceResult.outcome === 'accepted') {
-              console.log('User accepted the A2HS prompt');
-            } else {
-              console.log('User dismissed the A2HS prompt');
-            }
-            deferredPrompt = null;
-          });
-      });
-
-      window.addEventListener('appinstalled', (evt) => {
-        app.logEvent('a2hs', 'installed');
-      });
-    </script> -->
+    <div id="root">
+      <div id="bouncing-loader">
+        <div id="dot1"></div>
+        <div id="dot2"></div>
+        <div id="dot3"></div>
+      </div>
+    </div>
   </body>
 </html>

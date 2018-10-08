@@ -140,6 +140,12 @@ class App extends Component {
   };
 
   render() {
+    // const loader = document.getElementById('bouncing-loader');
+    // if (loader && !loader.hasAttribute('hidden')) {
+    //   console.log(loader);
+    //   loader.setAttribute('hidden', 'true');
+    // }
+
     const { route, isSignedIn, user } = this.state;
 
     return (
