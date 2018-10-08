@@ -32,11 +32,6 @@ const styles = theme => ({
     flexDirection: "row",
     alignItems: "center",
     widht: "100%",
-    // borderBottom: '5px solid transparent',
-    // -moz-border-image: -moz-linear-gradient(top, #3acfd5 0%, #3a4ed5 100%);
-    // -webkit-border-image: -webkit-linear-gradient(top, #3acfd5 0%, #3a4ed5 100%);
-    // borderImage: 'linear-gradient(89deg, rgb(23, 105, 170) 0%, #1769aa 15%, #009688 75%)',
-    // borderImageSlice: 1
     backgroundImage:
       "linear-gradient(89deg, rgb(23, 105, 170) 0%, #1769aa 15%, #009688 75%)",
     color: "#fff",
@@ -152,7 +147,6 @@ class MonthlyExpencesExpantionPanel extends React.Component {
                   style={{
                     width: "20%",
                     textAlign: "right"
-                    // marginTop: "-3rem"
                   }}
                 >
                   <IconButton className={classes.button} aria-label="Edit">
