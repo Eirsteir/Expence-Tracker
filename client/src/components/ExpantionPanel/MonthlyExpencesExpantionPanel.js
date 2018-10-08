@@ -153,8 +153,7 @@ class MonthlyExpencesExpantionPanel extends React.Component {
                   style={{
                     width: "100%",
                     textAlign: "right",
-                    marginTop: "-3rem",
-                    border: "1px solid"
+                    marginTop: "-3rem"
                   }}
                 >
                   <IconButton className={classes.button} aria-label="Edit">
