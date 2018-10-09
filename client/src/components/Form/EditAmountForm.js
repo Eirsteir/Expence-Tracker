@@ -52,7 +52,7 @@ class EditAmountForm extends React.Component {
       method: "put",
       headers: {
         "Content-Type": "application/json",
-        Authorization: window.sessionStorage.getItem("token")
+        Authorization: window.localStorage.getItem("token")
       },
       body: JSON.stringify({
         user_id: this.props.userId,

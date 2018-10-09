@@ -5,11 +5,12 @@ const Login = require("../models/Login");
 
 const profile = require("./profile");
 
-const registerUserInDB = (req, res, db, name, email, hash) => {
+const registerUserInDB = (req, res, db, name, email, currency, hash) => {
   const newUser = new User({
     name: name,
     email: email,
-    tags: ["Food", "Household"]
+    tags: ["Food", "Household"],
+    currency: currency
   });
 
   const newLogin = new Login({
@@ -48,7 +49,7 @@ const registerUserInDB = (req, res, db, name, email, hash) => {
 };
 
 const handleRegister = (req, res, db, bcrypt) => {
-  const { email, name, password } = req.body;
+  const { email, name, password, currency } = req.body;
 
   if (!email || !name || !password || password.length < 8) {
     return res.status(400).json("incorrect form submission");
@@ -63,7 +64,7 @@ const handleRegister = (req, res, db, bcrypt) => {
         return res.status(400).json("unable to register");
       } else {
         console.log("email available");
-        return registerUserInDB(req, res, db, name, email, hash);
+        return registerUserInDB(req, res, db, name, email, currency, hash);
       }
     })
     .catch(console.log);

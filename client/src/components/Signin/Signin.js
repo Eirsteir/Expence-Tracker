@@ -74,7 +74,7 @@ class Signin extends React.Component {
   };
 
   saveAuthTokenInSession = token => {
-    window.sessionStorage.setItem("token", token);
+    window.localStorage.setItem("token", token);
   };
 
   handleSignin = () => {
@@ -89,10 +89,6 @@ class Signin extends React.Component {
     })
       .then(response => response.json())
       .then(data => {
-        if (data === "Wrong email or password") {
-          this.setState({ errorMessage: "Wrong email or password" });
-          return this.toggleLoading();
-        }
         if (data.userId && data.success === "true") {
           this.saveAuthTokenInSession(data.token);
           fetch(`/profile/${data.userId}`, {
@@ -114,6 +110,9 @@ class Signin extends React.Component {
               this.toggleLoading();
               console.log(err);
             });
+        } else {
+          this.toggleLoading();
+          this.setState({ errorMessage: data });
         }
       })
       .catch(err => {

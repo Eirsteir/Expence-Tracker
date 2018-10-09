@@ -31,6 +31,10 @@ const UserSchema = new Schema({
   ],
   tags: {
     type: Array
+  },
+  currency: {
+    type: String,
+    required: true
   }
 });
 

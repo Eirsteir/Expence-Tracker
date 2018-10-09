@@ -67,10 +67,10 @@ app.post("/add-expence", auth.requireAuth, (req, res) => {
 });
 app.put("/edit-expence", auth.requireAuth, (req, res) => {
   editExpence.handleEditExpence(req, res);
-}); // add auth
+});
 app.delete("/delete-expence", auth.requireAuth, (req, res) => {
   deleteExpence.handleDeleteExpence(req, res);
-}); // add auth
+});
 app.post("/add-custom-tag", auth.requireAuth, (req, res) => {
   addCustomTag.handleAddCustomTag(req, res);
 });

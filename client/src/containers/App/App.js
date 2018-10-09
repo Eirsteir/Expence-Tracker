@@ -67,7 +67,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const token = window.sessionStorage.getItem("token");
+    const token = window.localStorage.getItem("token");
     if (token) {
       this.toggleLoading();
       fetch(`/signin`, {
@@ -212,6 +212,7 @@ export default App;
 // - Consider making app SSR
 // - AWS: serverless, dynamoDB, Lambda, S3, hosting? redis?
 // - Add goals/budgets
+// - OAuth? - faster?
 
 // API_PORT=3001
 // CLIENT_PORT=3000
