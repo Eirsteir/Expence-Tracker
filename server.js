@@ -5,7 +5,6 @@ const morgan = require("morgan");
 const cors = require("cors");
 const bcrypt = require("bcrypt-nodejs");
 const helmet = require("helmet");
-const compression = require("compression");
 
 const register = require("./controllers/register");
 const signin = require("./controllers/signin");
@@ -27,7 +26,6 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan("combined"));
 app.use(helmet());
-app.use(compression());
 
 // Connect to mongodb
 mongoose
@@ -44,9 +42,7 @@ const db = mongoose.connection;
 const path = require("path");
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, "client", "build")));
-// Anything that doesn't match the above, send back index.html
 
-// requireAuth middleware
 app.get("/", (req, res) => {
   res.status(200).json("Server is up and running");
 });
@@ -75,6 +71,7 @@ app.post("/add-custom-tag", auth.requireAuth, (req, res) => {
   addCustomTag.handleAddCustomTag(req, res);
 });
 
+// Anything that doesn't match the above, send back index.html
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import blue from "@material-ui/core/colors/blue";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 import Navigation from "../../components/Navigation/Navigation";
@@ -36,10 +35,12 @@ const initialState = {
   isLoading: false
 };
 
-// Performance cost? why? do you really need this? bruh what about tenfolds of looping/mapping in expences?
+// Performance cost? why?
 const theme = createMuiTheme({
   palette: {
-    primary: blue,
+    primary: {
+      main: "#1769aa"
+    },
     secondary: {
       main: "#009688"
     }
@@ -104,7 +105,7 @@ class App extends Component {
   }
 
   onSignout = () => {
-    const token = window.sessionStorage.getItem("token");
+    const token = window.localStorage.getItem("token");
 
     fetch(`/signout`, {
       method: "post",
@@ -204,8 +205,7 @@ export default App;
 // Delete CardList? Badly planned and is a mess
 
 // TODO:
-// - Add twilio
-//   - get phonenumber from register --> db
+// - Add twilio?
 //   - Move requests to AWS Lambda
 // - Redux?
 // - Clean up and refactor code
@@ -213,7 +213,7 @@ export default App;
 // - Consider making app SSR
 // - AWS: serverless, dynamoDB, Lambda, S3, hosting? redis?
 // - Add goals/budgets
-// - OAuth? - faster?
+// - OAuth?
 
 // API_PORT=3001
 // CLIENT_PORT=3000
