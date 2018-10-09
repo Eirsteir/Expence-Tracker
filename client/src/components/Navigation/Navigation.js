@@ -84,6 +84,19 @@ class Navigation extends React.Component {
             <ListItemText primary="My Account" />
           </ListItem>
         </List>
+
+        <Divider />
+        <List component="nav">
+          <ListItem button>
+            <ListItemText primary="Help" />
+          </ListItem>
+        </List>
+
+        <List component="nav">
+          <ListItem button>
+            <ListItemText primary="Log Out" onClick={() => onSignout()} />
+          </ListItem>
+        </List>
       </div>
     );
 
@@ -105,9 +118,6 @@ class Navigation extends React.Component {
               >
                 MyExpences
               </Typography>
-              <Button color="inherit" onClick={() => onSignout()}>
-                Logout
-              </Button>
               <IconButton
                 className={classes.menuButton}
                 color="inherit"
