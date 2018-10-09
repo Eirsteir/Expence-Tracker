@@ -47,11 +47,10 @@
   font-size: 2rem;
 }
 
-.other-container {
-  margin-top: 3em;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
+.currency {
+  text-align: right;
+  width: 5rem;
+  margin-top: -0.5rem;
+  font-size: 0.7rem;
+  margin-bottom: -0.2rem;
 }

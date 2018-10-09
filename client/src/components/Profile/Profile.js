@@ -30,7 +30,7 @@ class Profile extends React.Component {
 
   render() {
     const { user } = this.props;
-    const { expences, name } = user;
+    const { expences, name, currency } = user;
 
     // get each month's total and add to variable total
     Object.keys(expences).map((month, i) => {
@@ -79,6 +79,7 @@ class Profile extends React.Component {
             <div>
               <strong>{this.state.total}</strong>
             </div>
+            <p className="currency">{currency}</p>
             <div>Total</div>
           </div>
         </div>
