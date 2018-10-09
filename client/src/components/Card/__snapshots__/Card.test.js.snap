@@ -49,25 +49,21 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <WithStyles(Typography)
-          className={
-                    Object {
-                              "padding": "1em",
-                            }
-          }
-          component="h3"
+        <h1
           style={
                     Object {
-                              "backgroundColor": "#2196f3",
+                              "backgroundColor": "#1769aa",
                               "color": "#fff",
                               "display": "flex",
+                              "fontWeight": "300",
                               "justifyContent": "center",
+                              "marginTop": "0",
+                              "padding": ".5em",
                             }
           }
-          variant="headline"
 >
-          All Time
-</WithStyles(Typography)>,
+          Total
+</h1>,
         Array [
           <WithStyles(Typography)
             className={
@@ -90,14 +86,27 @@ ShallowWrapper {
                                     "#FF6384",
                                     "#36A2EB",
                                     "#FFCE56",
+                                    "#FF6384",
+                                    "#36A2EB",
+                                    "#FFCE56",
+                                    "#FF6384",
+                                    "#36A2EB",
+                                    "#FFCE56",
+                                    "#FF6384",
+                                    "#36A2EB",
+                                    "#FFCE56",
                                   ],
                                   "data": Array [
                                     400,
                                   ],
                                   "hoverBackgroundColor": Array [
-                                    "#FF6384",
-                                    "#36A2EB",
-                                    "#FFCE56",
+                                    "#009688",
+                                    "#009688",
+                                    "#009688",
+                                    "#009688",
+                                    "#009688",
+                                    "#009688",
+                                    "#009688",
                                   ],
                                 },
                               ],
@@ -108,34 +117,29 @@ ShallowWrapper {
           }
 />,
       ],
-      "className": Object {
-        "minHeight": "55vh",
-        "width": "17em",
-      },
+      "className": "card--content",
     },
     "ref": null,
     "rendered": Array [
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
+        "nodeType": "host",
         "props": Object {
-          "children": "All Time",
-          "className": Object {
-            "padding": "1em",
-          },
-          "component": "h3",
+          "children": "Total",
           "style": Object {
-            "backgroundColor": "#2196f3",
+            "backgroundColor": "#1769aa",
             "color": "#fff",
             "display": "flex",
+            "fontWeight": "300",
             "justifyContent": "center",
+            "marginTop": "0",
+            "padding": ".5em",
           },
-          "variant": "headline",
         },
         "ref": null,
-        "rendered": "All Time",
-        "type": [Function],
+        "rendered": "Total",
+        "type": "h1",
       },
       Object {
         "instance": null,
@@ -165,14 +169,27 @@ ShallowWrapper {
                   "#FF6384",
                   "#36A2EB",
                   "#FFCE56",
+                  "#FF6384",
+                  "#36A2EB",
+                  "#FFCE56",
+                  "#FF6384",
+                  "#36A2EB",
+                  "#FFCE56",
+                  "#FF6384",
+                  "#36A2EB",
+                  "#FFCE56",
                 ],
                 "data": Array [
                   400,
                 ],
                 "hoverBackgroundColor": Array [
-                  "#FF6384",
-                  "#36A2EB",
-                  "#FFCE56",
+                  "#009688",
+                  "#009688",
+                  "#009688",
+                  "#009688",
+                  "#009688",
+                  "#009688",
+                  "#009688",
                 ],
               },
             ],
@@ -195,25 +212,21 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <WithStyles(Typography)
-            className={
-                        Object {
-                                    "padding": "1em",
-                                  }
-            }
-            component="h3"
+          <h1
             style={
                         Object {
-                                    "backgroundColor": "#2196f3",
+                                    "backgroundColor": "#1769aa",
                                     "color": "#fff",
                                     "display": "flex",
+                                    "fontWeight": "300",
                                     "justifyContent": "center",
+                                    "marginTop": "0",
+                                    "padding": ".5em",
                                   }
             }
-            variant="headline"
 >
-            All Time
-</WithStyles(Typography)>,
+            Total
+</h1>,
           Array [
             <WithStyles(Typography)
               className={
@@ -236,14 +249,27 @@ ShallowWrapper {
                                           "#FF6384",
                                           "#36A2EB",
                                           "#FFCE56",
+                                          "#FF6384",
+                                          "#36A2EB",
+                                          "#FFCE56",
+                                          "#FF6384",
+                                          "#36A2EB",
+                                          "#FFCE56",
+                                          "#FF6384",
+                                          "#36A2EB",
+                                          "#FFCE56",
                                         ],
                                         "data": Array [
                                           400,
                                         ],
                                         "hoverBackgroundColor": Array [
-                                          "#FF6384",
-                                          "#36A2EB",
-                                          "#FFCE56",
+                                          "#009688",
+                                          "#009688",
+                                          "#009688",
+                                          "#009688",
+                                          "#009688",
+                                          "#009688",
+                                          "#009688",
                                         ],
                                       },
                                     ],
@@ -254,34 +280,29 @@ ShallowWrapper {
             }
 />,
         ],
-        "className": Object {
-          "minHeight": "55vh",
-          "width": "17em",
-        },
+        "className": "card--content",
       },
       "ref": null,
       "rendered": Array [
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "host",
           "props": Object {
-            "children": "All Time",
-            "className": Object {
-              "padding": "1em",
-            },
-            "component": "h3",
+            "children": "Total",
             "style": Object {
-              "backgroundColor": "#2196f3",
+              "backgroundColor": "#1769aa",
               "color": "#fff",
               "display": "flex",
+              "fontWeight": "300",
               "justifyContent": "center",
+              "marginTop": "0",
+              "padding": ".5em",
             },
-            "variant": "headline",
           },
           "ref": null,
-          "rendered": "All Time",
-          "type": [Function],
+          "rendered": "Total",
+          "type": "h1",
         },
         Object {
           "instance": null,
@@ -311,14 +332,27 @@ ShallowWrapper {
                     "#FF6384",
                     "#36A2EB",
                     "#FFCE56",
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56",
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56",
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56",
                   ],
                   "data": Array [
                     400,
                   ],
                   "hoverBackgroundColor": Array [
-                    "#FF6384",
-                    "#36A2EB",
-                    "#FFCE56",
+                    "#009688",
+                    "#009688",
+                    "#009688",
+                    "#009688",
+                    "#009688",
+                    "#009688",
+                    "#009688",
                   ],
                 },
               ],
