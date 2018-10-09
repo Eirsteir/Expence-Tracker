@@ -2,8 +2,10 @@
   margin-top: 1.5em;
   background-image: linear-gradient(
     115deg,
+    #155fa0 0%,
     #155fa0 60%,
-    #1769aa calc(60% + 0.31px)
+    #1769aa 60%,
+    #1769aa 100%
   );
   height: 40vh;
   width: 100%;
@@ -14,7 +16,6 @@
   font-weight: 300;
   font-size: 2rem;
 }
-
 .technical-container {
   height: 20vh;
   width: 100%;
@@ -22,11 +23,11 @@
   justify-content: center;
   align-items: center;
 }
-
 .number-of-expences,
 .sum-expences {
   display: flex;
   justify-content: center;
+
   align-items: center;
   flex-direction: column;
   width: 50vw;
@@ -34,11 +35,9 @@
   color: #fff;
   font-weight: 300;
 }
-
 .number-of-expences {
   background-color: #0990ad;
 }
-
 .sum-expences {
   background-color: #00ccb9;
 }
@@ -46,11 +45,11 @@
 .sum-expences > div:first-of-type {
   font-size: 2rem;
 }
-
 .currency {
   text-align: right;
   width: 5rem;
   margin-top: -0.5rem;
+
   font-size: 0.7rem;
   margin-bottom: -0.2rem;
 }

@@ -207,8 +207,7 @@ export default App;
 // - Add twilio
 //   - get phonenumber from register --> db
 //   - Move requests to AWS Lambda
-// -  currencies? https://codesandbox.io/s/k3rkq27y07
-// - Redux
+// - Redux?
 // - Clean up and refactor code
 // - (Security)
 // - Consider making app SSR
