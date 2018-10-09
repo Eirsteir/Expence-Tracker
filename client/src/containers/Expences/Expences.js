@@ -22,7 +22,7 @@ class Expences extends React.Component {
             padding: "2em"
           }}
         >
-          <History expences={user.expences} />
+          <History expences={user.expences} currency={user.currency} />
           <div>
             {Object.keys(user.expences).map((month, i) => {
               return (
@@ -31,6 +31,7 @@ class Expences extends React.Component {
                   month={month}
                   expences={user.expences[month]}
                   userId={user._id}
+                  userCurrency={user.currency}
                   loadUser={loadUser}
                 />
               );

@@ -23,7 +23,7 @@ const options = {
 
 class ProfileInfo extends React.Component {
   render() {
-    const { classes, name, email, dateJoined } = this.props;
+    const { classes, name, email, dateJoined, currency } = this.props;
     const date = new Date(dateJoined);
 
     return (
@@ -47,6 +47,12 @@ class ProfileInfo extends React.Component {
               <p className={classes.subheader}>
                 {date.toLocaleString("en-us", options)}
               </p>
+            </Grid>
+            <Grid item xs={6}>
+              <p>Currency</p>
+            </Grid>
+            <Grid item xs={6}>
+              <p className={classes.subheader}>{currency}</p>
             </Grid>
           </Grid>
         </div>

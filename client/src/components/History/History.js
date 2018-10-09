@@ -5,44 +5,51 @@ import Switch from "../Switch/Switch";
 
 import "../../containers/Expences/Expences.css";
 
-const chartOptions = {
-  maintainAspectRatio: false,
-  scales: {
-    yAxes: [
-      {
-        ticks: {
-          suggestedMin: 10,
-          suggestedMax: 100,
-          fontColor: "rgba(0,0,0,0.5)",
-          fontStyle: "bold",
-          beginAtZero: true,
-          maxTicksLimit: 5,
-          padding: 20
-        },
-        gridLines: {
-          drawTicks: false,
-          display: false
+const chartOptions = currency => {
+  return {
+    maintainAspectRatio: false,
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            suggestedMin: 10,
+            suggestedMax: 100,
+            fontColor: "rgba(0,0,0,0.5)",
+            fontStyle: "bold",
+            beginAtZero: true,
+            maxTicksLimit: 5,
+            padding: 20,
+            // Include a dollar sign in the ticks
+            callback: function(value, index, values) {
+              return `${currency} ${value}`;
+            }
+          },
+          gridLines: {
+            drawTicks: false,
+            display: false
+          },
+          fontFamily: "Roboto"
         }
-      }
-    ],
-    xAxes: [
-      {
-        gridLines: {
-          zeroLineColor: "transparent"
-        },
-        ticks: {
-          padding: 20,
-          fontColor: "rgba(0,0,0,0.5)"
+      ],
+      xAxes: [
+        {
+          gridLines: {
+            zeroLineColor: "transparent"
+          },
+          ticks: {
+            padding: 20,
+            fontColor: "rgba(0,0,0,0.5)"
+          }
         }
-      }
-    ]
-  },
-  animation: {
-    easing: "easeOutExpo"
-  },
-  legend: {
-    position: "bottom"
-  }
+      ]
+    },
+    animation: {
+      easing: "easeOutExpo"
+    },
+    legend: {
+      position: "bottom"
+    }
+  };
 };
 
 const months = [
@@ -162,7 +169,10 @@ class ExpenceHistory extends React.Component {
             className="center"
             style={{ position: "relative", height: "60vh", width: "80vw" }}
           >
-            <Line data={this.chartData} options={chartOptions} />
+            <Line
+              data={this.chartData}
+              options={chartOptions(this.props.currency)}
+            />
           </div>
         </div>
       </div>

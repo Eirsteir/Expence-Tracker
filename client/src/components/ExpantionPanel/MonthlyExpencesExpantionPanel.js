@@ -107,7 +107,14 @@ class MonthlyExpencesExpantionPanel extends React.Component {
   // !!!
 
   render() {
-    const { classes, month, expences, userId, loadUser } = this.props;
+    const {
+      classes,
+      month,
+      expences,
+      userId,
+      userCurrency,
+      loadUser
+    } = this.props;
     const { expanded } = this.state;
 
     const expence = expences[0].map((exp, i) => {
@@ -128,7 +135,7 @@ class MonthlyExpencesExpantionPanel extends React.Component {
                 loadUser={loadUser}
               />
             ) : (
-              `${expences[0][i].amount}`
+              `${userCurrency} ${expences[0][i].amount}`
             )}
           </div>
           <div

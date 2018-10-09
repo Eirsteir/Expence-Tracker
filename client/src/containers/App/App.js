@@ -30,7 +30,8 @@ const initialState = {
     age: "",
     joined: "",
     expences: [],
-    tags: [] // push to availableTags in componentDidMount
+    tags: [],
+    currency: ""
   },
   isLoading: false
 };
@@ -176,6 +177,7 @@ class App extends Component {
                 name={user.name}
                 email={user.email}
                 dateJoined={user.joined}
+                currency={user.currency}
               />
             ) : (
               <div id="landing-page-container">

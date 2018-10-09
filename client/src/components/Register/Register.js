@@ -97,7 +97,8 @@ class Register extends React.Component {
       body: JSON.stringify({
         email: this.state.email,
         password: this.state.password,
-        name: this.state.name
+        name: this.state.name,
+        currency: this.state.currency
       })
     })
       .then(response => response.json())
