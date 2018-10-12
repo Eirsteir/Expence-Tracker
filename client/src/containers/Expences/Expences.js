@@ -37,11 +37,7 @@ class Expences extends React.Component {
               );
             })}
           </div>
-          <AddExpenceForm
-            expences={user.expences}
-            loadUser={loadUser}
-            user={user}
-          />
+          <AddExpenceForm user={user} loadUser={loadUser} />
         </div>
 
         {/*<CardList expences={user.expences} />*/}
