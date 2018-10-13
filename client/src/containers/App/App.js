@@ -97,10 +97,16 @@ class App extends Component {
                   this.onRouteChange("home");
                 }
               })
-              .catch(console.log);
+              .catch(err => {
+                console.log(err);
+                this.toggleLoading();
+              });
           }
         })
-        .catch(console.log);
+        .catch(err => {
+          console.log(err);
+          this.toggleLoading();
+        });
     }
   }
 
@@ -210,10 +216,13 @@ export default App;
 // - Redux?
 // - Clean up and refactor code
 // - (Security)
-// - Consider making app SSR
 // - AWS: serverless, dynamoDB, Lambda, S3, hosting? redis?
 // - Add goals/budgets
-// - OAuth?
+// - Terms of service
+// - Cookie consent
+// - Privacy policy?
 
 // API_PORT=3001
 // CLIENT_PORT=3000
+
+// ADD REACT ROUTER

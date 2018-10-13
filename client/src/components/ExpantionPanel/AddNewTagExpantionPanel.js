@@ -48,7 +48,7 @@ class AddNewTagModal extends React.Component {
       .then(user => {
         if (user) {
           this.setState({ tag: "" });
-          return this.props.loadUser(user);
+          this.props.loadUser(user);
         }
       })
       .catch(err => console.log);

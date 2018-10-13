@@ -44,9 +44,8 @@ const MenuProps = {
 };
 
 const initialState = {
-  currentAmount: "",
-  currentTag: "",
-  availableTags: []
+  amount: "",
+  currentTag: ""
 };
 
 class AddExpenceForm extends React.Component {
@@ -55,17 +54,17 @@ class AddExpenceForm extends React.Component {
     this.state = initialState;
   }
 
-  componentDidMount() {
-    const { tags } = this.props.user;
-    return this.setState({ availableTags: tags });
-  }
+  // componentDidMount() {
+  //   const { tags } = this.props.user;
+  //   return this.setState({ tags: tags });
+  // }
 
   handleInputChange = event => {
     const amount = event.target.value;
     // \d === [0-9] - regex
     var isnum = /^\d+$/.test(amount);
     if (isnum || amount === "") {
-      this.setState({ currentAmount: Number(amount) });
+      this.setState({ amount: Number(amount) });
     }
   };
 
@@ -87,18 +86,13 @@ class AddExpenceForm extends React.Component {
       body: JSON.stringify({
         _id: this.props.user._id,
         tag: this.state.currentTag,
-        amount: this.state.currentAmount
+        amount: this.state.amount
       })
     })
       .then(response => response.json())
       .then(user => {
         if (user && user.email) {
-          this.setState({
-            currentAmount: "",
-            currentTag: "",
-            availableTags: user.tags
-          });
-          console.log(user);
+          this.setState(initialState);
           return this.props.loadUser(user);
         }
       })
@@ -131,7 +125,7 @@ class AddExpenceForm extends React.Component {
                 MenuProps={MenuProps}
               >
                 <MenuItem value="None">None</MenuItem>
-                {this.state.availableTags.map(tag => (
+                {this.props.user.tags.map(tag => (
                   <MenuItem key={tag} value={tag}>
                     {tag}
                   </MenuItem>
@@ -146,7 +140,7 @@ class AddExpenceForm extends React.Component {
               className={classes.textField && classes.formControl}
               margin="normal"
               onChange={this.handleInputChange}
-              value={this.state.currentAmount}
+              value={this.state.amount}
             />
             <SnackBar
               onButtonClick={this.onButtonClick}
@@ -154,7 +148,12 @@ class AddExpenceForm extends React.Component {
               buttonStyles={{ marginTop: "1.5em" }}
             />
           </div>
-          <AddNewTagExpantionPanel classes={classes} user={user} />
+          {/* Move somewhere else? */}
+          <AddNewTagExpantionPanel
+            classes={classes}
+            user={user}
+            loadUser={this.props.loadUser}
+          />
         </div>
       </div>
     );
