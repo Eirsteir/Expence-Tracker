@@ -91,8 +91,8 @@ class App extends Component {
             })
               .then(response => response.json())
               .then(user => {
+                this.toggleLoading();
                 if (user && user.email) {
-                  this.toggleLoading();
                   this.loadUser(user);
                   this.onRouteChange("home");
                 }
