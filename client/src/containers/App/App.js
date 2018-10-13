@@ -79,7 +79,12 @@ class App extends Component {
           Authorization: token // 'Bearer '
         }
       })
-        .then(response => response.json())
+        .then(response => {
+          if (response.status === 400) {
+            return this.toggleLoading();
+          }
+          return response.json();
+        })
         .then(data => {
           if (data && data.id) {
             fetch(`/profile/${data.id}`, {
