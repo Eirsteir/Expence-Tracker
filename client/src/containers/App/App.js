@@ -148,13 +148,14 @@ class App extends Component {
           toggleSigninState={this.toggleSigninState}
         />
         <MuiThemeProvider theme={theme}>
-          {/*<ErrorBoundary>*/}
-          <Main
-            isSignedIn={isSignedIn}
-            user={this.state.user}
-            loadUser={this.loadUser}
-          />
-          {/*</ErrorBoundary>*/}
+          <ErrorBoundary>
+            <Main
+              isSignedIn={isSignedIn}
+              user={this.state.user}
+              loadUser={this.loadUser}
+              toggleSigninState={this.toggleSigninState}
+            />
+          </ErrorBoundary>
         </MuiThemeProvider>
       </div>
     );

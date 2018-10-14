@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -196,7 +196,7 @@ class Navigation extends React.Component {
                 color="inherit"
                 onClick={() => this.handleClick("/login")}
               >
-                Login
+                Log in
               </Button>
               <Button
                 color="inherit"

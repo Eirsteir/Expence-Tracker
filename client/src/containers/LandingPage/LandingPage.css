@@ -6,7 +6,7 @@
 }
 
 #register-container {
-  margin-top: 5rem;
+  margin-top: 15rem;
 }
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width: 320px) {
@@ -17,8 +17,8 @@
     align-items: center;
     flex-direction: column;
   }
-  #signin-container {
-    margin-top: 1rem;
+  #register-container {
+    margin-top: -6rem;
   }
 }
 /* Smartphones (portrait) ----------- */
@@ -41,8 +41,8 @@
     align-items: center;
     flex-direction: column;
   }
-  #signin-container {
-    margin-top: 1rem;
+  #register-container {
+    margin-top: -6rem;
   }
 }
 /* Smartphones (portrait) ----------- */
@@ -65,8 +65,8 @@
     align-items: center;
     flex-direction: column;
   }
-  #signin-container {
-    margin-top: 1rem;
+  #register-container {
+    margin-top: -6rem;
   }
 }
 /* iPhone 4 ----------- */
@@ -89,8 +89,8 @@
     align-items: center;
     flex-direction: column;
   }
-  #signin-container {
-    margin-top: 1rem;
+  #register-container {
+    margin-top: -6rem;
   }
 }
 /* iPhone 5 ----------- */
@@ -113,8 +113,8 @@
     align-items: center;
     flex-direction: column;
   }
-  #signin-container {
-    margin-top: 1rem;
+  #register-container {
+    margin-top: -6rem;
   }
 }
 /* iPhone 6, 7, 8 ----------- */
@@ -181,8 +181,8 @@
     align-items: center;
     flex-direction: column;
   }
-  #signin-container {
-    margin-top: 1rem;
+  #register-container {
+    margin-top: -6rem;
   }
 }
 /* iPhone XS Max, XR ----------- */
@@ -205,8 +205,8 @@
     align-items: center;
     flex-direction: column;
   }
-  #signin-container {
-    margin-top: 1rem;
+  #register-container {
+    margin-top: -6rem;
   }
 }
 /* Samsung Galaxy S3 ----------- */
@@ -229,8 +229,8 @@
     align-items: center;
     flex-direction: column;
   }
-  #signin-container {
-    margin-top: 1rem;
+  #register-container {
+    margin-top: -6rem;
   }
 }
 /* Samsung Galaxy S4 ----------- */
@@ -253,8 +253,8 @@
     align-items: center;
     flex-direction: column;
   }
-  #signin-container {
-    margin-top: 1rem;
+  #register-container {
+    margin-top: -6rem;
   }
 }
 /* Samsung Galaxy S5 ----------- */
