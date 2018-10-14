@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import CircularProgress from "@material-ui/core/CircularProgress";
 
 import Navigation from "../../components/Navigation/Navigation";
 import ErrorBoundary from "../../components/ErrorBoundary/ErrorBoundary";
@@ -27,21 +26,6 @@ const theme = createMuiTheme({
     }
   }
 });
-
-const styles = {
-  loading: {
-    position: "absolute",
-    top: "50",
-    left: "50",
-    width: "100vw",
-    height: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    zIndex: "99999",
-    backgroundColor: "rgba(0,0,0, 0.5)"
-  }
-};
 
 const initialState = {
   isSignedIn: false,
@@ -125,9 +109,7 @@ class App extends Component {
     }));
   };
 
-  // Acceps user object or user tags array -- find out which function passes array
   loadUser = user => {
-    // check if user object or just tags are recieved
     if (user._id) {
       this.setState({ user });
     }
@@ -138,11 +120,6 @@ class App extends Component {
 
     return (
       <div>
-        {this.state.isLoading && (
-          <div style={styles.loading}>
-            <CircularProgress size={80} color="primary" />
-          </div>
-        )}
         <Navigation
           isSignedIn={isSignedIn}
           toggleSigninState={this.toggleSigninState}
