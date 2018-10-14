@@ -41,7 +41,7 @@ const styles = theme => ({
   }
 });
 
-class Signin extends React.Component {
+class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -224,8 +224,8 @@ class Signin extends React.Component {
   }
 }
 
-Signin.propTypes = {
+Login.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withRouter(withStyles(styles)(Signin));
+export default withRouter(withStyles(styles)(Login));

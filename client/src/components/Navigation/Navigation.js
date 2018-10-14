@@ -69,7 +69,7 @@ class Navigation extends React.Component {
     })
       .then(resp => {
         if (resp.status === 200 || resp.status === 304) {
-          window.sessionStorage.removeItem("token");
+          window.localStorage.removeItem("token");
           return this.props.history.push("/");
         }
       })
@@ -192,11 +192,17 @@ class Navigation extends React.Component {
               >
                 MyExpences
               </Typography>
-              <Button color="inherit">
-                <Link to="/login">Login</Link>
+              <Button
+                color="inherit"
+                onClick={() => this.handleClick("/login")}
+              >
+                Login
               </Button>
-              <Button color="inherit">
-                <Link to="/register">Register</Link>
+              <Button
+                color="inherit"
+                onClick={() => this.handleClick("/register")}
+              >
+                Register
               </Button>
             </Toolbar>
           </AppBar>

@@ -1,4 +1,6 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
+
 import History from "../../components/History/History";
 import Profile from "../../components/Profile/Profile";
 import AddExpenceForm from "../../components/Form/AddExpenceForm";
@@ -19,6 +21,10 @@ import "./Expences.css";
 class Expences extends React.Component {
   render() {
     const { loadUser, user } = this.props;
+
+    if (!this.props.isSignedIn) {
+      return <Redirect to="/" />;
+    }
 
     return (
       <div style={{ marginTop: "2em" }}>
