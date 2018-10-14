@@ -1,7 +1,7 @@
 {
   "name": "track-expences-client",
   "version": "0.1.0",
-  "homepage": "https://myexpences-beta.herokuapp.com/",
+  "homepage": "https://myexpences.com/",
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
