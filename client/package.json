@@ -1,7 +1,7 @@
 {
   "name": "track-expences-client",
   "version": "0.1.0",
-  "homepage": "https://myexpences.herokuapp.com/",
+  "homepage": "https://myexpences-beta.herokuapp.com/",
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
@@ -11,6 +11,8 @@
     "react": "^16.5.2",
     "react-chartjs-2": "^2.7.4",
     "react-dom": "^16.5.2",
+    "react-loadable": "^5.5.0",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
     "shouldcomponentupdate-children": "^1.1.0"
   },

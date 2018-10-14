@@ -1,5 +1,7 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
+
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
@@ -25,6 +27,10 @@ class ProfileInfo extends React.Component {
   render() {
     const { classes, name, email, dateJoined, currency } = this.props;
     const date = new Date(dateJoined);
+
+    if (!this.props.isSignedIn) {
+      return <Redirect to="/" />;
+    }
 
     return (
       <div className={classes.root}>

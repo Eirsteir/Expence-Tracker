@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -40,7 +41,8 @@ class Navigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: false,
+      isSignedIn: this.props.isSignedIn
     };
   }
 
@@ -50,13 +52,37 @@ class Navigation extends React.Component {
     }));
   };
 
+  handleClick = route => {
+    return this.props.history.push(route);
+  };
+
+  handleSignout = () => {
+    const token = window.localStorage.getItem("token");
+    this.props.toggleSigninState();
+
+    fetch(`/signout`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token
+      }
+    })
+      .then(resp => {
+        if (resp.status === 200 || resp.status === 304) {
+          window.localStorage.removeItem("token");
+          return this.props.history.push("/");
+        }
+      })
+      .catch(console.log);
+  };
+
   render() {
-    const { classes, isSignedIn, onRouteChange, onSignout } = this.props;
+    const { classes, isSignedIn } = this.props;
     const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
     const sideList = (
       <div className={classes.list}>
         <List component="nav">
-          <ListItem button onClick={() => this.props.onRouteChange("home")}>
+          <ListItem button onClick={() => this.handleClick("/home")}>
             <ListItemIcon>
               <HomeOutlinedIcon />
             </ListItemIcon>
@@ -67,7 +93,7 @@ class Navigation extends React.Component {
         <Divider />
 
         <List component="nav">
-          <ListItem button onClick={() => this.props.onRouteChange("profile")}>
+          <ListItem button onClick={() => this.handleClick("/profile")}>
             <ListItemIcon>
               <PersonIcon />
             </ListItemIcon>
@@ -95,7 +121,7 @@ class Navigation extends React.Component {
 
         <List component="nav">
           <ListItem button>
-            <ListItemText primary="Log Out" onClick={() => onSignout()} />
+            <ListItemText primary="Log Out" onClick={this.handleSignout} />
           </ListItem>
         </List>
       </div>
@@ -166,10 +192,16 @@ class Navigation extends React.Component {
               >
                 MyExpences
               </Typography>
-              <Button color="inherit" onClick={() => onRouteChange("signin")}>
-                Login
+              <Button
+                color="inherit"
+                onClick={() => this.handleClick("/login")}
+              >
+                Log in
               </Button>
-              <Button color="inherit" onClick={() => onRouteChange("register")}>
+              <Button
+                color="inherit"
+                onClick={() => this.handleClick("/register")}
+              >
                 Register
               </Button>
             </Toolbar>
@@ -186,4 +218,4 @@ Navigation.propTypes = {
 
 Navigation = useShallowEqual(Navigation);
 
-export default withStyles(styles)(Navigation);
+export default withRouter(withStyles(styles)(Navigation));

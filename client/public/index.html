@@ -74,6 +74,7 @@
       background: #009688;
     }
     </style>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
   </head>
   <body>
     <noscript>
@@ -86,5 +87,20 @@
         <div id="dot3"></div>
       </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js" defer></script>
+    <script defer>
+    window.addEventListener("load", function(){
+      window.cookieconsent.initialise({
+        "palette": {
+          "popup": {
+            "background": "#1d8a8a"
+          },
+          "button": {
+            "background": "#62ffaa"
+          }
+        },
+        "theme": "edgeless"
+      })});
+      </script>
   </body>
 </html>
