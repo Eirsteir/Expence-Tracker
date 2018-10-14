@@ -9,7 +9,9 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import FormControl from "@material-ui/core/FormControl";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import MenuItem from "@material-ui/core/MenuItem";
+import Checkbox from "@material-ui/core/Checkbox";
 
 import Background from "../Background/Background";
 
@@ -44,6 +46,9 @@ const styles = theme => ({
   },
   menu: {
     width: 200
+  },
+  checkbox: {
+    fontSize: ".8rem"
   }
 });
 
@@ -82,6 +87,7 @@ class Register extends React.Component {
       password: "",
       name: "",
       currency: "EUR",
+      checked: false,
       isLoading: false,
       errorMessage: ""
     };
@@ -97,7 +103,17 @@ class Register extends React.Component {
     this.setState({ [name]: event.target.value });
   };
 
+  handleCheckBoxChange = event => {
+    this.setState({ checked: event.target.checked });
+  };
+
   handleRegister = () => {
+    if (!this.state.checked) {
+      return this.setState({
+        errorMessage:
+          "You must agree to the Terms & Conditions to create an account"
+      });
+    }
     this.toggleLoading();
     fetch(`/register`, {
       method: "post",
@@ -209,6 +225,24 @@ class Register extends React.Component {
                 </MenuItem>
               ))}
             </TextField>
+
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={this.state.checked}
+                  onChange={this.handleCheckBoxChange}
+                  value="checked"
+                />
+              }
+              label={
+                <p className={classes.checkbox}>
+                  I agree to the{" "}
+                  <a href="https://termsfeed.com/terms-conditions/e61d015615afd404c2261de7774fce77">
+                    Terms & Conditions
+                  </a>
+                </p>
+              }
+            />
 
             {this.state.errorMessage && (
               <Typography
