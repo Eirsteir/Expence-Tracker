@@ -7,6 +7,15 @@ import MonthlyExpencesExpantionPanel from "../../components/ExpantionPanel/Month
 
 import "./Expences.css";
 
+// import  { Redirect } from 'react-router-dom'
+//
+// const ProtectedComponent = () => {
+//  if (authFails)
+//     return <Redirect to='/login'  />
+// }
+// return <div> My Protected Component </div>
+// }
+
 class Expences extends React.Component {
   render() {
     const { loadUser, user } = this.props;

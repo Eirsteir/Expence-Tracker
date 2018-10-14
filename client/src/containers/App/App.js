@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import CircularProgress from "@material-ui/core/CircularProgress";
-
 import Navigation from "../../components/Navigation/Navigation";
 import Main from "../Main/Main";
 
@@ -13,12 +10,32 @@ if (process.env.NODE_ENV !== "production") {
   whyDidYouUpdate(React);
 }
 
-const App = props => (
-  <div>
-    <Navigation />
-    <Main />
-  </div>
-);
+const initialState = {
+  isSignedIn: true
+};
+
+class App extends Component {
+  constructor() {
+    super();
+    this.state = initialState;
+  }
+
+  toggleSigninState = () =>
+    this.setState(prevState => ({ ...prevState, isSignedIn: !prevState }));
+
+  render() {
+    const { isSignedIn } = this.state;
+    return (
+      <div>
+        <Navigation
+          isSignedIn={isSignedIn}
+          toggleSigninState={this.toggleSigninState}
+        />
+        <Main />
+      </div>
+    );
+  }
+}
 
 export default App;
 

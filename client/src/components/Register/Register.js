@@ -107,7 +107,7 @@ class Register extends React.Component {
 
         if (user._id) {
           this.props.loadUser(user);
-          this.props.onRouteChange("home");
+          this.props.history.push("/home");
         } else {
           this.setState({ errorMessage: user });
         }
