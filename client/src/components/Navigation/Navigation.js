@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -166,11 +167,11 @@ class Navigation extends React.Component {
               >
                 MyExpences
               </Typography>
-              <Button color="inherit" onClick={() => onRouteChange("signin")}>
-                Login
+              <Button color="inherit">
+                <Link to="/login">Login</Link>
               </Button>
-              <Button color="inherit" onClick={() => onRouteChange("register")}>
-                Register
+              <Button color="inherit">
+                <Link to="/register">Register</Link>
               </Button>
             </Toolbar>
           </AppBar>

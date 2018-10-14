@@ -1,4 +1,6 @@
 import React from "react";
+import { withRouter } from "react-router";
+
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -103,7 +105,7 @@ class Signin extends React.Component {
               if (user && user.email) {
                 this.toggleLoading();
                 this.props.loadUser(user);
-                this.props.onRouteChange("home");
+                this.props.history.push("/home");
               }
             })
             .catch(err => {
@@ -226,4 +228,4 @@ Signin.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Signin);
+export default withRouter(withStyles(styles)(Signin));
