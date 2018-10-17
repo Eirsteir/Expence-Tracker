@@ -2,10 +2,10 @@
   margin-top: 3rem;
   background-image: linear-gradient(
     115deg,
-    #009688 0%,
-    #009688 60%,
-    #33ab9f 60%,
-    #33ab9f 100%
+    #26294c 0%,
+    #26294c 60%,
+    #343b64 60%,
+    #343b64 100%
   );
   height: 40vh;
   width: 100%;
@@ -18,19 +18,20 @@
 }
 #profile-info-container {
   width: 100%;
-  margin-top: 1rem;
-  height: 15vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #fff;
 }
 #info-header {
   width: 100%;
   display: flex;
   justify-content: center;
-
   align-items: center;
+  color: #fff;
 }
 #profile-info {
   width: 20rem;
+  background-color: #343b64;
+  padding: 1rem;
 }

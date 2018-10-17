@@ -27,7 +27,7 @@ const Loading = () => (
 );
 
 const Home = Loadable({
-  loader: () => import("../Expences/Expences"),
+  loader: () => import("../Dashboard/Dashboard"),
   loading: Loading
 });
 

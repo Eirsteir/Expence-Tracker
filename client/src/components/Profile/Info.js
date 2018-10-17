@@ -36,7 +36,7 @@ class ProfileInfo extends React.Component {
       <div className={classes.root}>
         <div className="profile-name-container">{name}</div>
         <div id="info-header">
-          <h1 style={{ fontWeight: 300, letterSpacing: 2 }}>INFO</h1>
+          <h2 style={{ fontWeight: 300 }}>INFO</h2>
         </div>
         <div id="profile-info-container">
           <Grid container spacing={0} id="profile-info">

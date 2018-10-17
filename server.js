@@ -58,6 +58,9 @@ app.post("/signout", (req, res) => {
 app.get("/profile/:id", auth.requireAuth, (req, res) => {
   profile.handleProfileGet(req, res);
 });
+app.get("/profile/latest-expence/:id", auth.requireAuth, (req, res) => {
+  profile.handleLatestExpenceGet(req, res);
+});
 app.post("/add-expence", auth.requireAuth, (req, res) => {
   addExpence.handleAddExpence(req, res);
 });

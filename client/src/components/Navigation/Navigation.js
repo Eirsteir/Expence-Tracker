@@ -131,10 +131,10 @@ class Navigation extends React.Component {
       return (
         <div className={classes.root}>
           <AppBar
-            position="fixed"
+            position="absolute"
             style={{
-              backgroundImage:
-                "linear-gradient(89deg, rgb(23, 105, 170) 0%, #1769aa 15%, #009688 75%)"
+              boxShadow: "none",
+              backgroundColor: "transparent"
             }}
           >
             <Toolbar>
@@ -142,8 +142,10 @@ class Navigation extends React.Component {
                 variant="title"
                 color="inherit"
                 className={classes.grow}
+                style={{ cursor: "pointer", color: "#cc285d" }}
+                onClick={() => this.handleClick("/")}
               >
-                MyExpences
+                MyExp
               </Typography>
               <IconButton
                 className={classes.menuButton}
@@ -180,8 +182,7 @@ class Navigation extends React.Component {
             position="static"
             style={{
               boxShadow: "none",
-              backgroundImage:
-                "linear-gradient(89deg, rgb(23, 105, 170) 0%, #1769aa 15%, #009688 75%)"
+              backgroundColor: "#343b64"
             }}
           >
             <Toolbar>
@@ -189,8 +190,10 @@ class Navigation extends React.Component {
                 variant="title"
                 color="inherit"
                 className={classes.grow}
+                style={{ cursor: "pointer", color: "#cc285d" }}
+                onClick={() => this.handleClick("/")}
               >
-                MyExpences
+                MyExp
               </Typography>
               <Button
                 color="inherit"

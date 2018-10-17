@@ -32,7 +32,8 @@ const styles = theme => ({
     margin: "1em"
   },
   paper: {
-    width: "17em"
+    width: "17em",
+    backgroundColor: "#c3cdd0"
   },
   form: {
     display: "flex",

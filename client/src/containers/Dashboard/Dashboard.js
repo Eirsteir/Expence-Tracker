@@ -1,0 +1,97 @@
+// DASHBOARD
+
+import React from "react";
+import { Redirect } from "react-router-dom";
+
+import Grid from "@material-ui/core/Grid";
+
+import History from "../../components/History/History";
+import DashboardHeader from "../../components/DashboardHeader/DashboardHeader";
+import PopularTags from "../../components/PopularTags/PopularTags";
+import TotalExpences from "../../components/TotalExpences/TotalExpences";
+import ExpencesFrequency from "../../components/ExpencesFrequency/ExpencesFrequency";
+import LatestExpences from "../../components/LatestExpences/LatestExpences";
+import AddExpenceForm from "../../components/Form/AddExpenceForm";
+import AddNewTagExpantionPanel from "../../components/ExpantionPanel/AddNewTagExpantionPanel";
+// import Profile from "../../components/Profile/Profile";
+// import CardList from "../../components/CardList/CardList";
+// import MonthlyExpencesExpantionPanel from "../../components/ExpantionPanel/MonthlyExpencesExpantionPanel";
+
+import "./Dashboard.css";
+
+class Expences extends React.Component {
+  render() {
+    const { loadUser, user } = this.props;
+
+    if (!this.props.isSignedIn) {
+      return <Redirect to="/" />;
+    }
+
+    return (
+      <div style={{ marginTop: "4rem", padding: "0 3rem" }}>
+        <DashboardHeader userId={user._id} />
+        {/*<Profile user={user} />*/}
+        {/*<CardList expences={user.expences} />*/}
+
+        <Grid container justify="space-between" spacing={16}>
+          <Grid item xs={4} sm={4} md={4}>
+            <PopularTags />
+          </Grid>
+
+          <Grid item xs={4} sm={4} md={4}>
+            <Grid container direction="column" justify="center" spacing={16}>
+              <Grid item>
+                <TotalExpences />
+              </Grid>
+              <Grid item>
+                <ExpencesFrequency />
+              </Grid>
+            </Grid>
+          </Grid>
+
+          <Grid item xs={4} sm={4} md={4}>
+            <LatestExpences />
+          </Grid>
+
+          <Grid item xs={4} sm={4} md={8}>
+            <History expences={user.expences} currency={user.currency} />
+          </Grid>
+
+          <Grid item xs={4} sm={4} md={4}>
+            <Grid container direction="column" justify="center" spacing={16}>
+              <Grid item>
+                <AddExpenceForm user={user} loadUser={loadUser} />
+              </Grid>
+
+              <Grid item>
+                <AddNewTagExpantionPanel user={user} loadUser={loadUser} />
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <div
+          style={{
+            marginBottom: "4em",
+            padding: "2em"
+          }}
+        >
+          {/*{Object.keys(user.expences).map((month, i) => {
+          return (
+          <MonthlyExpencesExpantionPanel
+          key={i + 1}
+          month={month}
+          expences={user.expences[month]}
+          userId={user._id}
+          userCurrency={user.currency}
+          loadUser={loadUser}
+          />
+        );
+      })}*/}
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Expences;

@@ -5,10 +5,13 @@ const profile = require("./profile");
 const ObjectID = require("mongodb").ObjectID;
 
 const handleAddExpence = (req, res) => {
-  const { _id, tag, amount } = req.body;
+  const { _id, tag } = req.body;
+  let { amount } = req.body;
   if (!_id || !tag || !amount) {
     return res.status(400).json("Wrong form submission");
   }
+
+  amount = Math.round(amount).toFixed(2);
 
   const newExpence = {
     timestamp: new Date(),

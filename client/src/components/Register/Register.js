@@ -220,7 +220,7 @@ class Register extends React.Component {
               margin="normal"
             >
               {currencies.map(option => (
-                <MenuItem key={option.value} value={option.value}>
+                <MenuItem key={option.value} value={option.label}>
                   {option.label}
                 </MenuItem>
               ))}

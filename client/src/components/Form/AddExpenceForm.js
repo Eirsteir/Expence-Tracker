@@ -54,15 +54,11 @@ class AddExpenceForm extends React.Component {
     this.state = initialState;
   }
 
-  // componentDidMount() {
-  //   const { tags } = this.props.user;
-  //   return this.setState({ tags: tags });
-  // }
-
   handleInputChange = event => {
     const amount = event.target.value;
-    // \d === [0-9] - regex
-    var isnum = /^\d+$/.test(amount);
+    // \d === [0-9] - regex - what about commas?
+
+    var isnum = /^[0-9.]+$/.test(amount);
     if (isnum || amount === "") {
       this.setState({ amount: Number(amount) });
     }
@@ -104,55 +100,42 @@ class AddExpenceForm extends React.Component {
 
     return (
       <div
-        className="center"
-        id="add-new-form"
-        style={{ marginTop: "4em", marginBottom: "4em" }}
+        style={{ backgroundColor: "#343b64", padding: "1rem", color: "#fff" }}
       >
-        <div>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <h1 style={{ fontWeight: "300" }}>Add A New Expence</h1>
-          </div>
-          <div className={classes.root}>
-            <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="select-tag">Tag</InputLabel>
-              <Select
-                value={this.state.currentTag}
-                onChange={this.handleSelectChange}
-                inputProps={{
-                  name: "tag",
-                  id: "select-tag"
-                }}
-                MenuProps={MenuProps}
-              >
-                <MenuItem value="None">None</MenuItem>
-                {this.props.user.tags.map(tag => (
-                  <MenuItem key={tag} value={tag}>
-                    {tag}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+        <div>Add new expence</div>
+        <div className={classes.root}>
+          <FormControl className={classes.formControl}>
+            <InputLabel htmlFor="select-tag">Tag</InputLabel>
+            <Select
+              value={this.state.currentTag}
+              onChange={this.handleSelectChange}
+              inputProps={{
+                name: "tag",
+                id: "select-tag"
+              }}
+              MenuProps={MenuProps}
+            >
+              <MenuItem value="None">None</MenuItem>
+              {this.props.user.tags.map(tag => (
+                <MenuItem key={tag} value={tag}>
+                  {tag}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
 
-            <TextField
-              id="input-amount"
-              label="Amount"
-              placeholder="Amount"
-              className={classes.textField && classes.formControl}
-              margin="normal"
-              onChange={this.handleInputChange}
-              value={this.state.amount}
-            />
-            <SnackBar
-              onButtonClick={this.onButtonClick}
-              action="Add"
-              buttonStyles={{ marginTop: "1.5em" }}
-            />
-          </div>
-          {/* Move somewhere else? */}
-          <AddNewTagExpantionPanel
-            classes={classes}
-            user={user}
-            loadUser={this.props.loadUser}
+          <TextField
+            label="Amount"
+            placeholder="Amount"
+            className={classes.textField && classes.formControl}
+            margin="normal"
+            onChange={this.handleInputChange}
+            value={this.state.amount}
+          />
+          <SnackBar
+            onButtonClick={this.onButtonClick}
+            action="Add"
+            buttonStyles={{ marginTop: "1.5em" }}
           />
         </div>
       </div>

@@ -2,9 +2,6 @@ import React from "react";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import { shallowEqual } from "shouldcomponentupdate-children";
 
 class AddNewTagModal extends React.Component {
@@ -55,52 +52,37 @@ class AddNewTagModal extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
     const { expanded } = this.state;
 
     return (
-      <div style={{ marginTop: "1em" }}>
-        <ExpansionPanel
-          expanded={expanded === "panel1"}
-          onChange={this.handleExpandChange("panel1")}
+      <div
+        style={{ backgroundColor: "#343b64", padding: "1rem", color: "#fff" }}
+      >
+        <div>Add New Tag</div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around"
+          }}
         >
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <FormHelperText
-              style={{ cursor: "pointer", color: "#009688" }}
-              onChange={this.handleExpandChange("panel1")}
-            >
-              Add New Tag
-            </FormHelperText>
-          </ExpansionPanelSummary>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              padding: "0 0 1em 0",
-              marginTop: "0"
-            }}
+          <TextField
+            id="input-new-tag"
+            label="Tag"
+            placeholder="Tag"
+            margin="normal"
+            onChange={this.handleChange}
+            value={this.state.tag}
+          />
+          <Button
+            variant="text"
+            size="small"
+            color="secondary"
+            style={{ fontSize: "1rem", marginTop: "1.5em" }}
+            onClick={this.onButtonClick}
           >
-            <TextField
-              id="input-new-tag"
-              label="Tag"
-              placeholder="Tag"
-              className={classes.textField && classes.formControl}
-              margin="normal"
-              onChange={this.handleChange}
-              value={this.state.tag}
-            />
-            <Button
-              variant="text"
-              size="small"
-              color="secondary"
-              className={classes.button}
-              style={{ fontSize: "1rem", marginTop: "1.5em" }}
-              onClick={this.onButtonClick}
-            >
-              Add
-            </Button>
-          </div>
-        </ExpansionPanel>
+            Add
+          </Button>
+        </div>
       </div>
     );
   }
