@@ -10,21 +10,25 @@
   justify-content: flex-end;
   align-items: center;
 }
-/*
-#card {
-  background-color: transparent;
-  min-width: 100%;
-  min-height: 200px;
-  display: flex;
-  overflow-x: auto;
-}
 
-.card--content {
-  background-color: #fff;
-  min-width: 200px;
-  margin: 8px;
-}
+/* Change design bro */
 
-#card::-webkit-scrollbar {
-  display: none;
-} */
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width: 700px) {
+  #dashboard-container {
+    flex-direction: column;
+  }
+  .center-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem 0;
+  }
+
+  .xs-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

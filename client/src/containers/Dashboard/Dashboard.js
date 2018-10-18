@@ -19,7 +19,24 @@ import AddNewTagExpantionPanel from "../../components/ExpantionPanel/AddNewTagEx
 
 import "./Dashboard.css";
 
+const initialState = {
+  week: true,
+  month: false
+};
+
 class Expences extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = initialState;
+  }
+
+  toggleData = () => {
+    this.setState(prevState => ({
+      week: !prevState.week,
+      month: !prevState.month
+    }));
+  };
+
   render() {
     const { loadUser, user } = this.props;
 
@@ -29,19 +46,28 @@ class Expences extends React.Component {
 
     return (
       <div style={{ marginTop: "4rem", padding: "0 3rem" }}>
-        <DashboardHeader userId={user._id} />
+        <DashboardHeader
+          userId={user._id}
+          currency={user.currency}
+          toggleData={this.toggleData}
+        />
         {/*<Profile user={user} />*/}
         {/*<CardList expences={user.expences} />*/}
 
-        <Grid container justify="space-between" spacing={16}>
-          <Grid item xs={4} sm={4} md={4}>
+        <Grid
+          container
+          justify="space-between"
+          spacing={16}
+          id="dashboard-container"
+        >
+          <Grid item xs={12} sm={12} md={4}>
             <PopularTags />
           </Grid>
 
-          <Grid item xs={4} sm={4} md={4}>
+          <Grid item xs={12} sm={12} md={4}>
             <Grid container direction="column" justify="center" spacing={16}>
               <Grid item>
-                <TotalExpences />
+                <TotalExpences expences={user.expences.expencesThisMonth[0]} />
               </Grid>
               <Grid item>
                 <ExpencesFrequency />
@@ -49,15 +75,15 @@ class Expences extends React.Component {
             </Grid>
           </Grid>
 
-          <Grid item xs={4} sm={4} md={4}>
+          <Grid item xs={12} sm={12} md={4}>
             <LatestExpences />
           </Grid>
 
-          <Grid item xs={4} sm={4} md={8}>
-            <History expences={user.expences} currency={user.currency} />
+          <Grid item xs={12} sm={12} md={8}>
+            {/*<History expences={user.expences} currency={user.currency} />*/}
           </Grid>
 
-          <Grid item xs={4} sm={4} md={4}>
+          <Grid item xs={12} sm={12} md={4}>
             <Grid container direction="column" justify="center" spacing={16}>
               <Grid item>
                 <AddExpenceForm user={user} loadUser={loadUser} />
@@ -75,23 +101,23 @@ class Expences extends React.Component {
             marginBottom: "4em",
             padding: "2em"
           }}
-        >
-          {/*{Object.keys(user.expences).map((month, i) => {
-          return (
-          <MonthlyExpencesExpantionPanel
-          key={i + 1}
-          month={month}
-          expences={user.expences[month]}
-          userId={user._id}
-          userCurrency={user.currency}
-          loadUser={loadUser}
-          />
-        );
-      })}*/}
-        </div>
+        />
       </div>
     );
   }
 }
 
 export default Expences;
+
+// {Object.keys(user.expences).map((month, i) => {
+// return (
+// <MonthlyExpencesExpantionPanel
+// key={i + 1}
+// month={month}
+// expences={user.expences[month]}
+// userId={user._id}
+// userCurrency={user.currency}
+// loadUser={loadUser}
+// />
+// );
+// })}

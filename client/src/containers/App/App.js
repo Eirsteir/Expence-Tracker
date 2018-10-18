@@ -11,8 +11,8 @@ import "./App.css";
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
-  const { whyDidYouUpdate } = require("why-did-you-update");
-  whyDidYouUpdate(React);
+  // const { whyDidYouUpdate } = require("why-did-you-update");
+  // whyDidYouUpdate(React);
 }
 
 // Performance cost? Look for alternatives
@@ -35,7 +35,7 @@ const initialState = {
     email: "",
     age: "",
     joined: "",
-    expences: [],
+    expences: [], // we only need current month
     tags: [],
     currency: ""
   },

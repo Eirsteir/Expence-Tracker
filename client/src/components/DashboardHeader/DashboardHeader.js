@@ -34,12 +34,13 @@ class DashboardHeader extends React.Component {
     this.state = {
       checkedWeek: true,
       checkedMonth: false,
-      latestExpence: {}
+      latestExpence: {} // what about empty expence from server?
     };
   }
 
   toggleActiveButton = () => {
-    this.setState(prevState => ({
+    this.props.toggleData();
+    return this.setState(prevState => ({
       checkedWeek: !prevState.checkedWeek,
       checkedMonth: !prevState.checkedMonth
     }));
@@ -68,6 +69,8 @@ class DashboardHeader extends React.Component {
   }
 
   render() {
+    const { tag, amount, date } = this.state.latestExpence;
+
     return (
       <Grid
         container
@@ -76,24 +79,22 @@ class DashboardHeader extends React.Component {
         alignItems="center"
         spacing={8}
       >
-        <Grid item xs={4} sm={4} md={4}>
+        <Grid item xs={12} sm={4} md={4} className="xs-center">
           <h2 style={styles.gridItemHeader}>OVERVIEW</h2>
         </Grid>
 
         <Grid
           item
-          xs={4}
+          xs={12}
           sm={4}
           md={4}
           className="center"
           style={styles.gridItemLatestExpence}
         >
-          {`${this.state.latestExpence.tag} - ${
-            this.state.latestExpence.amount
-          } - ${this.state.latestExpence.date}`}
+          {`${tag} - ${this.props.currency}${amount} - ${date}`}
         </Grid>
 
-        <Grid item xs={4} sm={4} md={4} className="center-row">
+        <Grid item xs={12} sm={4} md={4} className="center-row">
           <Button
             variant="text"
             label="LAST WEEK"

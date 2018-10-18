@@ -11,13 +11,14 @@ const handleProfileGet = (req, res) => {
       if (user.length) {
         axios
           .post(
-            "https://364y5aap1g.execute-api.eu-west-2.amazonaws.com/dev/sort-data", // AWS function
+            "https://364y5aap1g.execute-api.eu-west-2.amazonaws.com/dev/sort-data", // AWS Lambda function
             {
               expences: user[0].expences
             }
           )
           .then(response => {
             if (response.data.input) {
+              console.log(response.data.input);
               user[0].expences = response.data.input;
               res.json(user[0]);
             } else {

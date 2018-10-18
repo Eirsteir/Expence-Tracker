@@ -11,7 +11,7 @@ class ExpencesFrequency extends React.Component {
           padding: "1rem"
         }}
       >
-        Total expences
+        Frequency of expences
       </div>
     );
   }

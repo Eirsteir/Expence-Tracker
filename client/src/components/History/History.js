@@ -135,7 +135,7 @@ class ExpenceHistory extends React.Component {
           <Line
             data={this.chartData}
             options={chartOptions(this.props.currency)}
-            height="250"
+            height={244}
           />
         </div>
       </div>
