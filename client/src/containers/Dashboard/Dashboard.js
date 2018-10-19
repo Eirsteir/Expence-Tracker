@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 
 import Grid from "@material-ui/core/Grid";
 
-import History from "../../components/History/History";
+import Chart from "../../components/Chart/Chart";
 import DashboardHeader from "../../components/DashboardHeader/DashboardHeader";
 import PopularTags from "../../components/PopularTags/PopularTags";
 import TotalExpences from "../../components/TotalExpences/TotalExpences";
@@ -82,7 +82,7 @@ class Expences extends React.Component {
           </Grid>
 
           <Grid item xs={12} sm={12} md={8}>
-            <History
+            <Chart
               expences={user.expences.expencesThisMonth[0]}
               currency={user.currency}
             />

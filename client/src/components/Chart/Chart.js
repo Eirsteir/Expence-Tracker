@@ -101,11 +101,10 @@ class ExpenceHistory extends React.Component {
       labels: labels,
       datasets: [
         {
-          label: "Remove this",
+          label: "",
           data: data,
           fill: true,
           backgroundColor: gradient,
-          // lineTension: 0,
           borderColor: "rgba(204, 40, 93, 0.7)",
           borderWidth: 3,
           borderCapStyle: "round",

@@ -1,13 +1,6 @@
 .profile-name-container {
   margin-top: 3rem;
-  background-image: linear-gradient(
-    115deg,
-    #26294c 0%,
-    #26294c 60%,
-    #343b64 60%,
-    #343b64 100%
-  );
-  height: 40vh;
+  height: 35vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -34,4 +27,6 @@
   width: 20rem;
   background-color: #343b64;
   padding: 1rem;
+  border: none;
+  border-radius: 5px;
 }

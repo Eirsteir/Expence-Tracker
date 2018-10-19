@@ -11,8 +11,11 @@ const styles = theme => ({
   root: {
     flexGrow: 1
   },
+  infoTitle: {
+    color: "rgba(255,255,255,.8)"
+  },
   subheader: {
-    color: theme.palette.text.secondary
+    color: "#c3cdd0"
   }
 });
 
@@ -36,18 +39,18 @@ class ProfileInfo extends React.Component {
       <div className={classes.root}>
         <div className="profile-name-container">{name}</div>
         <div id="info-header">
-          <h2 style={{ fontWeight: 300 }}>INFO</h2>
+          <h2 style={{ fontWeight: 300, letterSpacing: 3 }}>INFO</h2>
         </div>
         <div id="profile-info-container">
           <Grid container spacing={0} id="profile-info">
             <Grid item xs={6}>
-              <p>Email</p>
+              <p className={classes.infoTitle}>Email</p>
             </Grid>
             <Grid item xs={6}>
               <p className={classes.subheader}>{email}</p>
             </Grid>
             <Grid item xs={6}>
-              <p>Date joined</p>
+              <p className={classes.infoTitle}>Date joined</p>
             </Grid>
             <Grid item xs={6}>
               <p className={classes.subheader}>
@@ -55,7 +58,7 @@ class ProfileInfo extends React.Component {
               </p>
             </Grid>
             <Grid item xs={6}>
-              <p>Currency</p>
+              <p className={classes.infoTitle}>Currency</p>
             </Grid>
             <Grid item xs={6}>
               <p className={classes.subheader}>{currency}</p>

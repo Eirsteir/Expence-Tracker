@@ -6,6 +6,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
 import SnackBar from "../Snackbar/SnackBar";
 
@@ -17,18 +18,19 @@ const styles = theme => ({
     flexDirection: "row"
   },
   formControl: {
-    margin: theme.spacing.unit,
+    marginBottom: "1rem",
     minWidth: 120,
     maxWidth: 300
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200
+    flexBasis: 200
   },
   paper: {
     maxWidth: "30em",
     padding: "1em"
+  },
+  inputColor: {
+    color: "#c3cdd0"
   }
 });
 
@@ -56,7 +58,7 @@ class AddExpenceForm extends React.Component {
   handleInputChange = event => {
     const amount = event.target.value;
     // \d === [0-9] - regex - what about commas?
-
+    // input field type number: ugly but gets the job done
     var isnum = /^[0-9.]+$/.test(amount);
     if (isnum || amount === "") {
       this.setState({ amount: Number(amount) });
@@ -104,7 +106,9 @@ class AddExpenceForm extends React.Component {
         <div>Add new expence</div>
         <div className={classes.root}>
           <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="select-tag">Tag</InputLabel>
+            <InputLabel style={{ color: "#c3cdd0" }} htmlFor="select-tag">
+              Tag
+            </InputLabel>
             <Select
               value={this.state.currentTag}
               onChange={this.handleSelectChange}
@@ -115,7 +119,7 @@ class AddExpenceForm extends React.Component {
               MenuProps={MenuProps}
             >
               <MenuItem value="None">None</MenuItem>
-              {this.props.user.tags.map(tag => (
+              {user.tags.map(tag => (
                 <MenuItem key={tag} value={tag}>
                   {tag}
                 </MenuItem>
@@ -124,12 +128,19 @@ class AddExpenceForm extends React.Component {
           </FormControl>
 
           <TextField
+            type="number"
             label="Amount"
-            placeholder="Amount"
-            className={classes.textField && classes.formControl}
-            margin="normal"
+            className={classes.textField}
             onChange={this.handleInputChange}
             value={this.state.amount}
+            InputProps={{
+              className: classes.inputColor,
+              startAdornment: (
+                <InputAdornment variant="filled" position="start">
+                  {user.currency}
+                </InputAdornment>
+              )
+            }}
           />
           <SnackBar
             onButtonClick={this.onButtonClick}

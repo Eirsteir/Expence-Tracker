@@ -1,8 +1,18 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+
 import FormHelperText from "@material-ui/core/FormHelperText";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+
 import { shallowEqual } from "shouldcomponentupdate-children";
+
+const styles = {
+  inputColor: {
+    color: "#c3cdd0"
+  }
+};
 
 class AddTagForm extends React.Component {
   state = {
@@ -53,7 +63,7 @@ class AddTagForm extends React.Component {
 
   render() {
     const { expanded } = this.state;
-
+    const { classes } = this.props;
     return (
       <div
         style={{ backgroundColor: "#343b64", padding: "1rem", color: "#fff" }}
@@ -68,16 +78,18 @@ class AddTagForm extends React.Component {
           <TextField
             id="input-new-tag"
             label="Tag"
-            placeholder="Tag"
             margin="normal"
             onChange={this.handleChange}
             value={this.state.tag}
+            InputProps={{
+              classes: { input: classes.inputColor }
+            }}
           />
           <Button
             variant="text"
             size="small"
             color="secondary"
-            style={{ fontSize: "1rem", marginTop: "1.5em" }}
+            style={{ marginTop: "1.5rem" }}
             onClick={this.onButtonClick}
           >
             Add
@@ -88,4 +100,8 @@ class AddTagForm extends React.Component {
   }
 }
 
-export default AddTagForm;
+AddTagForm.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(AddTagForm);
