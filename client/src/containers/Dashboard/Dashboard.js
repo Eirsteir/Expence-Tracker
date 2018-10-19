@@ -45,7 +45,7 @@ class Expences extends React.Component {
     }
 
     return (
-      <div style={{ marginTop: "4rem", padding: "0 3rem" }}>
+      <div className="dashboard-container">
         <DashboardHeader
           userId={user._id}
           currency={user.currency}
@@ -57,17 +57,20 @@ class Expences extends React.Component {
         <Grid
           container
           justify="space-between"
-          spacing={16}
-          id="dashboard-container"
+          spacing={32}
+          id="dashboard-grid"
         >
           <Grid item xs={12} sm={12} md={4}>
             <PopularTags />
           </Grid>
 
           <Grid item xs={12} sm={12} md={4}>
-            <Grid container direction="column" justify="center" spacing={16}>
+            <Grid container direction="column" justify="center" spacing={32}>
               <Grid item>
-                <TotalExpences expences={user.expences.expencesThisMonth[0]} />
+                <TotalExpences
+                  currency={user.currency}
+                  expences={user.expences.expencesThisMonth[0]}
+                />
               </Grid>
               <Grid item>
                 <ExpencesFrequency />

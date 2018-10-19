@@ -89,7 +89,7 @@ class AddExpenceForm extends React.Component {
       .then(user => {
         if (user && user.email) {
           this.setState(initialState);
-          return this.props.loadUser(user);
+          this.props.loadUser(user);
         }
       })
       .catch(err => console.log);

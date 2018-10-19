@@ -9,7 +9,7 @@ const styles = {
     color: "#fff"
   },
   gridItemLatestExpence: {
-    color: "#fff",
+    color: "#c3cdd0",
     backgroundColor: "#343b64",
     borderRadius: 12
   },

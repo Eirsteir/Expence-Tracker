@@ -18,7 +18,6 @@ const handleProfileGet = (req, res) => {
           )
           .then(response => {
             if (response.data.input) {
-              console.log(response.data.input);
               user[0].expences = response.data.input;
               res.json(user[0]);
             } else {

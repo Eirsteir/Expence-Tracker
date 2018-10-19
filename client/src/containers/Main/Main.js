@@ -111,6 +111,7 @@ class Main extends React.Component {
               {...props}
               isSignedIn={this.props.isSignedIn}
               user={this.props.user}
+              loadUser={this.props.loadUser}
             />
           )}
         />

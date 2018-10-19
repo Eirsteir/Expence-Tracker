@@ -1,6 +1,10 @@
 import React from "react";
+import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 
-// move to different file?
+import "./TotalExpences.css";
+
+// move to different file
 Date.prototype.getWeek = function() {
   var date = new Date(this.getTime());
   date.setHours(0, 0, 0, 0);
@@ -23,7 +27,13 @@ Date.prototype.getWeek = function() {
 // total expences sorted by today and week
 const initialState = {
   today: 0,
-  week: 0
+  yesterday: 0,
+  week: 0,
+  lastWeek: 0,
+  todayStyle: "green",
+  weekStyle: "green",
+  todaysDiff: 0,
+  weeklyDiff: 0
 };
 
 class TotalExpences extends React.Component {
@@ -32,47 +42,134 @@ class TotalExpences extends React.Component {
     this.state = initialState;
   }
 
+  // variables needed in sorting functions
+  todaysDate = new Date();
   today = 0;
+  yesterday = 0;
   week = 0;
+  lastWeek = 0;
 
   componentDidMount() {
-    this.calculateTotalExpences(this.props.expences);
+    this.calculateTodaysExpences(this.props.expences);
+    this.calculateYesterdaysExpences(this.props.expences);
+    this.calculateThisWeeksExpences(this.props.expences);
+    this.calculateLastWeeksExpences(this.props.expences);
+
     this.setState({
       today: this.today,
-      week: this.week
+      yesterday: this.yesterday,
+      week: this.week,
+      lastWeek: this.lastWeek,
+      todaysDiffStyle: this.today <= this.yesterday ? "#58C457" : "#cc285d", // green and red
+      weeklyDiffStyle: this.week <= this.lastWeek ? "#58C457" : "#cc285d", // green and red
+      todaysDiff:
+        this.today - this.yesterday < 0
+          ? this.yesterday - this.today
+          : this.today - this.yesterday,
+      weeklyDiff:
+        this.week - this.lastWeek < 0
+          ? this.lastWeek - this.week
+          : this.week - this.lastWeek
     });
   }
 
-  calculateTotalExpences = expences => {
-    const todayDate = new Date();
-
+  calculateTodaysExpences = expences => {
     Object.keys(expences).map((month, i) => {
       const dateOfExpence = new Date(expences[i].timestamp);
 
-      console.log(expences[i]);
-      if (dateOfExpence.getWeek() === todayDate.getWeek()) {
-        if (dateOfExpence.getDay() === todayDate.getDay()) {
-          return (this.today = this.today + expences[i].amount);
-        } else {
-          this.week = this.week + expences[i].amount;
-        }
+      // check if the week number and weekday-number (0-6) is the same
+      if (
+        dateOfExpence.getWeek() === this.todaysDate.getWeek() &&
+        dateOfExpence.getDay() === this.todaysDate.getDay()
+      ) {
+        return (this.today = this.today + expences[i].amount);
+      }
+    });
+  };
+
+  // do not think this works properly
+  calculateYesterdaysExpences = expences => {
+    Object.keys(expences).map((month, i) => {
+      const dateOfExpence = new Date(expences[i].timestamp);
+
+      // check if week number is the same and if date of expence is equal to the weekday-number before
+      if (
+        dateOfExpence.getWeek() === this.todaysDate.getWeek() &&
+        dateOfExpence.getDay() === this.todaysDate.getDay() - 1
+      ) {
+        return (this.yesterday = this.yesterday + expences[i].amount);
+      }
+    });
+  };
+
+  calculateThisWeeksExpences = expences => {
+    Object.keys(expences).map((month, i) => {
+      const dateOfExpence = new Date(expences[i].timestamp);
+
+      if (dateOfExpence.getWeek() === this.todaysDate.getWeek()) {
+        this.week = this.week + expences[i].amount;
+      }
+    });
+  };
+
+  calculateLastWeeksExpences = expences => {
+    Object.keys(expences).map((month, i) => {
+      const dateOfExpence = new Date(expences[i].timestamp);
+
+      if (dateOfExpence.getWeek() === this.todaysDate.getWeek() - 1) {
+        this.lastWeek = this.lastWeek + expences[i].amount;
       }
     });
   };
 
   render() {
     return (
-      <div
-        style={{
-          backgroundColor: "#343b64",
-          color: "#fff",
-          height: "7rem",
-          padding: "1rem"
-        }}
-      >
+      <div className="total-expences-grid-item">
         Total expences
-        <div>{this.state.today}</div>
-        <div>{this.state.week}</div>
+        <div className="expences">
+          <div className="container">
+            <div className="num-display">
+              <p className="num-display-currency">{this.props.currency}</p>
+              <p className="num-display-number">{this.state.today}</p>
+            </div>
+            <div className="num-display">
+              <p className="num-display-currency">{this.props.currency}</p>
+              <p className="num-display-number">{this.state.week}</p>
+            </div>
+          </div>
+        </div>
+        <div className="diff-container">
+          <div className="container">
+            <div className="diff-item-container">
+              <p className="diff-item-text">TODAY</p>
+              <div
+                className="diff-item-number"
+                style={{ backgroundColor: this.state.todaysDiffStyle }}
+              >
+                {`${this.props.currency}${this.state.todaysDiff}`}{" "}
+                {this.today <= this.yesterday ? (
+                  <ArrowDownwardIcon fontSize="small" />
+                ) : (
+                  <ArrowUpwardIcon fontSize="small" />
+                )}
+              </div>
+            </div>
+            <div className="diff-item-container">
+              <p className="diff-item-text">WEEK</p>
+              <div
+                className="diff-item-number"
+                style={{ backgroundColor: this.state.weeklyDiffStyle }}
+              >
+                {`${this.props.currency}${this.state.weeklyDiff}`}{" "}
+                {this.week <= this.lastWeek ? (
+                  <ArrowDownwardIcon fontSize="small" />
+                ) : (
+                  <ArrowUpwardIcon fontSize="small" />
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

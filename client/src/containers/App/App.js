@@ -91,13 +91,11 @@ class App extends Component {
                 }
               })
               .catch(err => {
-                console.log(err);
                 this.toggleLoading();
               });
           }
         })
         .catch(err => {
-          console.log(err);
           this.toggleLoading();
         });
     }
