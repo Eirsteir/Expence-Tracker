@@ -7,7 +7,7 @@ import Grid from "@material-ui/core/Grid";
 
 import Chart from "../../components/Chart/Chart";
 import DashboardHeader from "../../components/DashboardHeader/DashboardHeader";
-import PopularTags from "../../components/PopularTags/PopularTags";
+import PopularTagsList from "../../components/PopularTags/PopularTagsList";
 import TotalExpences from "../../components/TotalExpences/TotalExpences";
 import ExpencesFrequency from "../../components/ExpencesFrequency/ExpencesFrequency";
 import LatestExpences from "../../components/LatestExpences/LatestExpences";
@@ -60,7 +60,11 @@ class Expences extends React.Component {
           id="dashboard-grid"
         >
           <Grid item xs={12} sm={12} md={4}>
-            <PopularTags />
+            <PopularTagsList
+              expences={user.expences.expencesThisMonth[0]}
+              tags={user.tags}
+              currency={user.currency}
+            />
           </Grid>
 
           <Grid item xs={12} sm={12} md={4}>
