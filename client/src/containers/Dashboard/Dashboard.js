@@ -12,10 +12,8 @@ import TotalExpences from "../../components/TotalExpences/TotalExpences";
 import ExpencesFrequency from "../../components/ExpencesFrequency/ExpencesFrequency";
 import LatestExpences from "../../components/LatestExpences/LatestExpences";
 import AddExpenceForm from "../../components/Form/AddExpenceForm";
-import AddNewTagExpantionPanel from "../../components/ExpantionPanel/AddNewTagExpantionPanel";
+import AddTagForm from "../../components/Form/AddTagForm";
 // import Profile from "../../components/Profile/Profile";
-// import CardList from "../../components/CardList/CardList";
-// import MonthlyExpencesExpantionPanel from "../../components/ExpantionPanel/MonthlyExpencesExpantionPanel";
 
 import "./Dashboard.css";
 
@@ -57,6 +55,7 @@ class Expences extends React.Component {
         <Grid
           container
           justify="space-between"
+          wrap="wrap"
           spacing={32}
           id="dashboard-grid"
         >
@@ -83,7 +82,10 @@ class Expences extends React.Component {
           </Grid>
 
           <Grid item xs={12} sm={12} md={8}>
-            {/*<History expences={user.expences} currency={user.currency} />*/}
+            <History
+              expences={user.expences.expencesThisMonth[0]}
+              currency={user.currency}
+            />
           </Grid>
 
           <Grid item xs={12} sm={12} md={4}>
@@ -93,7 +95,7 @@ class Expences extends React.Component {
               </Grid>
 
               <Grid item>
-                <AddNewTagExpantionPanel user={user} loadUser={loadUser} />
+                <AddTagForm user={user} loadUser={loadUser} />
               </Grid>
             </Grid>
           </Grid>

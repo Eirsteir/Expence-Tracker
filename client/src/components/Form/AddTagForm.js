@@ -4,7 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { shallowEqual } from "shouldcomponentupdate-children";
 
-class AddNewTagModal extends React.Component {
+class AddTagForm extends React.Component {
   state = {
     expanded: false,
     tag: ""
@@ -88,4 +88,4 @@ class AddNewTagModal extends React.Component {
   }
 }
 
-export default AddNewTagModal;
+export default AddTagForm;

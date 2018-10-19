@@ -33,7 +33,7 @@ const styles = theme => ({
   },
   paper: {
     width: "17em",
-    backgroundColor: "#c3cdd0"
+    backgroundColor: "#fff"
   },
   form: {
     display: "flex",

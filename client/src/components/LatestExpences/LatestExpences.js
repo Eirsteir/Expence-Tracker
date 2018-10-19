@@ -7,7 +7,7 @@ class LatestExpences extends React.Component {
         style={{
           backgroundColor: "#343b64",
           color: "#fff",
-          height: "17rem",
+          height: "18rem",
           padding: "1rem"
         }}
       >

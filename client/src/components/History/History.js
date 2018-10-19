@@ -54,7 +54,9 @@ const chartOptions = currency => {
           return tooltipItem.yLabel;
         }
       }
-    }
+    },
+    responsive: true,
+    cubicInterpolationMode: "monotone"
   };
 };
 
@@ -83,20 +85,17 @@ class ExpenceHistory extends React.Component {
     gradient.addColorStop(0, "rgba(	204, 40, 93, 0.5)");
     gradient.addColorStop(1, "rgba(	0, 0, 0, 0.1)");
 
-    const expencesThisMonth = expences[months[now.getMonth()]][0];
     var options = {
       month: "2-digit",
       day: "2-digit"
     };
 
-    const labels = expencesThisMonth.map((month, i) => {
-      const date = new Date(expencesThisMonth[i].timestamp);
+    const labels = expences.map((exp, i) => {
+      const date = new Date(expences[i].timestamp);
       return date.toLocaleString("en-us", options);
     });
 
-    const data = expencesThisMonth.map(
-      (month, i) => expencesThisMonth[i].amount
-    );
+    const data = expences.map((month, i) => expences[i].amount);
 
     return {
       labels: labels,
@@ -106,14 +105,13 @@ class ExpenceHistory extends React.Component {
           data: data,
           fill: true,
           backgroundColor: gradient,
-          lineTension: 0.35,
+          // lineTension: 0,
           borderColor: "rgba(204, 40, 93, 0.7)",
           borderWidth: 3,
-          borderCapStyle: "butt",
+          borderCapStyle: "round",
           borderDash: [],
           borderDashOffset: 0.0,
-          borderJoinStyle: "miter",
-
+          borderJoinStyle: "round",
           pointHoverRadius: 5,
           pointHoverBackgroundColor: "rgba(204, 40, 93, 0.7)",
           pointHoverBorderColor: "rgba(204, 40, 93, 0.7)",
