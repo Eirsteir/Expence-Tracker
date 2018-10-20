@@ -6,8 +6,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
-import AddNewTagExpantionPanel from "../ExpantionPanel/AddNewTagExpantionPanel";
 import SnackBar from "../Snackbar/SnackBar";
 
 const styles = theme => ({
@@ -18,18 +18,19 @@ const styles = theme => ({
     flexDirection: "row"
   },
   formControl: {
-    margin: theme.spacing.unit,
+    marginBottom: "1rem",
     minWidth: 120,
     maxWidth: 300
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200
+    flexBasis: 200
   },
   paper: {
     maxWidth: "30em",
     padding: "1em"
+  },
+  inputColor: {
+    color: "#c3cdd0"
   }
 });
 
@@ -38,14 +39,15 @@ const ITEM_PADDING_TOP = 8;
 const MenuProps = {
   PaperProps: {
     style: {
-      height: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP
+      height: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      backgroundColor: "#26294c"
     }
   }
 };
 
 const initialState = {
   amount: "",
-  currentTag: ""
+  tag: ""
 };
 
 class AddExpenceForm extends React.Component {
@@ -54,27 +56,20 @@ class AddExpenceForm extends React.Component {
     this.state = initialState;
   }
 
-  // componentDidMount() {
-  //   const { tags } = this.props.user;
-  //   return this.setState({ tags: tags });
-  // }
-
   handleInputChange = event => {
     const amount = event.target.value;
-    // \d === [0-9] - regex
-    var isnum = /^\d+$/.test(amount);
-    if (isnum || amount === "") {
-      this.setState({ amount: Number(amount) });
-    }
+
+    // input field type number: ugly but gets the job done
+    return this.setState({ amount: Number(amount) });
   };
 
   handleSelectChange = event => {
-    return this.setState({ currentTag: event.target.value });
+    return this.setState({ tag: event.target.value });
   };
 
   // Add expence
   onButtonClick = () => {
-    if (this.state.currentTag === "") {
+    if (this.state.tag === "") {
       return false;
     }
     fetch(`/add-expence`, {
@@ -84,8 +79,8 @@ class AddExpenceForm extends React.Component {
         Authorization: window.localStorage.getItem("token")
       },
       body: JSON.stringify({
-        _id: this.props.user._id,
-        tag: this.state.currentTag,
+        _id: this.props.id,
+        tag: this.state.tag,
         amount: this.state.amount
       })
     })
@@ -93,66 +88,73 @@ class AddExpenceForm extends React.Component {
       .then(user => {
         if (user && user.email) {
           this.setState(initialState);
-          return this.props.loadUser(user);
+          this.props.loadUser(user);
         }
       })
-      .catch(err => console.log);
+      .catch(err => console.warn("unable to add expence"));
   };
 
   render() {
-    const { classes, user } = this.props;
+    const { classes, tags, currency } = this.props;
 
     return (
       <div
-        className="center"
-        id="add-new-form"
-        style={{ marginTop: "4em", marginBottom: "4em" }}
+        style={{
+          backgroundColor: "#343b64",
+          padding: "1rem",
+          color: "#fff",
+          border: "none",
+          borderRadius: 5
+        }}
       >
-        <div>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <h1 style={{ fontWeight: "300" }}>Add A New Expence</h1>
-          </div>
-          <div className={classes.root}>
-            <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="select-tag">Tag</InputLabel>
-              <Select
-                value={this.state.currentTag}
-                onChange={this.handleSelectChange}
-                inputProps={{
-                  name: "tag",
-                  id: "select-tag"
-                }}
-                MenuProps={MenuProps}
-              >
-                <MenuItem value="None">None</MenuItem>
-                {this.props.user.tags.map(tag => (
-                  <MenuItem key={tag} value={tag}>
-                    {tag}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+        <div>Add new expence</div>
+        <div className={classes.root}>
+          <FormControl className={classes.formControl}>
+            <InputLabel style={{ color: "#c3cdd0" }} htmlFor="select-tag">
+              Tag
+            </InputLabel>
+            <Select
+              value={this.state.tag}
+              onChange={this.handleSelectChange}
+              inputProps={{
+                name: "tag",
+                id: "select-tag"
+              }}
+              MenuProps={MenuProps}
+            >
+              <MenuItem value="None" style={{ color: "#c3cdd0" }}>
+                None
+              </MenuItem>
+              {tags.map(tag => (
+                <MenuItem key={tag} value={tag} style={{ color: "#c3cdd0" }}>
+                  {tag}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
 
-            <TextField
-              id="input-amount"
-              label="Amount"
-              placeholder="Amount"
-              className={classes.textField && classes.formControl}
-              margin="normal"
-              onChange={this.handleInputChange}
-              value={this.state.amount}
-            />
-            <SnackBar
-              onButtonClick={this.onButtonClick}
-              action="Add"
-              buttonStyles={{ marginTop: "1.5em" }}
-            />
-          </div>
-          {/* Move somewhere else? */}
-          <AddNewTagExpantionPanel
-            classes={classes}
-            user={user}
-            loadUser={this.props.loadUser}
+          <TextField
+            type="number"
+            label="Amount"
+            className={classes.textField}
+            onChange={this.handleInputChange}
+            value={this.state.amount}
+            InputProps={{
+              className: classes.inputColor,
+              startAdornment: (
+                <InputAdornment variant="filled" position="start">
+                  {currency}
+                </InputAdornment>
+              )
+            }}
+            InputLabelProps={{
+              className: classes.inputColor
+            }}
+          />
+          <SnackBar
+            onButtonClick={this.onButtonClick}
+            action="Add"
+            buttonStyles={{ marginTop: "1.5em" }}
           />
         </div>
       </div>

@@ -32,7 +32,8 @@ const styles = theme => ({
     margin: "1em"
   },
   paper: {
-    width: "17em"
+    width: "17em",
+    backgroundColor: "#fff"
   },
   form: {
     display: "flex",
@@ -118,7 +119,7 @@ class Login extends React.Component {
             })
             .catch(err => {
               this.toggleLoading();
-              console.log(err);
+              console.warn("unable to log in");
             });
         } else {
           this.toggleLoading();
@@ -127,7 +128,7 @@ class Login extends React.Component {
       })
       .catch(err => {
         this.toggleLoading();
-        console.log(err);
+        console.warn("unable to log in");
       });
   };
 
@@ -157,8 +158,9 @@ class Login extends React.Component {
             style={{
               display: "flex",
               justifyContent: "center",
-              backgroundColor: "#1769aa",
-              color: "#fff"
+              backgroundColor: "#cc285d",
+              color: "#fff",
+              fontWeight: 300
             }}
           >
             Log in
@@ -220,7 +222,7 @@ class Login extends React.Component {
               variant="raised"
               label="Submit"
               type="submit"
-              color="primary"
+              color="secondary"
             >
               {this.state.isLoading ? (
                 <CircularProgress style={{ color: "#fff" }} size={20} />

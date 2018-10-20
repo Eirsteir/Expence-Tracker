@@ -1,0 +1,10 @@
+.account-container {
+  margin-top: 4rem;
+  padding: 0 10vw;
+  color: #fff;
+}
+
+.justify-end {
+  display: flex;
+  justify-content: flex-end;
+}

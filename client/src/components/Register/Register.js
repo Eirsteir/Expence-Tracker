@@ -17,10 +17,12 @@ import Background from "../Background/Background";
 
 const styles = theme => ({
   register: {
-    height: "95vh",
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    [theme.breakpoints.down("md")]: {
+      paddingTop: "3rem"
+    }
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -166,8 +168,9 @@ class Register extends React.Component {
             style={{
               display: "flex",
               justifyContent: "center",
-              backgroundColor: "#1769aa",
-              color: "#fff"
+              backgroundColor: "#cc285d",
+              color: "#fff",
+              fontWeight: 300
             }}
           >
             Register
@@ -220,7 +223,7 @@ class Register extends React.Component {
               margin="normal"
             >
               {currencies.map(option => (
-                <MenuItem key={option.value} value={option.value}>
+                <MenuItem key={option.value} value={option.label}>
                   {option.label}
                 </MenuItem>
               ))}
@@ -263,7 +266,7 @@ class Register extends React.Component {
               variant="raised"
               label="Submit"
               type="submit"
-              color="primary"
+              color="secondary"
             >
               {this.state.isLoading ? (
                 <CircularProgress style={{ color: "#fff" }} size={20} />

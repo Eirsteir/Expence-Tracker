@@ -1,0 +1,61 @@
+.total-expences-grid-item {
+  background-color: #343b64;
+  color: #fff;
+  height: 7rem;
+  padding: 1rem;
+  font-size: 400;
+  ,border: none;
+  border-radius: 5px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+
+.expences {
+  height: 70%;
+}
+
+.diff-container {
+  height: 20%;
+}
+
+.num-display {
+  display: flex;
+  justify-content: center;
+}
+
+.num-display-currency {
+  position: relative;
+  top: 1.4rem;
+  font-size: 1.2rem;
+  margin-right: 0.1rem;
+}
+
+.num-display-number {
+  font-size: 2.5rem;
+}
+
+.diff-item-container {
+  display: flex;
+  align-items: center;
+}
+
+.diff-item-number {
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  padding: 0.1rem 0.3rem;
+}
+
+.diff-item-text {
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+  color: #c3cdd0;
+  margin-right: 0.7rem;
+}

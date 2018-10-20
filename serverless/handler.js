@@ -53,6 +53,20 @@ module.exports.sortData = async (event, context) => {
     }
   });
 
+  const lastTwoMonths = () => {
+    const monthIndex = new Date().getMonth();
+    const lastMonth = months[monthIndex - 1];
+    const thisMonth = months[monthIndex];
+
+    const expencesThisMonth = expencesSortedByMonth[thisMonth];
+    const expencesLastMonth = expencesSortedByMonth[lastMonth];
+
+    return {
+      expencesThisMonth,
+      expencesLastMonth
+    };
+  };
+
   return {
     statusCode: 200,
     headers: {
@@ -61,7 +75,7 @@ module.exports.sortData = async (event, context) => {
     },
     body: JSON.stringify({
       message: "Go Serverless v1.0! Your function executed successfully!",
-      input: expencesSortedByMonth
+      input: lastTwoMonths()
     })
   };
 };

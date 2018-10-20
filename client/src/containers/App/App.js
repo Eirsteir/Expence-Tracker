@@ -19,10 +19,10 @@ if (process.env.NODE_ENV !== "production") {
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#1769aa"
+      main: "#c3cdd0"
     },
     secondary: {
-      main: "#009688"
+      main: "#cc285d"
     }
   }
 });
@@ -35,7 +35,7 @@ const initialState = {
     email: "",
     age: "",
     joined: "",
-    expences: [],
+    expences: [], // we only need current month
     tags: [],
     currency: ""
   },
@@ -91,13 +91,11 @@ class App extends Component {
                 }
               })
               .catch(err => {
-                console.log(err);
                 this.toggleLoading();
               });
           }
         })
         .catch(err => {
-          console.log(err);
           this.toggleLoading();
         });
     }
@@ -141,8 +139,6 @@ class App extends Component {
 
 export default withRouter(App);
 
-// Delete CardList? Badly planned and is a mess
-
 // TODO:
 // - Add twilio?
 //   - Move requests to AWS Lambda
@@ -150,12 +146,9 @@ export default withRouter(App);
 // - Clean up and refactor code
 // - (Security)
 // - AWS: serverless, dynamoDB, Lambda, S3, hosting? redis?
-// - Add goals/budgets
-// - Terms of service
-// - Cookie consent
+// - Add targets/budgets
 // - Privacy policy?
+// - font size too large?
 
 // API_PORT=3001
 // CLIENT_PORT=3000
-
-// ADD REACT ROUTER

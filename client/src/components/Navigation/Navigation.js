@@ -1,8 +1,8 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -16,7 +16,6 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import HomeOutlinedIcon from "@material-ui/icons/Home";
-import SettingsIcon from "@material-ui/icons/Settings";
 import PersonIcon from "@material-ui/icons/Person";
 
 import { useShallowEqual } from "shouldcomponentupdate-children";
@@ -93,24 +92,15 @@ class Navigation extends React.Component {
         <Divider />
 
         <List component="nav">
-          <ListItem button onClick={() => this.handleClick("/profile")}>
+          <ListItem button onClick={() => this.handleClick("/account")}>
             <ListItemIcon>
               <PersonIcon />
             </ListItemIcon>
-            <ListItemText primary="Profile" />
+            <ListItemText primary="My account" />
           </ListItem>
         </List>
 
         <Divider />
-
-        <List component="nav">
-          <ListItem button>
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>
-            <ListItemText primary="My Account" />
-          </ListItem>
-        </List>
 
         <Divider />
         <List component="nav">
@@ -131,10 +121,10 @@ class Navigation extends React.Component {
       return (
         <div className={classes.root}>
           <AppBar
-            position="fixed"
+            position="absolute"
             style={{
-              backgroundImage:
-                "linear-gradient(89deg, rgb(23, 105, 170) 0%, #1769aa 15%, #009688 75%)"
+              boxShadow: "none",
+              backgroundColor: "transparent"
             }}
           >
             <Toolbar>
@@ -142,8 +132,10 @@ class Navigation extends React.Component {
                 variant="title"
                 color="inherit"
                 className={classes.grow}
+                style={{ cursor: "pointer", color: "#cc285d" }}
+                onClick={() => this.handleClick("/")}
               >
-                MyExpences
+                MyExp
               </Typography>
               <IconButton
                 className={classes.menuButton}
@@ -180,8 +172,7 @@ class Navigation extends React.Component {
             position="static"
             style={{
               boxShadow: "none",
-              backgroundImage:
-                "linear-gradient(89deg, rgb(23, 105, 170) 0%, #1769aa 15%, #009688 75%)"
+              backgroundColor: "#343b64"
             }}
           >
             <Toolbar>
@@ -189,8 +180,10 @@ class Navigation extends React.Component {
                 variant="title"
                 color="inherit"
                 className={classes.grow}
+                style={{ cursor: "pointer", color: "#cc285d" }}
+                onClick={() => this.handleClick("/")}
               >
-                MyExpences
+                MyExp
               </Typography>
               <Button
                 color="inherit"

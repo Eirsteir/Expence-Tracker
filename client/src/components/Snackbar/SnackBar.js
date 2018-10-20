@@ -6,9 +6,12 @@ import CloseIcon from "@material-ui/icons/Close";
 import { useShallowEqual } from "shouldcomponentupdate-children";
 
 class SnackBar extends React.Component {
-  state = {
-    open: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false
+    };
+  }
 
   handleClick = () => {
     return this.props.onButtonClick() === false
@@ -54,7 +57,7 @@ class SnackBar extends React.Component {
               size="small"
               onClick={this.handleClose}
             >
-              UNDO
+              OKAY
             </Button>,
             <IconButton
               key="close"

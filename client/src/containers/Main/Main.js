@@ -4,30 +4,23 @@
 // - / --> landingpage w/register
 // - /login --> the login page
 // - /home --> homepage (Expences.js)
-// - /profile --> users profile
+// - /account --> users account
 // - opt /edit-profile ?
 
 import React from "react";
-// objects match, location, history
 import { Switch, Route } from "react-router-dom";
 import Loadable from "react-loadable";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-// import LandingPage from "../LandingPage/LandingPage";
-// import Expences from "../Expences/Expences";
-// import Register from "../../components/Register/Register";
-// import Login from "../../components/Login/Login";
-// import Info from "../../components/Profile/Info"; // change name
-
 const Loading = () => (
   <div style={styles.loading}>
-    <CircularProgress size={80} color="primary" />
+    <CircularProgress size={80} color="secondary" />
   </div>
 );
 
 const Home = Loadable({
-  loader: () => import("../Expences/Expences"),
+  loader: () => import("../Dashboard/Dashboard"),
   loading: Loading
 });
 
@@ -46,8 +39,8 @@ const Register = Loadable({
   loading: Loading
 });
 
-const Profile = Loadable({
-  loader: () => import("../../components/Profile/Info"),
+const Account = Loadable({
+  loader: () => import("../Account/Account"),
   loading: Loading
 });
 
@@ -68,6 +61,7 @@ const styles = {
 
 class Main extends React.Component {
   render() {
+    const { user, loadUser, toggleSigninState, isSignedIn } = this.props;
     return (
       <Switch>
         <Route
@@ -76,8 +70,8 @@ class Main extends React.Component {
           render={props => (
             <LandingPage
               {...props}
-              loadUser={this.props.loadUser}
-              toggleSigninState={this.props.toggleSigninState}
+              loadUser={loadUser}
+              toggleSigninState={toggleSigninState}
             />
           )}
         />
@@ -87,8 +81,8 @@ class Main extends React.Component {
           render={props => (
             <Login
               {...props}
-              loadUser={this.props.loadUser}
-              toggleSigninState={this.props.toggleSigninState}
+              loadUser={loadUser}
+              toggleSigninState={toggleSigninState}
             />
           )}
         />
@@ -98,8 +92,8 @@ class Main extends React.Component {
           render={props => (
             <Register
               {...props}
-              loadUser={this.props.loadUser}
-              toggleSigninState={this.props.toggleSigninState}
+              loadUser={loadUser}
+              toggleSigninState={toggleSigninState}
             />
           )}
         />
@@ -109,22 +103,23 @@ class Main extends React.Component {
           render={props => (
             <Home
               {...props}
-              isSignedIn={this.props.isSignedIn}
-              user={this.props.user}
+              isSignedIn={isSignedIn}
+              user={user}
+              loadUser={loadUser}
             />
           )}
         />
         <Route
           exact
-          path="/profile"
+          path="/account"
           render={props => (
-            <Profile
+            <Account
               {...props}
-              isSignedIn={this.props.isSignedIn}
-              name={this.props.user.name}
-              email={this.props.user.email}
-              dateJoined={this.props.user.joined}
-              currency={this.props.user.currency}
+              isSignedIn={isSignedIn}
+              name={user.name}
+              email={user.email}
+              joined={user.joined}
+              currency={user.currency}
             />
           )}
         />
