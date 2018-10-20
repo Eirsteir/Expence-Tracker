@@ -11,8 +11,8 @@ import "./App.css";
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
-  // const { whyDidYouUpdate } = require("why-did-you-update");
-  // whyDidYouUpdate(React);
+  const { whyDidYouUpdate } = require("why-did-you-update");
+  whyDidYouUpdate(React);
 }
 
 // Performance cost? Look for alternatives
@@ -148,6 +148,7 @@ export default withRouter(App);
 // - AWS: serverless, dynamoDB, Lambda, S3, hosting? redis?
 // - Add targets/budgets
 // - Privacy policy?
+// - font size too large?
 
 // API_PORT=3001
 // CLIENT_PORT=3000

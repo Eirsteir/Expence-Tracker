@@ -1,8 +1,6 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 
-import "../../containers/Dashboard/Dashboard.css";
-
 const chartOptions = currency => {
   return {
     maintainAspectRatio: false,
@@ -17,7 +15,7 @@ const chartOptions = currency => {
             beginAtZero: true,
             maxTicksLimit: 5,
             padding: 20,
-            // Include a dollar sign in the ticks
+            // Include currency symbol in the y axis labels
             callback: function(value, index, values) {
               return `${currency}${value.toLocaleString()}`;
             }
@@ -60,7 +58,7 @@ const chartOptions = currency => {
   };
 };
 
-const options = {
+const dateOptions = {
   month: "2-digit",
   day: "2-digit"
 };
@@ -76,7 +74,7 @@ class ExpenceHistory extends React.Component {
 
     const labels = expences.map((exp, i) => {
       const date = new Date(expences[i].timestamp);
-      return date.toLocaleString("en-us", options);
+      return date.toLocaleString("en-us", dateOptions);
     });
 
     const data = expences.map((month, i) => expences[i].amount);
@@ -109,10 +107,16 @@ class ExpenceHistory extends React.Component {
   render() {
     return (
       <div
-        style={{ padding: "1rem", backgroundColor: "#343b64", color: "#fff" }}
+        style={{
+          padding: "1rem",
+          backgroundColor: "#343b64",
+          color: "#fff",
+          border: "none",
+          borderRadius: 5
+        }}
       >
         <div style={{ paddingBottom: "1.5rem" }}>Expences</div>
-        <div className="center">
+        <div>
           <Line
             data={this.chartData}
             options={chartOptions(this.props.currency)}

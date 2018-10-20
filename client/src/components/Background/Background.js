@@ -3,7 +3,6 @@ import React from "react";
 const Background = () => {
   return (
     <div
-      id="background"
       style={{
         backgroundColor: "#343b64",
         // backgroundImage:

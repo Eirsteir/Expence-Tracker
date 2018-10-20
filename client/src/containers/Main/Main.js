@@ -4,11 +4,10 @@
 // - / --> landingpage w/register
 // - /login --> the login page
 // - /home --> homepage (Expences.js)
-// - /profile --> users profile
+// - /account --> users account
 // - opt /edit-profile ?
 
 import React from "react";
-// objects match, location, history
 import { Switch, Route } from "react-router-dom";
 import Loadable from "react-loadable";
 
@@ -16,7 +15,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Loading = () => (
   <div style={styles.loading}>
-    <CircularProgress size={80} color="primary" />
+    <CircularProgress size={80} color="secondary" />
   </div>
 );
 

@@ -58,7 +58,9 @@ class PopularTagsList extends React.Component {
           backgroundColor: "#343b64",
           color: "#fff",
           height: "18rem",
-          padding: "1rem"
+          padding: "1rem",
+          border: "none",
+          borderRadius: 5
         }}
       >
         Popular tags

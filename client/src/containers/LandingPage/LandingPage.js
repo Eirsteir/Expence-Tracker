@@ -3,6 +3,8 @@ import Hero from "../../components/Hero/Hero";
 import Register from "../../components/Register/Register";
 import Background from "../../components/Background/Background";
 
+import { useShallowEqual } from "shouldcomponentupdate-children";
+
 import Grid from "@material-ui/core/Grid";
 
 class LandingPage extends React.Component {
@@ -29,4 +31,5 @@ class LandingPage extends React.Component {
   }
 }
 
+LandingPage = useShallowEqual(LandingPage);
 export default LandingPage;

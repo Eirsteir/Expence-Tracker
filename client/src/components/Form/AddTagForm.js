@@ -57,7 +57,13 @@ class AddTagForm extends React.Component {
     const { classes } = this.props;
     return (
       <div
-        style={{ backgroundColor: "#343b64", padding: "1rem", color: "#fff" }}
+        style={{
+          backgroundColor: "#343b64",
+          padding: "1rem",
+          color: "#fff",
+          border: "none",
+          borderRadius: 5
+        }}
       >
         <div>Add New Tag</div>
         <div

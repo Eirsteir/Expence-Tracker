@@ -9,7 +9,8 @@ const PopularTagsItem = ({ tag, amount, currency }) => {
         display: "flex",
         justifyContent: "space-between",
         height: "2.5rem",
-        color: "#c3cdd0"
+        color: "#c3cdd0",
+        fontSize: ".9rem"
       }}
     >
       <p>{tag}</p>
@@ -23,7 +24,7 @@ const PopularTagsItem = ({ tag, amount, currency }) => {
       >
         {currency}
         {amount}
-        <ArrowRightIcon style={{ marginLeft: "1rem" }} />
+        {/*<ArrowRightIcon style={{ marginLeft: "1rem" }} />*/}
       </div>
     </div>
   );

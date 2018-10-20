@@ -39,14 +39,15 @@ const ITEM_PADDING_TOP = 8;
 const MenuProps = {
   PaperProps: {
     style: {
-      height: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP
+      height: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      backgroundColor: "#26294c"
     }
   }
 };
 
 const initialState = {
   amount: "",
-  currentTag: ""
+  tag: ""
 };
 
 class AddExpenceForm extends React.Component {
@@ -57,21 +58,18 @@ class AddExpenceForm extends React.Component {
 
   handleInputChange = event => {
     const amount = event.target.value;
-    // \d === [0-9] - regex - what about commas?
+
     // input field type number: ugly but gets the job done
-    var isnum = /^[0-9.]+$/.test(amount);
-    if (isnum || amount === "") {
-      this.setState({ amount: Number(amount) });
-    }
+    return this.setState({ amount: Number(amount) });
   };
 
   handleSelectChange = event => {
-    return this.setState({ currentTag: event.target.value });
+    return this.setState({ tag: event.target.value });
   };
 
   // Add expence
   onButtonClick = () => {
-    if (this.state.currentTag === "") {
+    if (this.state.tag === "") {
       return false;
     }
     fetch(`/add-expence`, {
@@ -81,8 +79,8 @@ class AddExpenceForm extends React.Component {
         Authorization: window.localStorage.getItem("token")
       },
       body: JSON.stringify({
-        _id: this.props.user._id,
-        tag: this.state.currentTag,
+        _id: this.props.id,
+        tag: this.state.tag,
         amount: this.state.amount
       })
     })
@@ -93,15 +91,21 @@ class AddExpenceForm extends React.Component {
           this.props.loadUser(user);
         }
       })
-      .catch(err => console.log);
+      .catch(err => console.warn("unable to add expence"));
   };
 
   render() {
-    const { classes, user } = this.props;
+    const { classes, tags, currency } = this.props;
 
     return (
       <div
-        style={{ backgroundColor: "#343b64", padding: "1rem", color: "#fff" }}
+        style={{
+          backgroundColor: "#343b64",
+          padding: "1rem",
+          color: "#fff",
+          border: "none",
+          borderRadius: 5
+        }}
       >
         <div>Add new expence</div>
         <div className={classes.root}>
@@ -110,7 +114,7 @@ class AddExpenceForm extends React.Component {
               Tag
             </InputLabel>
             <Select
-              value={this.state.currentTag}
+              value={this.state.tag}
               onChange={this.handleSelectChange}
               inputProps={{
                 name: "tag",
@@ -118,9 +122,11 @@ class AddExpenceForm extends React.Component {
               }}
               MenuProps={MenuProps}
             >
-              <MenuItem value="None">None</MenuItem>
-              {user.tags.map(tag => (
-                <MenuItem key={tag} value={tag}>
+              <MenuItem value="None" style={{ color: "#c3cdd0" }}>
+                None
+              </MenuItem>
+              {tags.map(tag => (
+                <MenuItem key={tag} value={tag} style={{ color: "#c3cdd0" }}>
                   {tag}
                 </MenuItem>
               ))}
@@ -137,7 +143,7 @@ class AddExpenceForm extends React.Component {
               className: classes.inputColor,
               startAdornment: (
                 <InputAdornment variant="filled" position="start">
-                  {user.currency}
+                  {currency}
                 </InputAdornment>
               )
             }}

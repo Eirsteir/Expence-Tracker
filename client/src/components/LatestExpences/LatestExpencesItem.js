@@ -8,7 +8,8 @@ const LatestExpencesItem = ({ date, tag, currency, amount }) => {
         display: "flex",
         justifyContent: "space-between",
         height: "2.5rem",
-        color: "#c3cdd0"
+        color: "#c3cdd0",
+        fontSize: ".9rem"
       }}
     >
       <div
@@ -31,7 +32,7 @@ const LatestExpencesItem = ({ date, tag, currency, amount }) => {
       >
         {currency}
         {amount}
-        <ArrowRightIcon style={{ marginLeft: "1rem" }} />
+        {/*<ArrowRightIcon style={{ marginLeft: "1rem" }} />*/}
       </div>
     </div>
   );

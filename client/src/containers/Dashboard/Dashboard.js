@@ -13,7 +13,6 @@ import ExpencesFrequency from "../../components/ExpencesFrequency/ExpencesFreque
 import LatestExpencesList from "../../components/LatestExpences/LatestExpencesList";
 import AddExpenceForm from "../../components/Form/AddExpenceForm";
 import AddTagForm from "../../components/Form/AddTagForm";
-// import Profile from "../../components/Profile/Profile";
 
 import "./Dashboard.css";
 
@@ -58,7 +57,7 @@ class Dashboard extends React.Component {
           wrap="wrap"
           spacing={32}
         >
-          <Grid item xs={12} sm={6} md={4} className="grid-item">
+          <Grid item xs={12} sm={6} md={4}>
             <PopularTagsList
               expences={expencesThisMonth[0]}
               tags={user.tags}
@@ -95,7 +94,12 @@ class Dashboard extends React.Component {
           <Grid item xs={12} sm={12} md={4}>
             <Grid container justify="center" spacing={16} wrap="wrap">
               <Grid item xs={12} sm={6} md={12}>
-                <AddExpenceForm user={user} loadUser={loadUser} />
+                <AddExpenceForm
+                  id={user.id}
+                  tags={user.tags}
+                  currency={user.currency}
+                  loadUser={loadUser}
+                />
               </Grid>
 
               <Grid item xs={12} sm={6} md={12}>
