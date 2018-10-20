@@ -3,21 +3,28 @@ import Hero from "../../components/Hero/Hero";
 import Register from "../../components/Register/Register";
 import Background from "../../components/Background/Background";
 
-import "./LandingPage.css";
+import Grid from "@material-ui/core/Grid";
 
 class LandingPage extends React.Component {
   render() {
     return (
-      <div id="landing-page-container">
-        <Hero />
-        <div id="register-container">
+      <Grid
+        container
+        justify="center"
+        alignItems="baseline"
+        id="landing-page-container"
+      >
+        <Grid item md={6}>
+          <Hero />
+        </Grid>
+        <Grid item md={6} id="signin-container">
           <Register
             loadUser={this.props.loadUser}
             toggleSigninState={this.props.toggleSigninState}
           />
-        </div>
+        </Grid>
         <Background />
-      </div>
+      </Grid>
     );
   }
 }
