@@ -87,8 +87,9 @@ class ExpencesFrequency extends React.Component {
 
       // check if the week number and weekday-number (0-6) is the same
       if (dateOfExpence.getWeek() === this.todaysDate.getWeek()) {
-        this.week++;
+        return this.week++;
       }
+      return true;
     });
     this.week = (this.week / 7).toFixed(1);
     return this.week;
@@ -101,8 +102,9 @@ class ExpencesFrequency extends React.Component {
 
       // check if week number is the same and if date of expence is equal to the weekday-number before
       if (dateOfExpence.getWeek() === this.todaysDate.getWeek() - 1) {
-        this.lastWeek++;
+        return this.lastWeek++;
       }
+      return true;
     });
     this.lastWeek = (this.lastWeek / 7).toFixed(1);
     return this.lastWeek;
@@ -114,8 +116,9 @@ class ExpencesFrequency extends React.Component {
       const dateOfExpence = new Date(expences[i].timestamp);
 
       if (dateOfExpence.getMonth() === this.todaysDate.getMonth()) {
-        this.month++;
+        return this.month++;
       }
+      return true;
     });
     this.month = (this.month / 4).toFixed(1);
     return this.month;
@@ -127,8 +130,9 @@ class ExpencesFrequency extends React.Component {
       const dateOfExpence = new Date(expences[i].timestamp);
 
       if (dateOfExpence.getMonth() === this.todaysDate.getMonth() - 1) {
-        this.lastMonth++;
+        return this.lastMonth++;
       }
+      return true;
     });
     this.lastMonth = (this.lastMonth / 4).toFixed(1);
     return this.lastMonth;

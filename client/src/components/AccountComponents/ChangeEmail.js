@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 
-import FormHelperText from "@material-ui/core/FormHelperText";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
@@ -59,7 +58,7 @@ class ChangeEmail extends React.Component {
   //         this.props.loadUser(user);
   //       }
   //     })
-  //     .catch(err => console.log);
+  //     .catch(err => console.warn('unable to ...'));
   // };
 
   render() {

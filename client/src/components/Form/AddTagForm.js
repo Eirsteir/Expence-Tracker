@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 
-import FormHelperText from "@material-ui/core/FormHelperText";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
@@ -16,7 +15,6 @@ const styles = {
 
 class AddTagForm extends React.Component {
   state = {
-    expanded: false,
     tag: ""
   };
 
@@ -26,12 +24,6 @@ class AddTagForm extends React.Component {
 
   handleChange = event => {
     this.setState({ tag: event.target.value });
-  };
-
-  handleExpandChange = panel => (event, expanded) => {
-    this.setState({
-      expanded: expanded ? panel : false
-    });
   };
 
   // add tag
@@ -58,11 +50,10 @@ class AddTagForm extends React.Component {
           this.props.loadUser(user);
         }
       })
-      .catch(err => console.log);
+      .catch(err => console.warn("unable to add tag"));
   };
 
   render() {
-    const { expanded } = this.state;
     const { classes } = this.props;
     return (
       <div

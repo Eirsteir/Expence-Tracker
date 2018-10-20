@@ -8,21 +8,11 @@ const styles = {
     fontWeight: 300,
     color: "#fff"
   },
-  gridItemLatestExpence: {
-    color: "#c3cdd0",
-    backgroundColor: "#343b64",
-    borderRadius: 12
-  },
   button: {
     backgroundColor: "#cc285d",
     color: "#fff",
     fontSize: ".8rem"
   }
-};
-
-const dateOptions = {
-  month: "short",
-  day: "numeric"
 };
 
 class AccountHeader extends React.Component {

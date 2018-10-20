@@ -84,6 +84,7 @@ class TotalExpences extends React.Component {
       ) {
         return (this.today = this.today + expences[i].amount);
       }
+      return true;
     });
   };
 
@@ -99,6 +100,7 @@ class TotalExpences extends React.Component {
       ) {
         return (this.yesterday = this.yesterday + expences[i].amount);
       }
+      return true;
     });
   };
 
@@ -107,8 +109,9 @@ class TotalExpences extends React.Component {
       const dateOfExpence = new Date(expences[i].timestamp);
 
       if (dateOfExpence.getWeek() === this.todaysDate.getWeek()) {
-        this.week = this.week + expences[i].amount;
+        return (this.week = this.week + expences[i].amount);
       }
+      return true;
     });
   };
 
@@ -117,8 +120,9 @@ class TotalExpences extends React.Component {
       const dateOfExpence = new Date(expences[i].timestamp);
 
       if (dateOfExpence.getWeek() === this.todaysDate.getWeek() - 1) {
-        this.lastWeek = this.lastWeek + expences[i].amount;
+        return (this.lastWeek = this.lastWeek + expences[i].amount);
       }
+      return true;
     });
   };
 

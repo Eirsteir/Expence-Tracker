@@ -141,6 +141,9 @@ class AddExpenceForm extends React.Component {
                 </InputAdornment>
               )
             }}
+            InputLabelProps={{
+              className: classes.inputColor
+            }}
           />
           <SnackBar
             onButtonClick={this.onButtonClick}

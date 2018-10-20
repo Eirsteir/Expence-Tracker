@@ -19,7 +19,7 @@ if (process.env.NODE_ENV !== "production") {
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#26294c"
+      main: "#c3cdd0"
     },
     secondary: {
       main: "#cc285d"

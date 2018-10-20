@@ -21,7 +21,7 @@ class PopularTagsList extends React.Component {
   }
 
   // add to array with key=tag and initial value=0 [Food, 0]
-  popularTags = [];
+  popularTags = []; // array.map returns a new array - do we need this?
   getOrderedTags = tags => {
     tags.map(tag => {
       return this.popularTags.push([tag, 0]);
@@ -35,10 +35,11 @@ class PopularTagsList extends React.Component {
       const tag = expences[i].tag;
       const amount = expences[i].amount;
 
-      this.popularTags.map((exp, i) => {
+      return this.popularTags.map((exp, i) => {
         if (this.popularTags[i][0] === tag) {
           return (this.popularTags[i][1] = this.popularTags[i][1] + amount);
         }
+        return true;
       });
     });
   };

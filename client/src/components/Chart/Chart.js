@@ -60,35 +60,19 @@ const chartOptions = currency => {
   };
 };
 
-const months = [
-  "January",
-  "Febuary",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December"
-];
+const options = {
+  month: "2-digit",
+  day: "2-digit"
+};
 
 class ExpenceHistory extends React.Component {
   chartData = canvas => {
-    const now = new Date();
     const { expences } = this.props;
 
     const ctx = canvas.getContext("2d");
     const gradient = ctx.createLinearGradient(0, 0, 0, 170);
     gradient.addColorStop(0, "rgba(	204, 40, 93, 0.5)");
     gradient.addColorStop(1, "rgba(	0, 0, 0, 0.1)");
-
-    var options = {
-      month: "2-digit",
-      day: "2-digit"
-    };
 
     const labels = expences.map((exp, i) => {
       const date = new Date(expences[i].timestamp);

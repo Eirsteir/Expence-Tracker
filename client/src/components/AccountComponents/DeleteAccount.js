@@ -1,11 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-
-import FormHelperText from "@material-ui/core/FormHelperText";
-import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-
 import { shallowEqual } from "shouldcomponentupdate-children";
 
 const styles = {
@@ -56,7 +50,6 @@ class DeleteAccount extends React.Component {
   // };
 
   render() {
-    const { classes } = this.props;
     return (
       <div style={styles.gridItemContainer}>
         <div>Clear expences</div>
@@ -84,8 +77,4 @@ class DeleteAccount extends React.Component {
   }
 }
 
-DeleteAccount.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(styles)(DeleteAccount);
+export default DeleteAccount;
