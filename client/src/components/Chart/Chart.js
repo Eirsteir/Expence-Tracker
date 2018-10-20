@@ -19,7 +19,7 @@ const chartOptions = currency => {
             padding: 20,
             // Include a dollar sign in the ticks
             callback: function(value, index, values) {
-              return `${currency}${value}`;
+              return `${currency}${value.toLocaleString()}`;
             }
           },
           gridLines: {

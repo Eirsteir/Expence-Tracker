@@ -89,7 +89,7 @@ class ExpencesFrequency extends React.Component {
         this.week++;
       }
     });
-    this.week = (this.week / 7).toFixed(2);
+    this.week = (this.week / 7).toFixed(1);
     return this.week;
   };
 
@@ -103,7 +103,7 @@ class ExpencesFrequency extends React.Component {
         this.lastWeek++;
       }
     });
-    this.lastWeek = (this.lastWeek / 7).toFixed(2);
+    this.lastWeek = (this.lastWeek / 7).toFixed(1);
     return this.lastWeek;
   };
 
@@ -116,7 +116,7 @@ class ExpencesFrequency extends React.Component {
         this.month++;
       }
     });
-    this.month = (this.month / 4).toFixed(2);
+    this.month = (this.month / 4).toFixed(1);
     return this.month;
   };
 
@@ -129,7 +129,7 @@ class ExpencesFrequency extends React.Component {
         this.lastMonth++;
       }
     });
-    this.lastMonth = (this.lastMonth / 4).toFixed(2);
+    this.lastMonth = (this.lastMonth / 4).toFixed(1);
     return this.lastMonth;
   };
 

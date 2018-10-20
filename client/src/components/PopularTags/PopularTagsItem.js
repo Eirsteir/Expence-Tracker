@@ -17,7 +17,8 @@ const PopularTagsItem = ({ tag, amount, currency }) => {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "center"
+          alignItems: "center",
+          height: "110%"
         }}
       >
         {currency}

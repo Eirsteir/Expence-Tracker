@@ -139,8 +139,6 @@ class App extends Component {
 
 export default withRouter(App);
 
-// Delete CardList? Badly planned and is a mess
-
 // TODO:
 // - Add twilio?
 //   - Move requests to AWS Lambda
@@ -148,12 +146,8 @@ export default withRouter(App);
 // - Clean up and refactor code
 // - (Security)
 // - AWS: serverless, dynamoDB, Lambda, S3, hosting? redis?
-// - Add goals/budgets
-// - Terms of service
-// - Cookie consent
+// - Add targets/budgets
 // - Privacy policy?
 
 // API_PORT=3001
 // CLIENT_PORT=3000
-
-// ADD REACT ROUTER

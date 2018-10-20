@@ -34,7 +34,7 @@ class DashboardHeader extends React.Component {
     this.state = {
       checkedWeek: true,
       checkedMonth: false,
-      latestExpence: {} // what about empty expence from server?
+      latestExpence: { tag: "", amount: "", date: "" } // what about empty expence from server?
     };
   }
 
@@ -60,7 +60,7 @@ class DashboardHeader extends React.Component {
         const date = new Date(data.timestamp);
         const latestExpence = {
           tag: data.tag,
-          amount: data.amount,
+          amount: data.amount.toFixed(2),
           date: date.toLocaleString("en-us", dateOptions)
         };
         this.setState({ latestExpence });

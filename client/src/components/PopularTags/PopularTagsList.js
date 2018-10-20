@@ -1,7 +1,25 @@
 import React from "react";
 import PopularTagsItem from "./PopularTagsItem";
 
+const initialState = {
+  popularTags: []
+};
+
 class PopularTagsList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = initialState;
+  }
+
+  componentDidMount() {
+    return this.setState({ popularTags: this.popularTags });
+  }
+
+  // making sure the expences aren't added again when component is remounted but this.popularTags arrays remains the same
+  componentWillUpdate() {
+    return (this.popularTags = []);
+  }
+
   // add to array with key=tag and initial value=0 [Food, 0]
   popularTags = [];
   getOrderedTags = tags => {
@@ -26,12 +44,13 @@ class PopularTagsList extends React.Component {
   };
 
   render() {
-    const { currency } = this.props;
-    this.getOrderedTags(this.props.tags);
-    this.getPopularTags(this.props.expences);
+    const { currency, tags, expences } = this.props;
+    const { popularTags } = this.state;
+    this.getOrderedTags(tags);
+    this.getPopularTags(expences);
 
     // sort popular tags by sum in decreasing order
-    const sortedTags = this.popularTags.sort((a, b) => b[1] - a[1]).slice(0, 6);
+    const sortedTags = popularTags.sort((a, b) => b[1] - a[1]).slice(0, 6);
     return (
       <div
         style={{
@@ -47,8 +66,8 @@ class PopularTagsList extends React.Component {
             return (
               <PopularTagsItem
                 key={i}
-                tag={this.popularTags[i][0]}
-                amount={this.popularTags[i][1]}
+                tag={popularTags[i][0]}
+                amount={popularTags[i][1]}
                 currency={currency}
               />
             );

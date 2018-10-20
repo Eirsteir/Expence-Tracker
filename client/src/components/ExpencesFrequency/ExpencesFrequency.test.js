@@ -44,21 +44,21 @@ const mockExpences = [
 describe("calculate expence frequency", () => {
   it("expect to get this weeks average number of expences", () => {
     const wrapper = shallow(<ExpencesFrequency expences={mockExpences} />);
-    expect(wrapper.state("week")).toBe("1.00"); // 7 / 7
+    expect(wrapper.state("week")).toBe("1.0"); // 7 / 7
   });
 
   it("expect to get last weeks average number of expences", () => {
     const wrapper = shallow(<ExpencesFrequency expences={mockExpences} />);
-    expect(wrapper.state("lastWeek")).toBe("1.00"); // 7 / 7
+    expect(wrapper.state("lastWeek")).toBe("1.0"); // 7 / 7
   });
 
   it("expect to get this months average number of expences", () => {
     const wrapper = shallow(<ExpencesFrequency expences={mockExpences} />);
-    expect(wrapper.state("month")).toBe("3.50"); // 14 / 4 : takes today (7) and last week (7) into consideration
+    expect(wrapper.state("month")).toBe("3.5"); // 14 / 4 : takes today (7) and last week (7) into consideration
   });
 
   it("expect to get last months average number of expences", () => {
     const wrapper = shallow(<ExpencesFrequency expences={mockExpences} />);
-    expect(wrapper.state("lastMonth")).toBe("1.75"); // 7 / 4
+    expect(wrapper.state("lastMonth")).toBe("1.8"); // 7 / 4
   });
 });
