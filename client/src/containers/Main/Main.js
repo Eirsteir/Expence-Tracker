@@ -40,8 +40,8 @@ const Register = Loadable({
   loading: Loading
 });
 
-const Profile = Loadable({
-  loader: () => import("../../components/Profile/Info"),
+const Account = Loadable({
+  loader: () => import("../Account/Account"),
   loading: Loading
 });
 
@@ -62,6 +62,7 @@ const styles = {
 
 class Main extends React.Component {
   render() {
+    const { user, loadUser, toggleSigninState, isSignedIn } = this.props;
     return (
       <Switch>
         <Route
@@ -70,8 +71,8 @@ class Main extends React.Component {
           render={props => (
             <LandingPage
               {...props}
-              loadUser={this.props.loadUser}
-              toggleSigninState={this.props.toggleSigninState}
+              loadUser={loadUser}
+              toggleSigninState={toggleSigninState}
             />
           )}
         />
@@ -81,8 +82,8 @@ class Main extends React.Component {
           render={props => (
             <Login
               {...props}
-              loadUser={this.props.loadUser}
-              toggleSigninState={this.props.toggleSigninState}
+              loadUser={loadUser}
+              toggleSigninState={toggleSigninState}
             />
           )}
         />
@@ -92,8 +93,8 @@ class Main extends React.Component {
           render={props => (
             <Register
               {...props}
-              loadUser={this.props.loadUser}
-              toggleSigninState={this.props.toggleSigninState}
+              loadUser={loadUser}
+              toggleSigninState={toggleSigninState}
             />
           )}
         />
@@ -103,23 +104,23 @@ class Main extends React.Component {
           render={props => (
             <Home
               {...props}
-              isSignedIn={this.props.isSignedIn}
-              user={this.props.user}
-              loadUser={this.props.loadUser}
+              isSignedIn={isSignedIn}
+              user={user}
+              loadUser={loadUser}
             />
           )}
         />
         <Route
           exact
-          path="/profile"
+          path="/account"
           render={props => (
-            <Profile
+            <Account
               {...props}
-              isSignedIn={this.props.isSignedIn}
-              name={this.props.user.name}
-              email={this.props.user.email}
-              dateJoined={this.props.user.joined}
-              currency={this.props.user.currency}
+              isSignedIn={isSignedIn}
+              name={user.name}
+              email={user.email}
+              joined={user.joined}
+              currency={user.currency}
             />
           )}
         />

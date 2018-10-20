@@ -9,7 +9,7 @@ import Button from "@material-ui/core/Button";
 import { shallowEqual } from "shouldcomponentupdate-children";
 
 const styles = {
-  inputColor: {
+  gray: {
     color: "#c3cdd0"
   }
 };
@@ -82,7 +82,10 @@ class AddTagForm extends React.Component {
             onChange={this.handleChange}
             value={this.state.tag}
             InputProps={{
-              classes: { input: classes.inputColor }
+              classes: { input: classes.gray }
+            }}
+            InputLabelProps={{
+              className: classes.gray
             }}
           />
           <Button

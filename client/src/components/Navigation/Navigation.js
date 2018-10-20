@@ -93,24 +93,15 @@ class Navigation extends React.Component {
         <Divider />
 
         <List component="nav">
-          <ListItem button onClick={() => this.handleClick("/profile")}>
+          <ListItem button onClick={() => this.handleClick("/account")}>
             <ListItemIcon>
               <PersonIcon />
             </ListItemIcon>
-            <ListItemText primary="Profile" />
+            <ListItemText primary="My account" />
           </ListItem>
         </List>
 
         <Divider />
-
-        <List component="nav">
-          <ListItem button>
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>
-            <ListItemText primary="My Account" />
-          </ListItem>
-        </List>
 
         <Divider />
         <List component="nav">

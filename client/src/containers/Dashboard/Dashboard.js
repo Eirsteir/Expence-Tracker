@@ -50,17 +50,15 @@ class Dashboard extends React.Component {
           currency={user.currency}
           toggleData={this.toggleData}
         />
-        {/*<Profile user={user} />*/}
-        {/*<CardList expences={user.expences} />*/}
 
         <Grid
           container
           justify="space-between"
+          direction="row"
           wrap="wrap"
           spacing={32}
-          id="dashboard-grid"
         >
-          <Grid item xs={12} sm={12} md={4}>
+          <Grid item xs={12} sm={6} md={4} className="grid-item">
             <PopularTagsList
               expences={expencesThisMonth[0]}
               tags={user.tags}
@@ -68,7 +66,7 @@ class Dashboard extends React.Component {
             />
           </Grid>
 
-          <Grid item xs={12} sm={12} md={4}>
+          <Grid item xs={12} sm={6} md={4}>
             <Grid container direction="column" justify="center" spacing={32}>
               <Grid item>
                 <TotalExpences
@@ -95,12 +93,12 @@ class Dashboard extends React.Component {
           </Grid>
 
           <Grid item xs={12} sm={12} md={4}>
-            <Grid container direction="column" justify="center" spacing={16}>
-              <Grid item>
+            <Grid container justify="center" spacing={16} wrap="wrap">
+              <Grid item xs={12} sm={6} md={12}>
                 <AddExpenceForm user={user} loadUser={loadUser} />
               </Grid>
 
-              <Grid item>
+              <Grid item xs={12} sm={6} md={12}>
                 <AddTagForm user={user} loadUser={loadUser} />
               </Grid>
             </Grid>
