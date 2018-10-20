@@ -10,7 +10,7 @@ import DashboardHeader from "../../components/DashboardHeader/DashboardHeader";
 import PopularTagsList from "../../components/PopularTags/PopularTagsList";
 import TotalExpences from "../../components/TotalExpences/TotalExpences";
 import ExpencesFrequency from "../../components/ExpencesFrequency/ExpencesFrequency";
-import LatestExpences from "../../components/LatestExpences/LatestExpences";
+import LatestExpencesList from "../../components/LatestExpences/LatestExpencesList";
 import AddExpenceForm from "../../components/Form/AddExpenceForm";
 import AddTagForm from "../../components/Form/AddTagForm";
 // import Profile from "../../components/Profile/Profile";
@@ -37,6 +37,7 @@ class Dashboard extends React.Component {
 
   render() {
     const { loadUser, user } = this.props;
+    const { expencesThisMonth } = user.expences;
 
     if (!this.props.isSignedIn) {
       return <Redirect to="/" />;
@@ -61,7 +62,7 @@ class Dashboard extends React.Component {
         >
           <Grid item xs={12} sm={12} md={4}>
             <PopularTagsList
-              expences={user.expences.expencesThisMonth[0]}
+              expences={expencesThisMonth[0]}
               tags={user.tags}
               currency={user.currency}
             />
@@ -72,27 +73,25 @@ class Dashboard extends React.Component {
               <Grid item>
                 <TotalExpences
                   currency={user.currency}
-                  expences={user.expences.expencesThisMonth[0]}
+                  expences={expencesThisMonth[0]}
                 />
               </Grid>
 
               <Grid item>
-                <ExpencesFrequency
-                  expences={user.expences.expencesThisMonth[0]}
-                />
+                <ExpencesFrequency expences={expencesThisMonth[0]} />
               </Grid>
             </Grid>
           </Grid>
 
           <Grid item xs={12} sm={12} md={4}>
-            <LatestExpences />
+            <LatestExpencesList
+              currency={user.currency}
+              expences={expencesThisMonth[0]}
+            />
           </Grid>
 
           <Grid item xs={12} sm={12} md={8}>
-            <Chart
-              expences={user.expences.expencesThisMonth[0]}
-              currency={user.currency}
-            />
+            <Chart expences={expencesThisMonth[0]} currency={user.currency} />
           </Grid>
 
           <Grid item xs={12} sm={12} md={4}>

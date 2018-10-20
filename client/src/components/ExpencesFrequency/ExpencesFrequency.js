@@ -58,6 +58,16 @@ class ExpencesFrequency extends React.Component {
     this.calculateThisMonthsFrequency(this.props.expences);
     this.calculateLastMonthsFrequency(this.props.expences);
 
+    const weeklyDiff =
+      this.week - this.lastWeek < 0
+        ? this.lastWeek - this.week
+        : this.week - this.lastWeek;
+
+    const monthlyDiff =
+      this.month - this.lastMonth < 0
+        ? this.lastMonth - this.month
+        : this.month - this.lastMonth;
+
     this.setState({
       week: this.week,
       lastWeek: this.lastWeek,
@@ -65,14 +75,8 @@ class ExpencesFrequency extends React.Component {
       lastMonth: this.lastMonth,
       weeklyDiffStyle: this.week <= this.lastWeek ? "#58C457" : "#cc285d", // green and red
       monthlyDiffStyle: this.month <= this.lastMonth ? "#58C457" : "#cc285d", // green and red
-      weeklyDiff:
-        this.week - this.lastWeek < 0
-          ? this.lastWeek - this.week
-          : this.week - this.lastWeek,
-      monthlyDiff:
-        this.month - this.lastMonth < 0
-          ? this.lastMonth - this.month
-          : this.month - this.lastMonth
+      weeklyDiff: weeklyDiff.toFixed(1),
+      monthlyDiff: monthlyDiff.toFixed(1)
     });
   }
 
@@ -82,10 +86,7 @@ class ExpencesFrequency extends React.Component {
       const dateOfExpence = new Date(expences[i].timestamp);
 
       // check if the week number and weekday-number (0-6) is the same
-      if (
-        dateOfExpence.getWeek() === this.todaysDate.getWeek() &&
-        dateOfExpence.getDay() === this.todaysDate.getDay()
-      ) {
+      if (dateOfExpence.getWeek() === this.todaysDate.getWeek()) {
         this.week++;
       }
     });
