@@ -74,7 +74,6 @@
       background: #009688;
     }
     </style>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
   </head>
   <body>
     <noscript>
@@ -88,7 +87,23 @@
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js" defer></script>
-    <script defer>
+      <script>
+      const loadStylesheet = src => {
+        if (document.createStylesheet) {
+          document.createStylesheet(src)
+        } else {
+          const stylesheet = document.createElement('link');
+          stylesheet.href = src;
+          stylesheet.type = 'text/css';
+          stylesheet.rel = 'stylesheet';
+          document.getElementsByTagName('head')[0].appendChild(stylesheet)
+        }
+      }
+      window.onload = function() {
+        loadStylesheet('https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css')
+      }
+    </script>
+    <script>
     window.addEventListener("load", function(){
       window.cookieconsent.initialise({
         "palette": {

@@ -35,7 +35,7 @@ const initialState = {
     email: "",
     age: "",
     joined: "",
-    expences: [], // we only need current month
+    expences: [],
     tags: [],
     currency: ""
   },
