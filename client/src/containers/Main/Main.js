@@ -14,12 +14,6 @@ import Loadable from "react-loadable";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-// import LandingPage from "../LandingPage/LandingPage";
-// import Expences from "../Expences/Expences";
-// import Register from "../../components/Register/Register";
-// import Login from "../../components/Login/Login";
-// import Info from "../../components/Profile/Info"; // change name
-
 const Loading = () => (
   <div style={styles.loading}>
     <CircularProgress size={80} color="primary" />

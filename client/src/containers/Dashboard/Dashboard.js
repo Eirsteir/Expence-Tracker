@@ -22,7 +22,7 @@ const initialState = {
   month: false
 };
 
-class Expences extends React.Component {
+class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = initialState;
@@ -75,8 +75,11 @@ class Expences extends React.Component {
                   expences={user.expences.expencesThisMonth[0]}
                 />
               </Grid>
+
               <Grid item>
-                <ExpencesFrequency />
+                <ExpencesFrequency
+                  expences={user.expences.expencesThisMonth[0]}
+                />
               </Grid>
             </Grid>
           </Grid>
@@ -104,19 +107,12 @@ class Expences extends React.Component {
             </Grid>
           </Grid>
         </Grid>
-
-        <div
-          style={{
-            marginBottom: "4em",
-            padding: "2em"
-          }}
-        />
       </div>
     );
   }
 }
 
-export default Expences;
+export default Dashboard;
 
 // {Object.keys(user.expences).map((month, i) => {
 // return (
