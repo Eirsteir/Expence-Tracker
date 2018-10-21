@@ -30,8 +30,8 @@ const initialState = {
   yesterday: 0,
   week: 0,
   lastWeek: 0,
-  todayStyle: "green",
-  weekStyle: "green",
+  todaysDiffStyle: "#58C457",
+  weeklyDiffStyle: "#58C457",
   todaysDiff: 0,
   weeklyDiff: 0
 };
@@ -93,10 +93,10 @@ class TotalExpences extends React.Component {
     Object.keys(expences).map((month, i) => {
       const dateOfExpence = new Date(expences[i].timestamp);
 
-      // check if week number is the same and if date of expence is equal to the weekday-number before
+      // check if week number is the same and if date of expence is equal to the day before
       if (
         dateOfExpence.getWeek() === this.todaysDate.getWeek() &&
-        dateOfExpence.getDay() === this.todaysDate.getDay() - 1
+        dateOfExpence.getDate() === this.todaysDate.getDate() - 1
       ) {
         return (this.yesterday = this.yesterday + expences[i].amount);
       }

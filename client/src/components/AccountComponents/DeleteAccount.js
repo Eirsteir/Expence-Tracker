@@ -52,7 +52,7 @@ class DeleteAccount extends React.Component {
   render() {
     return (
       <div style={styles.gridItemContainer}>
-        <div>Clear expences</div>
+        <div>Delete account</div>
         <div style={styles.warning}>
           Once you delete your account, there is no going back.
         </div>
