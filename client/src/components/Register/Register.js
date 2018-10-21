@@ -160,7 +160,7 @@ class Register extends React.Component {
       <div className={classes.register}>
         <Background />
 
-        <Paper className={classes.paper}>
+        <Paper className={classes.paper} elevation={16}>
           <Typography
             variant="headline"
             component="h3"
