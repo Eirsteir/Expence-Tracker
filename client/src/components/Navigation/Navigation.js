@@ -20,7 +20,7 @@ import PersonIcon from "@material-ui/icons/Person";
 
 import { useShallowEqual } from "shouldcomponentupdate-children";
 
-const styles = {
+const styles = theme => ({
   root: {
     flexGrow: 1
   },
@@ -28,13 +28,28 @@ const styles = {
     flexGrow: 1,
     fontWeight: 300
   },
+  appBar: {
+    boxShadow: "none",
+    // backgroundColor: "#343b64"
+    backgroundColor: "transparent",
+    padding: "1rem 6rem",
+    [theme.breakpoints.down("sm")]: {
+      padding: "1rem 1rem"
+    }
+  },
   menuButton: {
     marginRight: "-1rem"
   },
   list: {
     width: 250
+  },
+  label: {
+    textTransform: "capitalize",
+    backgroundColor: "transparent",
+    fontSize: "1.1rem",
+    marginRight: "1rem"
   }
-};
+});
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -133,7 +148,7 @@ class Navigation extends React.Component {
                 color="inherit"
                 className={classes.grow}
                 style={{ cursor: "pointer", color: "#cc285d" }}
-                onClick={() => this.handleClick("/")}
+                onClick={() => this.handleClick("/home")}
               >
                 MyExp
               </Typography>
@@ -168,19 +183,18 @@ class Navigation extends React.Component {
     } else {
       return (
         <div className={classes.root}>
-          <AppBar
-            position="static"
-            style={{
-              boxShadow: "none",
-              backgroundColor: "#343b64"
-            }}
-          >
+          <AppBar position="static" className={classes.appBar}>
             <Toolbar>
               <Typography
                 variant="title"
                 color="inherit"
                 className={classes.grow}
-                style={{ cursor: "pointer", color: "#cc285d" }}
+                style={{
+                  cursor: "pointer",
+                  color: "#fff",
+                  fontWeight: "bold",
+                  fontSize: "2rem"
+                }}
                 onClick={() => this.handleClick("/")}
               >
                 MyExp
@@ -188,12 +202,14 @@ class Navigation extends React.Component {
               <Button
                 color="inherit"
                 onClick={() => this.handleClick("/login")}
+                className={classes.label}
               >
                 Log in
               </Button>
               <Button
                 color="inherit"
                 onClick={() => this.handleClick("/register")}
+                className={classes.label}
               >
                 Register
               </Button>

@@ -36,7 +36,7 @@ class Dashboard extends React.Component {
 
   render() {
     const { loadUser, user } = this.props;
-    const { expencesThisMonth } = user.expences;
+    const { expencesThisMonth, expencesLastMonth } = user.expences;
 
     if (!this.props.isSignedIn) {
       return <Redirect to="/" />;
@@ -59,7 +59,9 @@ class Dashboard extends React.Component {
         >
           <Grid item xs={12} sm={6} md={4}>
             <PopularTagsList
-              expences={expencesThisMonth[0]}
+              expences={
+                this.state.week ? expencesThisMonth[0] : expencesLastMonth[0]
+              }
               tags={user.tags}
               currency={user.currency}
             />
@@ -83,7 +85,9 @@ class Dashboard extends React.Component {
           <Grid item xs={12} sm={12} md={4}>
             <LatestExpencesList
               currency={user.currency}
-              expences={expencesThisMonth[0]}
+              expences={
+                this.state.week ? expencesThisMonth[0] : expencesLastMonth[0]
+              }
             />
           </Grid>
 

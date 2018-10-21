@@ -7,8 +7,6 @@ import Navigation from "../../components/Navigation/Navigation";
 import ErrorBoundary from "../../components/ErrorBoundary/ErrorBoundary";
 import Main from "../Main/Main";
 
-import "./App.css";
-
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
   const { whyDidYouUpdate } = require("why-did-you-update");
@@ -19,7 +17,7 @@ if (process.env.NODE_ENV !== "production") {
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#c3cdd0"
+      main: "#3CF2FD"
     },
     secondary: {
       main: "#cc285d"

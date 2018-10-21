@@ -20,7 +20,7 @@ import Background from "../Background/Background";
 
 const styles = theme => ({
   login: {
-    height: "88vh",
+    height: "100%",
     display: "flex",
     justifyContent: "center",
     alignItems: "center"
@@ -150,7 +150,7 @@ class Login extends React.Component {
     return (
       <div className={classes.login}>
         <Background />
-        <Paper className={classes.paper}>
+        <Paper className={classes.paper} elevation={16}>
           <Typography
             variant="headline"
             component="h3"

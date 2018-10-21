@@ -6,6 +6,7 @@ import Background from "../../components/Background/Background";
 import { useShallowEqual } from "shouldcomponentupdate-children";
 
 import Grid from "@material-ui/core/Grid";
+import "./LandingPage.css";
 
 class LandingPage extends React.Component {
   render() {
