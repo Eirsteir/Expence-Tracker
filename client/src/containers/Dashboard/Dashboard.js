@@ -95,7 +95,7 @@ class Dashboard extends React.Component {
             <Grid container justify="center" spacing={16} wrap="wrap">
               <Grid item xs={12} sm={6} md={12}>
                 <AddExpenceForm
-                  id={user.id}
+                  _id={user._id}
                   tags={user.tags}
                   currency={user.currency}
                   loadUser={loadUser}
@@ -103,7 +103,7 @@ class Dashboard extends React.Component {
               </Grid>
 
               <Grid item xs={12} sm={6} md={12}>
-                <AddTagForm user={user} loadUser={loadUser} />
+                <AddTagForm _id={user._id} loadUser={loadUser} />
               </Grid>
             </Grid>
           </Grid>

@@ -39,7 +39,7 @@ class AddTagForm extends React.Component {
         Authorization: window.localStorage.getItem("token")
       },
       body: JSON.stringify({
-        _id: this.props.user._id,
+        _id: this.props._id,
         tag: tag
       })
     })

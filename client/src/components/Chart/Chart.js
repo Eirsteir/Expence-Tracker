@@ -97,7 +97,7 @@ class ExpenceHistory extends React.Component {
           pointHoverBackgroundColor: "rgba(204, 40, 93, 0.7)",
           pointHoverBorderColor: "rgba(204, 40, 93, 0.7)",
           pointHoverBorderWidth: 2,
-          pointRadius: 1,
+          pointRadius: 0,
           pointHitRadius: 10
         }
       ]

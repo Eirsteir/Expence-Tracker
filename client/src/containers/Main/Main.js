@@ -13,6 +13,21 @@ import Loadable from "react-loadable";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 
+const styles = {
+  loading: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: "99999",
+    backgroundColor: "rgba(0,0,0, 0.5)"
+  }
+};
+
 const Loading = () => (
   <div style={styles.loading}>
     <CircularProgress size={80} color="secondary" />
@@ -43,21 +58,6 @@ const Account = Loadable({
   loader: () => import("../Account/Account"),
   loading: Loading
 });
-
-const styles = {
-  loading: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    zIndex: "99999",
-    backgroundColor: "rgba(0,0,0, 0.5)"
-  }
-};
 
 class Main extends React.Component {
   render() {

@@ -79,7 +79,7 @@ class AddExpenceForm extends React.Component {
         Authorization: window.localStorage.getItem("token")
       },
       body: JSON.stringify({
-        _id: this.props.id,
+        _id: this.props._id,
         tag: this.state.tag,
         amount: this.state.amount
       })
