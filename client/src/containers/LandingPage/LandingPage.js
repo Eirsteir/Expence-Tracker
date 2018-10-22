@@ -17,7 +17,7 @@ class LandingPage extends React.Component {
             <Hero />
           </div>
           <img
-            src="/screenshot.jpg"
+            src="/screenshot_compressed.jpg"
             className="hero-image"
             sizes="(max-width: 479px) 80vw, (max-width: 991px) 70vw, 100vw"
           />
