@@ -11,23 +11,23 @@ import "./LandingPage.css";
 class LandingPage extends React.Component {
   render() {
     return (
-      <Grid
-        container
-        justify="center"
-        alignItems="baseline"
-        id="landing-page-container"
-      >
-        <Grid item md={6}>
-          <Hero />
-        </Grid>
-        <Grid item md={6} id="signin-container">
-          <Register
+      <div id="landing-page-container">
+        <div id="hero-img-container">
+          <div>
+            <Hero />
+          </div>
+          <img
+            src="/screenshot.jpg"
+            className="hero-image"
+            sizes="(max-width: 479px) 80vw, (max-width: 991px) 70vw, 100vw"
+          />
+        </div>
+        {/*<Register
             loadUser={this.props.loadUser}
             toggleSigninState={this.props.toggleSigninState}
-          />
-        </Grid>
+          />*/}
         <Background />
-      </Grid>
+      </div>
     );
   }
 }

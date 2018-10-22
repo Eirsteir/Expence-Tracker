@@ -20,7 +20,7 @@ import Background from "../Background/Background";
 
 const styles = theme => ({
   login: {
-    height: "100%",
+    height: "80vh",
     display: "flex",
     justifyContent: "center",
     alignItems: "center"
