@@ -34,7 +34,7 @@ const styles = theme => ({
     backgroundColor: "transparent",
     padding: "1rem 6rem",
     [theme.breakpoints.down("sm")]: {
-      padding: "1rem 1rem"
+      padding: "0"
     }
   },
   menuButton: {
@@ -47,7 +47,10 @@ const styles = theme => ({
     textTransform: "capitalize",
     backgroundColor: "transparent",
     fontSize: "1.1rem",
-    marginRight: "1rem"
+    marginRight: "1rem",
+    [theme.breakpoints.down("sm")]: {
+      marginRight: "0"
+    }
   }
 });
 

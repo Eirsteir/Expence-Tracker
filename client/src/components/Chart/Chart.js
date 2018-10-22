@@ -70,7 +70,8 @@ class ExpenceHistory extends React.Component {
     const ctx = canvas.getContext("2d");
     const gradient = ctx.createLinearGradient(0, 0, 0, 170);
     gradient.addColorStop(0, "rgba(	204, 40, 93, 0.5)");
-    gradient.addColorStop(1, "rgba(	0, 0, 0, 0.1)");
+    gradient.addColorStop(0.8, "rgba(	204, 40, 93, 0.2)");
+    gradient.addColorStop(1, "rgba(52,59,100, 0.2)");
 
     const labels = expences.map((exp, i) => {
       const date = new Date(expences[i].timestamp);

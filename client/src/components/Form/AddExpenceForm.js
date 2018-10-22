@@ -140,7 +140,6 @@ class AddExpenceForm extends React.Component {
             onChange={this.handleInputChange}
             value={this.state.amount}
             InputProps={{
-              className: classes.inputColor,
               startAdornment: (
                 <InputAdornment variant="filled" position="start">
                   {currency}

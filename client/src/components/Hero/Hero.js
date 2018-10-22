@@ -15,7 +15,7 @@ const Hero = ({ onRouteChange }) => {
       container
       justify="space-around"
       direction="column"
-      spacing={32}
+      spacing={8}
       wrap="wrap"
       id="main-container"
     >
@@ -23,15 +23,17 @@ const Hero = ({ onRouteChange }) => {
         <Typography
           variant="display3"
           style={{ color: "#fff", fontWeight: "bold" }}
+          id="header"
         >
           MyExpences
         </Typography>
       </Grid>
 
-      <Grid item id="text-container">
+      <Grid item>
         <Typography
           variant="display1"
-          style={{ color: "#fff", fontWeight: 300, fontSize: "1.9rem" }}
+          style={{ color: "#fff", fontWeight: 300 }}
+          id="sub-header"
         >
           Start tracking your expences &mdash; <br /> with myExpences
         </Typography>
@@ -39,9 +41,9 @@ const Hero = ({ onRouteChange }) => {
 
       <Grid item>
         <Button
-          color="secondary"
           variant="raised"
-          style={{ height: "4rem", width: "10rem" }}
+          style={{ backgroundColor: "#dd1173", padding: "20px 40px" }}
+          id="register-now-btn"
         >
           <Link
             to="/register"
